@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   command.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 13:06:12 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 13:06:13 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/05 13:10:56 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+void	check_command(t_command command, t_prompt *prompt)
 {
-	unsigned int	i;
-
-	i = 0;
-	while (s1[i] || s2[i])
+	if (!ft_strcmp(command.command, "change"))
+		change(command, prompt);
+	else if (!ft_strcmp(command.command, "pwd"))
+		printf("%s\n", getenv("PWD"));
+	else if (!ft_strcmp(command.command, "clear"))
+		clear_shell();
+	else if (!ft_strcmp(command.command, "exit"))
 	{
-		if (s1[i] != s2[i])
-			return (1);
-		if (!s1[i])
-			break ;
-		i++;
+		free_everything(prompt, &command);
+		kill(getppid(), SIGKILL);
 	}
-	return (0);
+	else
+		printf("%s: command not found\n", command.command);
 }
