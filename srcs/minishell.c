@@ -1,8 +1,18 @@
 #include "../include/include.h"
 
+void	ctrl_c()
+{
+	t_prompt	null_prompt;
+
+	null_prompt.colour = NULL;
+	null_prompt.init_pwd = NULL;
+	null_prompt.user = NULL;
+	printf("\n%s", prompt_static(null_prompt, 0));
+}
+
 void	ignore_shell_signal(void)
 {
-	signal(SIGINT, SIG_IGN);
+	signal(SIGINT, ctrl_c);
 	signal(SIGTSTP, SIG_IGN);
 	signal(SIGQUIT, SIG_IGN);
 }
@@ -23,11 +33,9 @@ t_command	read_line(char *prompt)
 	command.arguments = (char **)malloc(sizeof(char *) * i);
 	i = 0;
 	while(split[++i])
-		command.arguments[i - 1] = split[i];
+		command.arguments[i - 1] = ft_strdup(split[i]);
 	command.arguments[i - 1] = NULL;
 	i = -1;
-	while (split[++i])
-		free(split[i]);
 	return (command);
 }
 
