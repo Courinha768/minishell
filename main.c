@@ -6,13 +6,13 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 17:46:47 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:57:53 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/include.h"
 
-void	free_everything(t_prompt *prompt, t_command *command)
+void	free_everything(t_info *prompt, t_command *command)
 {
 	int	i;
 
@@ -25,20 +25,20 @@ void	free_everything(t_prompt *prompt, t_command *command)
 
 int	main(void)
 {
-	t_prompt	prompt;
+	t_info	info;
 	t_command	command;
 
 	ignore_shell_signal();
 	clear_shell();
-	prompt = init_prompt();
+	info = init_prompt();
 	while (1)
 	{
-		prompt_static(prompt, 1);
-		command = read_line(create_prompt(prompt));
+		prompt_static(info, 1);
+		command = read_line(create_prompt(info));
 		if (!ft_strcmp(command.program, "msexit"))
 			break ;
 		else
-			check_command(command, &prompt);
+			check_command(command, &info);
 	}
-	free_everything(&prompt, &command);
+	free_everything(&info, &command);
 }

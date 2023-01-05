@@ -6,15 +6,15 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 17:46:47 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:57:23 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-t_prompt	init_prompt(void)
+t_info	init_prompt(void)
 {
-	t_prompt	prompt;
+	t_info	prompt;
 
 	prompt.user = getenv("USER");
 	prompt.colour = ft_strdup("\e[1;32m");
@@ -22,7 +22,7 @@ t_prompt	init_prompt(void)
 	return (prompt);
 }
 
-char	*create_prompt(t_prompt prompt_struct)
+char	*create_prompt(t_info prompt_struct)
 {
 	char	*prompt;
 	char	*name;
@@ -36,7 +36,7 @@ char	*create_prompt(t_prompt prompt_struct)
 	return (prompt);
 }
 
-void	change(t_command command, t_prompt *prompt)
+void	change(t_command command, t_info *prompt)
 {
 	if (!ft_strcmp(command.args[0], "colour"))
 	{
@@ -51,7 +51,7 @@ void	change(t_command command, t_prompt *prompt)
 		prompt->user = command.args[1];
 }
 
-void	change_colour(t_prompt *prompt, char *new_colour)
+void	change_colour(t_info *prompt, char *new_colour)
 {
 	if (!ft_strcmp(new_colour, "black"))
 		prompt->colour = "\e[1;30m";
@@ -71,7 +71,7 @@ void	change_colour(t_prompt *prompt, char *new_colour)
 		prompt->colour = "\e[1;37m";
 }
 
-char	*prompt_static(t_prompt prompt_struct, int a)
+char	*prompt_static(t_info prompt_struct, int a)
 {
 	static char	*prompt;
 

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 17:46:47 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:57:23 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ctrl_c()
 {
-	t_prompt	null_prompt;
+	t_info	null_prompt;
 
 	null_prompt.colour = NULL;
 	null_prompt.init_pwd = NULL;
@@ -37,6 +37,7 @@ t_command	read_line(char *prompt)
 	int			i;
 
 	line = readline(prompt);
+	//TODO: stop using split since 'hello jerry' would get split
 	split = ft_split(line, ' ');
 	command.program = split[0];
 	i = 1;

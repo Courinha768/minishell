@@ -6,13 +6,13 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 17:46:32 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:57:23 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	check_command(t_command command, t_prompt *prompt)
+void	check_command(t_command command, t_info *prompt)
 {
 	if (!ft_strcmp(command.program, "change"))
 		change(command, prompt);
