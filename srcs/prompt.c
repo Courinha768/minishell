@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 13:07:51 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:46:47 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,17 @@ char	*create_prompt(t_prompt prompt_struct)
 
 void	change(t_command command, t_prompt *prompt)
 {
-	if (!ft_strcmp(command.arguments[0], "colour"))
+	if (!ft_strcmp(command.args[0], "colour"))
 	{
-		if (!ft_strcmp(command.arguments[1], "help"))
+		if (!ft_strcmp(command.args[1], "help"))
 		{
 			printf("options:\nblack\nred\ngreen\nyellow\nblue");
 			printf("\nmangenta\ncyan\nwhite\n");
 		}
-		change_colour(prompt, command.arguments[1]);
+		change_colour(prompt, command.args[1]);
 	}
-	else if (!ft_strcmp(command.arguments[0], "username"))
-		prompt->user = command.arguments[1];
+	else if (!ft_strcmp(command.args[0], "username"))
+		prompt->user = command.args[1];
 }
 
 void	change_colour(t_prompt *prompt, char *new_colour)
