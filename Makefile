@@ -1,13 +1,13 @@
 NAME		=	minishell
 
-SRCS		=	$(shell find srcs/ -name '*.c') #mudar para n ser wildcard
+SRCS		=	main.c $(shell find srcs/ -name '*.c') #mudar para n ser wildcard
 OBJS		=	$(SRCS:.c=.o)
 INCLUDES	=	./include
 
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
 
-.c.o
+.c.o		:
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
 
 $(NAME)		:	$(OBJS)

@@ -20,10 +20,14 @@ t_command	read_line(char *prompt)
 	i = 1;
 	while(split[i])
 		i++;
-	command.arguments = (char **)malloc(sizeof(char *) * (i - 1));
-	i = 1;
-	while(split[i])
+	command.arguments = (char **)malloc(sizeof(char *) * i);
+	i = 0;
+	while(split[++i])
 		command.arguments[i - 1] = split[i];
+	command.arguments[i - 1] = NULL;
+	i = -1;
+	while (split[++i])
+		free(split[i]);
 	return (command);
 }
 
@@ -31,3 +35,5 @@ void	clear_shell(void)
 {
 	write(1, "\e[1;1H\e[2J", 11);
 }
+
+

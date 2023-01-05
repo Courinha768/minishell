@@ -7,4 +7,8 @@ void		ignore_shell_signal(void);
 t_command	read_line(char *prompt);
 void		clear_shell(void);
 
+t_prompt	init_prompt(void);
+char		*pwd_strip(t_prompt prompt);
+char		*create_prompt(t_prompt prompt_struct);
+
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 12:08:13 by aappleto          #+#    #+#             */
-/*   Updated: 2021/10/22 17:52:01 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:10:45 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,4 @@ char	*ft_strdup(const char *s1)
 	dup[i] = 0;
 	return (dup);
 }
-/*
-int	main()
-{
-	char	*a;
 
-	a = "Hello World!";
-	printf("%s", ft_strdup(a));
-}*/

@@ -70,6 +70,7 @@ char	*idk(int n)
 	while (why[++i])
 		nbr[i] = why[i];
 	nbr[i] = 0;
+	(void)n;
 	return (nbr);
 }
 
