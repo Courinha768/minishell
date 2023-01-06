@@ -3,42 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 17:57:53 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/06 20:13:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./include/include.h"
 
-void	free_everything(t_info *prompt, t_command *command)
+//Improve this function
+void	free_everything(t_promptinfo *prompt)
 {
-	int	i;
-
 	free(prompt->colour);
-	free(command->program);
-	i = -1;
-	while (command->args[++i])
-		free(command->args[i]);
+}
+
+// void	free_command(t_command *command)
+
+t_info *info(){
+	static t_info inf;
+
+	return &inf;
 }
 
 int	main(void)
 {
-	t_info	info;
-	t_command	command;
+	t_promptinfo	prompt_info;
+	//t_command		command;
 
-	ignore_shell_signal();
+	//ignore_shell_signal();
 	clear_shell();
-	info = init_prompt();
+	prompt_info = init_prompt();
 	while (1)
 	{
-		prompt_static(info, 1);
-		command = read_line(create_prompt(info));
-		if (!ft_strcmp(command.program, "msexit"))
+		//command = 
+		read_line(create_prompt(prompt_info));
+		/*if (!ft_strcmp(command.program, "msexit"))
 			break ;
 		else
-			check_command(command, &info);
+			check_command(command, &prompt_info);*/
+		
 	}
-	free_everything(&info, &command);
+	free_everything(&prompt_info);
 }
