@@ -11,7 +11,7 @@ CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
 	@$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
 
 $(NAME)		:	$(OBJS)
-	@make -s -C libft
+	@make bonus -s -C libft
 	@$(CC) $(CFLAGS) -I$(INCLUDES) $(OBJS) ./libft/libft.a -lreadline -L /Users/$(USER)/.brew/opt/readline/li -I /Users/$(USER)/.brew/opt/readline/include -o $(NAME)
 
 all			:	$(NAME)
@@ -28,6 +28,6 @@ fclean		:	clean
 re			:	fclean all
 
 r:
-	make && clear && ./minishell
+	@make && clear && ./minishell
 
 .PHONY		:	all clean fclean re

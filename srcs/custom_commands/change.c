@@ -6,19 +6,20 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:33:13 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/06 20:14:12 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:46:07 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
+//TODO: fix bug where after u call change user, change colour also changes user
 void	change(t_command command, t_promptinfo *prompt)
 {
-	if (command.args[1] && command.args[2])
-		printf("change: Incorrect number of arguments");
-	if (!ft_strcmp(command.args[0], "colour"))
+	if ((command.args[2][0] && command.args[3][0]) || !command.args[1][0])
+		printf("change: Incorrect number of arguments\n");
+	else if (!ft_strcmp(command.args[1], "colour"))
 	{
-		if (command.args[1] && !ft_strcmp(command.args[1], "help"))
+		if (command.args[2][0] && !ft_strcmp(command.args[2], "help"))
 		{
 			printf("options:\n");
 			printf(" \e[1;30mblack\n");
@@ -30,13 +31,18 @@ void	change(t_command command, t_promptinfo *prompt)
 			printf(" \e[1;36mcyan\n");
 			printf(" \e[1;37mwhite\n\033[0m");
 		}
-		if (command.args[1])
-			change_colour(prompt, command.args[1]);
+		else if (command.args[2][0])
+			change_colour(prompt, command.args[2]);
 		else
 			printf("change colour: please insert a colour\n");
 	}
-	else if (!ft_strcmp(command.args[0], "username"))
-		prompt->user = command.args[1];
+	else if (!ft_strcmp(command.args[1], "username"))
+	{
+		if (command.args[2][0])
+			prompt->user = command.args[2];
+		else
+			printf("change username: please insert a new username\n");
+	}
 }
 
 void	change_colour(t_promptinfo *prompt, char *new_colour)
