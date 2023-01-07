@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 19:33:54 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:05:07 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	token(char *line)
 {
 	int	j;
 	int	k;
-	int flag;
+	int	flag;
 
 	j = 0;
 	k = 0;
@@ -42,21 +42,21 @@ void	token(char *line)
 		if (*line != ' ' || flag)
 			info()->token[j][k++] = *line++;
 		else if (!flag)
-		{	
-			j++;			
+		{
+			j++;
 			k = 0;
 			while (*line == 32)
 				line++;
-		}	
+		}
 		info()->token[j][k] = 0;
-		info()->token[j + 1][0] = 0;		
+		info()->token[j + 1][0] = 0;
 	}
 }
 
-void read_line(char *prompt)
+void	read_line(char *prompt)
 {
 	char		*line;
-	
+
 	line = readline(prompt);
 	free(prompt);
 	token(line);

@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:33:13 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 19:46:07 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:07:38 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,9 @@ void	change(t_command command, t_promptinfo *prompt)
 		if (command.args[2][0] && !ft_strcmp(command.args[2], "help"))
 		{
 			printf("options:\n");
-			printf(" \e[1;30mblack\n");
-			printf(" \e[1;31mred\n");
-			printf(" \e[1;32mgreen\n");
-			printf(" \e[1;33myellow\n");
-			printf(" \e[1;34mblue\n");
-			printf(" \e[1;35mmangenta\n");
-			printf(" \e[1;36mcyan\n");
-			printf(" \e[1;37mwhite\n\033[0m");
+			printf(" \e[1;30mblack\n \e[1;31mred\n \e[1;32mgreen\n \e[1;33myellow\n");
+			printf(" \e[1;34mblue\n \e[1;35mmangenta\n");
+			printf(" \e[1;36mcyan\n \e[1;37mwhite\n\033[0m");
 		}
 		else if (command.args[2][0])
 			change_colour(prompt, command.args[2]);
@@ -43,6 +38,8 @@ void	change(t_command command, t_promptinfo *prompt)
 		else
 			printf("change username: please insert a new username\n");
 	}
+	else
+		printf("change: %s not found\n", command.args[1]);
 }
 
 void	change_colour(t_promptinfo *prompt, char *new_colour)

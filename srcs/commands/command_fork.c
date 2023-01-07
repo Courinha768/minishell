@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 19:28:53 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:05:34 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	is_valid(void)
 {
-	char c;
-	char d;
+	char	c;
+	char	d;
 
 	c = info()->token[info()->current_token][0];
 	d = info()->token[info()->current_token][1];
@@ -55,7 +55,7 @@ t_command	read_token(void)
 
 void	check_command(t_promptinfo *prompt)
 {
-	t_command command;
+	t_command	command;
 
 	command = read_token();
 	if (!ft_strcmp(command.program, "change"))
