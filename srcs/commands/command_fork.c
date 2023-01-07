@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:53:45 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 22:36:29 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_command	read_token(void)
 		j++;
 		info()->current_token++;
 	}
+	command.args[j][0] = 0;
+	command.args[j + 1][0] = 0;
 	if (info()->token[info()->current_token][0] == 124)
 		info()->current_token++;
 	return (command);
@@ -66,6 +68,8 @@ void	command_fork(t_promptinfo *prompt)
 		clear_shell();
 	else if (!ft_strcmp(command.program, "exit"))
 		info()->finnished = 1;
+	else if (!ft_strcmp(command.program, "echo"))
+		echo();
 	else
 		printf("%s: command not found\n", command.program);
 }

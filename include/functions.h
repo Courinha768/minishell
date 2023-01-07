@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:53:54 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 22:58:45 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void			clear_shell(void);
 
 void			change(t_command command, t_promptinfo *prompt);
 void			change_colour(t_promptinfo *prompt, char *new_colour);
+
+void			echo(void);
 
 /* ========================================================================== */
 /*                                  UTILS                                     */
