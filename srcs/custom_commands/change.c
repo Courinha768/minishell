@@ -6,11 +6,33 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 18:33:13 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:07:38 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:54:45 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
+
+void	change_colour(t_promptinfo *prompt, char *new_colour)
+{
+	if (!ft_strcmp(new_colour, "black"))
+		prompt->colour = "\e[1;30m";
+	else if (!ft_strcmp(new_colour, "red"))
+		prompt->colour = "\e[1;31m";
+	else if (!ft_strcmp(new_colour, "green"))
+		prompt->colour = "\e[1;32m";
+	else if (!ft_strcmp(new_colour, "yellow"))
+		prompt->colour = "\e[1;33m";
+	else if (!ft_strcmp(new_colour, "blue"))
+		prompt->colour = "\e[1;34m";
+	else if (!ft_strcmp(new_colour, "mangenta"))
+		prompt->colour = "\e[1;35m";
+	else if (!ft_strcmp(new_colour, "cyan"))
+		prompt->colour = "\e[1;36m";
+	else if (!ft_strcmp(new_colour, "white"))
+		prompt->colour = "\e[1;37m";
+	else
+		printf("change colour: %s not found\n", new_colour);
+}
 
 //TODO: fix bug where after u call change user, change colour also changes user
 void	change(t_command command, t_promptinfo *prompt)
@@ -40,26 +62,4 @@ void	change(t_command command, t_promptinfo *prompt)
 	}
 	else
 		printf("change: %s not found\n", command.args[1]);
-}
-
-void	change_colour(t_promptinfo *prompt, char *new_colour)
-{
-	if (!ft_strcmp(new_colour, "black"))
-		prompt->colour = "\e[1;30m";
-	else if (!ft_strcmp(new_colour, "red"))
-		prompt->colour = "\e[1;31m";
-	else if (!ft_strcmp(new_colour, "green"))
-		prompt->colour = "\e[1;32m";
-	else if (!ft_strcmp(new_colour, "yellow"))
-		prompt->colour = "\e[1;33m";
-	else if (!ft_strcmp(new_colour, "blue"))
-		prompt->colour = "\e[1;34m";
-	else if (!ft_strcmp(new_colour, "mangenta"))
-		prompt->colour = "\e[1;35m";
-	else if (!ft_strcmp(new_colour, "cyan"))
-		prompt->colour = "\e[1;36m";
-	else if (!ft_strcmp(new_colour, "white"))
-		prompt->colour = "\e[1;37m";
-	else
-		printf("change colour: %s not found\n", new_colour);
 }

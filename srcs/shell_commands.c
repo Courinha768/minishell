@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shell_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:54:04 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/07 20:55:20 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/07 20:55:26 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/include.h"
+#include "../include/include.h"
 
-int	main(void)
+void	clear_shell(void)
 {
-	t_promptinfo	prompt_info;
+	write(1, "\e[1;1H\e[2J", 11);
+}
 
-	//ignore_shell_signal();
-	clear_shell();
-	info()->finnished = 0;
-	prompt_info = init_prompt();
-	while (!info()->finnished)
-	{
-		read_line(create_prompt(prompt_info));
-		info()->current_token = 0;
-		while (info()->token[info()->current_token][0])
-			command_fork(&prompt_info);
-	}
+void	ignore_shell_signal(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
 }

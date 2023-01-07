@@ -6,23 +6,11 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:05:07 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:52:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
-
-void	clear_shell(void)
-{
-	write(1, "\e[1;1H\e[2J", 11);
-}
-
-void	ignore_shell_signal(void)
-{
-	signal(SIGINT, SIG_IGN);
-	signal(SIGTSTP, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
-}
 
 void	token(char *line)
 {

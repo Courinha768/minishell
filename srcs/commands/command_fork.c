@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:05:34 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:53:45 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_command	read_token(void)
 	return (command);
 }
 
-void	check_command(t_promptinfo *prompt)
+void	command_fork(t_promptinfo *prompt)
 {
 	t_command	command;
 

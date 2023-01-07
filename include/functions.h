@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 20:06:24 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/07 20:53:54 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char			*create_prompt(t_promptinfo prompt_struct);
 /*                                COMMANDS                                    */
 /* ========================================================================== */
 
-void			check_command(t_promptinfo *prompt);
+void			command_fork(t_promptinfo *prompt);
 t_command		read_token(void);
 int				is_valid(void);
 
