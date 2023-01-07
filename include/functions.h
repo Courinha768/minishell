@@ -3,30 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/05 17:57:24 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:43:43 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
-void		free_everything(t_info *prompt, t_command *command);
+void			ignore_shell_signal(void);
+void			read_line(char *prompt);
+void			token(char *line);
 
-t_info	init_prompt(void);
-char		*create_prompt(t_info prompt_struct);
-void		change(t_command command, t_info *prompt);
-void		change_colour(t_info *prompt, char *new_colour);
-char		*prompt_static(t_info prompt_struct, int a);
+/* ========================================================================== */
+/*                                 PROMPT                                     */
+/* ========================================================================== */
 
-void		ignore_shell_signal(void);
-t_command	read_line(char *prompt);
-void		clear_shell(void);
+t_promptinfo	init_prompt(void);
+char			*create_prompt(t_promptinfo prompt_struct);
 
-int			ft_strcmp(const char *s1, const char *s2);
+/* ========================================================================== */
+/*                                COMMANDS                                    */
+/* ========================================================================== */
 
-void		check_command(t_command command, t_info *prompt);
+void			check_command(t_promptinfo *prompt);
+t_command		read_token(void);
+int				is_valid(void);
+
+void			clear_shell(void);
+
+void			change(t_command command, t_promptinfo *prompt);
+void			change_colour(t_promptinfo *prompt, char *new_colour);
+
+/* ========================================================================== */
+/*                                  UTILS                                     */
+/* ========================================================================== */
+
+t_info 			*info();
+int				ft_strcmp(const char *s1, const char *s2);
 
 #endif
