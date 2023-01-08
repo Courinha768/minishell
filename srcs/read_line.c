@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:02:24 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:49:12 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ t_command	*read_line(char *prompt)
 		commands[i++] = create_commands();
 	commands[i].program = NULL;
 	commands[i].args = NULL;
-	free(line);
+	info()->line = line;
 	return (commands);
 }
