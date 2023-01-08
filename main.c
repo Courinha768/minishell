@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:46:42 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:56:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,8 @@ void	free_commands(t_command *commands)
 		j = -1;
 		free(commands[i].program);
 		while (commands[i].args[++j])
-		{
 			free(commands[i].args[j]);
-		}
+		free(commands[i].args);
 	}
 	free(commands);
 }
@@ -77,5 +76,4 @@ int	main(void)
 		//print_commands(commands);
 	}
 	free_promptinfo(&prompt_info);
-	free(info());
 }
