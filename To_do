@@ -3,7 +3,6 @@ TO DO:
 1. Interpret |, <, >, <<, >>
 2. Create a history
 3. Handle enviromental variables
-4. Make create_token strip the " and the ' correctly
 5. Handle ctrl-C, ctrl-D and ctrl-\
 6. Add commands
 7. And folder navigation
