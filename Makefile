@@ -30,4 +30,7 @@ re			:	fclean all
 r:
 	@make && clear && ./minishell
 
+fc:
+	@make fclean
+
 .PHONY		:	all clean fclean re

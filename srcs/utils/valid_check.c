@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   info.c                                             :+:      :+:    :+:   */
+/*   valid_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 20:06:45 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 17:32:15 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/08 17:25:36 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/08 17:25:38 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-t_token	*token(void)
+int	is_valid(char c)
 {
-	static t_token	token;
-
-	return (&token);
+	if (!c)
+		return (0);
+	else if (c == 124 || c == 60 || c == 62)
+		return (0);
+	return (1);
 }

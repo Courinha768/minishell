@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:35 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/07 22:35:33 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:31:34 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define STRUCTS_H
 
 typedef struct s_command {
-	char	program[1024];
-	char	args[1024][1024];
+	char	*program;
+	char	**args;
 }	t_command;
 
 typedef struct s_promptinfo {
@@ -24,10 +24,13 @@ typedef struct s_promptinfo {
 	char	*init_pwd;
 }	t_promptinfo;
 
-typedef struct s_info {
-	char	token[1024][1024];
-	char	*line;
+typedef struct s_token {
 	int		current_token;
+	char	token[1024][1024];
+}	t_token;
+
+typedef struct s_info {
+	char	*line;
 	int		finnished;
 }	t_info;
 
