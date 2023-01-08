@@ -6,11 +6,11 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 16:35:36 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:55:15 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/include.h"
+#include "../../include/include.h"
 
 // int	is_valid_echo(char c)
 // {

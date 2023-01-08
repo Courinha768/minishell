@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   info.c                                             :+:      :+:    :+:   */
+/*   small_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 20:06:45 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 17:57:43 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/08 17:55:33 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-t_token	*token(void)
+void	pwd_command(void)
 {
-	static t_token	token;
+	char	*pwd;
 
-	return (&token);
+	pwd = getenv("PWD");
+	printf("%s\n", pwd);
 }
 
-t_info	*info(void)
+void	clear_command(void)
 {
-	static t_info	info;
+	clear_shell();
+}
 
-	return (&info);
+void	exit_command(void)
+{
+	info()->finnished = 1;
 }

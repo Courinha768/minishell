@@ -6,11 +6,11 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:25:39 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 17:35:41 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:55:05 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/include.h"
+#include "../../include/include.h"
 
 int	args_counter(void)
 {

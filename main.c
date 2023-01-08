@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 17:35:19 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 18:22:05 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ void	free_commands(t_command *commands)
 	free(commands);
 }
 
+void	free_promptinfo(t_promptinfo *prompt_info)
+{
+	free(prompt_info->user);
+}
+
 int	main(void)
 {
 	t_promptinfo	prompt_info;
@@ -63,13 +68,13 @@ int	main(void)
 	//ignore_shell_signal();
 	clear_shell();
 	prompt_info = init_prompt();
-	while (1)
+	info()->finnished = 0;
+	while (!info()->finnished)
 	{
 		commands = read_line(create_prompt(prompt_info));
 		token()->current_token = 0;
-		// while (info()->token[info()->current_token][0])
-		// 	command_fork(&prompt_info);
-		print_commands(commands);
-		free_commands(commands);
+		read_commands(commands, &prompt_info);
+		//print_commands(commands);
 	}
+	free_promptinfo(&prompt_info);
 }
