@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:25:39 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 17:55:05 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:31:10 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	count_commands(char *line)
 
 	i = -1;
 	counter = 0;
-	while (line[++i])
+	while (line[++i] && line_valid(line[i], line[i + 1]))
 	{
 		if (line[i] == 124 || line[i] == 62 || line[i] == 60)
 		{

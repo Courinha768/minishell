@@ -6,38 +6,45 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:49:12 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:50:34 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	create_token(char *line)
-{
+typedef struct s_antinorm2 {
+	int	i;
 	int	j;
 	int	k;
 	int	flag;
+}	t_antinorm2;
 
-	j = 0;
-	k = 0;
-	flag = 0;
-	while (line && *line)
+void	create_token(char *line)
+{
+	t_antinorm2	fn;
+
+	fn.j = 0;
+	fn.k = 0;
+	fn.i = 0;
+	fn.flag = 0;
+	while (line[fn.i] && line_valid(line[fn.i], line[fn.i + 1]))
 	{
-		if ((*line == 34 || *line == 39) && !flag)
-			flag = *line;
-		else if ((*line == 34 || *line == 39) && *line == flag)
-			flag = 0;
-		if (*line != ' ' || flag)
-			token()->token[j][k++] = *line++;
-		else if (!flag)
+		if ((line[fn.i] == 34 || line[fn.i] == 39) && !fn.flag)
+			fn.flag = line[fn.i];
+		else if (line[fn.i] == 34 || line[fn.i] == 39)
+			if (line[fn.i] == fn.flag)
+				fn.flag = 0;
+		if (line[fn.i] != 32 || fn.flag)
+			token()->token[fn.j][fn.k++] = line[fn.i++];
+		else if (!fn.flag)
 		{
-			j++;
-			k = 0;
-			while (*line == 32)
-				line++;
+			fn.j++;
+			fn.k = 0;
+			while (line[fn.i] == 32)
+				fn.i++;
 		}
-		token()->token[j][k] = 0;
-		token()->token[j + 1][0] = 0;
+		token()->token[fn.j][fn.k] = 0;
+		token()->token[fn.j + 1][0] = 0;
 	}
 }
 
@@ -85,6 +92,8 @@ t_command	*read_line(char *prompt)
 		commands[i++] = create_commands();
 	commands[i].program = NULL;
 	commands[i].args = NULL;
+	if (info()->line)
+		free(info()->line);
 	info()->line = line;
 	return (commands);
 }

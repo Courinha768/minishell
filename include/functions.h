@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:59:45 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:27:37 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void			echo(void);
 
 int				ft_strcmp(const char *s1, const char *s2);
 int				is_valid(char c);
+int				line_valid(char c, char d);
 t_info			*info(void);
 
 #endif

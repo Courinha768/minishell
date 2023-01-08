@@ -6,45 +6,66 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:49:23 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/08 19:45:52 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-//missing norminette
+//anti norm struct
+typedef struct s_antinorm {
+	int	i;
+	int	flag_2;
+	int	flag_1;
+}	t_antinorm;
+
+t_antinorm	screwnorm(void)
+{
+	t_antinorm	fn;
+
+	fn.i = 4;
+	fn.flag_1 = 0;
+	fn.flag_2 = 0;
+	return (fn);
+}
+
+void	screwnorm2(t_antinorm *fn)
+{
+	fn->i += 3;
+	fn->flag_1 = 1;
+}
+
+void	screwnorm3(t_antinorm *fn)
+{
+	fn->flag_2 = 0;
+	ft_putchar_fd(info()->line[fn->i], 1);
+}
+
 void	echo(void)
 {
-	int	i;
-	int	flag_1;
-	int	flag_2;
+	t_antinorm	fn;
 
-	i = 4;
-	flag_1 = 0;
-	flag_2 = 0;
-	if (info()->line[i + 1] == '-' && info()->line[i + 2] == 'n')
+	fn = screwnorm();
+	if (info()->line[fn.i + 1] == '-' && info()->line[fn.i + 2] == 'n')
+		screwnorm2(&fn);
+	while (is_valid(info()->line[++fn.i]))
 	{
-		flag_1 = 1;
-		i += 3;
-	}
-	while (is_valid(info()->line[++i]))
-	{
-		if ((info()->line[i] == 34 || info()->line[i] == 39) && !flag_2)
-			flag_2 = info()->line[i];
-		else if (info()->line[i] == 34 || info()->line[i] == 39)
-			if (info()->line[i] == flag_2)
-				flag_2 = -1;
-		if (info()->line[i] == 34 || info()->line[i] == 39)
+		if (info()->line[fn.i] == 34 || info()->line[fn.i] == 39)
 		{
-			if (info()->line[i] != flag_2 && flag_2 != -1)
-			{
-				flag_2 = 0;
-				ft_putchar_fd(info()->line[i], 1);
-			}
+			if (!fn.flag_2)
+			fn.flag_2 = info()->line[fn.i];
+		}
+		else if (info()->line[fn.i] == 34 || info()->line[fn.i] == 39)
+			if (info()->line[fn.i] == fn.flag_2)
+				fn.flag_2 = -1;
+		if (info()->line[fn.i] == 34 || info()->line[fn.i] == 39)
+		{
+			if (info()->line[fn.i] != fn.flag_2 && fn.flag_2 != -1)
+				screwnorm3(&fn);
 		}
 		else
-			ft_putchar_fd(info()->line[i], 1);
+			ft_putchar_fd(info()->line[fn.i], 1);
 	}
-	if (!flag_1)
+	if (!fn.flag_1)
 		printf("\n");
 }
