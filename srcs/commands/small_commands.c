@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:57:14 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:12:31 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ void	clear_command(void)
 
 void	exit_command(void)
 {
-	info()->finnished = 1;
+	info()->finished = 1;
 }
