@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 17:17:27 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:34:29 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ void	clear_command(void)
 
 void	exit_command(void)
 {
-	info()->finnished = 1;
+	info()->finished = 1;
 }
