@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 12:28:00 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 15:21:01 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,11 @@ int				line_valid(char c, char d);
 t_info			*info(void);
 
 int				ft_charinside(char c, const char *s);
+
+t_dict	*dict_new(char *key, char *val);
+
+int	dict_add(t_dict *dict, char *key, char *val);
+
+char	*dict_get(t_dict *dict, char *key);
 
 #endif
