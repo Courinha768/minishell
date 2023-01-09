@@ -6,91 +6,92 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 13:47:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:23:01 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-//anti norm struct
-typedef struct s_antinorm {
+//void	echo(t_command *command, int i)
+//{
+//	int		printlnb;
+//	size_t	i;
+
+//	printlnb = 1;
+//	i = 1;
+//	if (! strcmp(command->args[1], "-n"))
+//	{
+//		printlnb = 0;
+//		i++;
+//	}
+//	while (command->args[i] != NULL)
+//	{
+//		ft_putstr_fd(command->args[i], 1);
+//		i++;
+//		if (command->args[i] != NULL)
+//			ft_putchar_fd(' ', 1);
+//	}
+//	if (printlnb)
+//		ft_putchar_fd('\n', 1);
+//}
+
+int	args_str_len(t_command	*command)
+{
 	int	i;
-	int	flag_2;
-	int	flag_1;
-}	t_antinorm;
+	int	j;
+	int	counter;
 
-t_antinorm	screwnorm(void)
-{
-	t_antinorm	fn;
-
-	fn.i = 4;
-	fn.flag_1 = 0;
-	fn.flag_2 = 0;
-	return (fn);
-}
-
-void	screwnorm2(t_antinorm *fn)
-{
-	fn->i += 3;
-	fn->flag_1 = 1;
-}
-
-void	screwnorm3(t_antinorm *fn)
-{
-	fn->flag_2 = 0;
-	ft_putchar_fd(info()->line[fn->i], 1);
-}
-
-/*
-void	echo(void)
-{
-	t_antinorm	fn;
-
-	fn = screwnorm();
-	if (info()->line[fn.i + 1] == '-' && info()->line[fn.i + 2] == 'n')
-		screwnorm2(&fn);
-	while (is_valid(info()->line[++fn.i]))
+	counter = 0;
+	i = 0;
+	if (!strcmp(command->args[1], "-n"))
+		i++;
+	while (command->args[++i])
 	{
-		if (info()->line[fn.i] == '\"' || info()->line[fn.i] == '\'')
-		{
-			if (!fn.flag_2)
-			fn.flag_2 = info()->line[fn.i];
-		}
-		else if (info()->line[fn.i] == '\"' || info()->line[fn.i] == '\'')
-			if (info()->line[fn.i] == fn.flag_2)
-				fn.flag_2 = -1;
-		if (info()->line[fn.i] == '\"' || info()->line[fn.i] == '\'')
-		{
-			if (info()->line[fn.i] != fn.flag_2 && fn.flag_2 != -1)
-				screwnorm3(&fn);
-		}
-		else
-			ft_putchar_fd(info()->line[fn.i], 1);
+		j = -1;
+		while (command->args[i][++j])
+			counter++;
+		counter++;
 	}
-	if (!fn.flag_1)
-		printf("\n");
+	return (counter);
 }
-*/
 
-void	echo(t_command *command)
+void	create_str(t_command *command, int i, int j, char *str)
+{
+	int	k;
+	int	l;
+
+	l = -1;
+	while (command[i].args[++j])
+	{
+		k = -1;
+		while (command[i].args[j][++k])
+			str[++l] = command[i].args[j][k];
+		if (command[i].args[j + 1])
+			str[++l] = 32;
+	}
+	str[++l] = 0;
+}
+
+void	echo(t_command *command, int i)
 {
 	int		printlnb;
-	size_t	i;
+	char	*str;
+	int		j;
 
+	str = (char *)malloc(sizeof(char) * args_str_len(&(command[i])));
+	if (!str)
+		return ;
+	j = 0;
 	printlnb = 1;
-	i = 1;
-	if (! strcmp(command->args[1], "-n"))
+	if (!strcmp(command[i].args[1], "-n"))
 	{
 		printlnb = 0;
-		i++;
+		j++;
 	}
-	while (command->args[i] != NULL)
-	{
-		ft_putstr_fd(command->args[i], 1);
-		i++;
-		if (command->args[i] != NULL)
-			ft_putchar_fd(' ', 1);
-	}
+	create_str(command, i, j, str);
+	printf("%s", str);
 	if (printlnb)
-		ft_putchar_fd('\n', 1);
+		printf("\n");
+	if (command[i + 1].pipe_flag)
+		command[i + 1].output = (void *)str;
 }

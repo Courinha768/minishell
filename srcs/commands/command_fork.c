@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 14:45:18 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:10:08 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 void	command_fork(t_command *command, int i, t_promptinfo *prompt)
 {
-	// printf("%s\n", command.args[1]);
 	if (!ft_strcmp(command[i].program, "change"))
 		change(command[i], prompt);
+	else if (!ft_strcmp(command[i].program, "echo"))
+		echo(command, i);
+	else if (! ft_strcmp(command[i].program, "cd"))
+		cd(&(command[i]), prompt);
 	else if (!ft_strcmp(command[i].program, "pwd"))
-		printworkdirec(prompt, command, i);
+		pwd_command(prompt, command, i);
 	else if (!ft_strcmp(command[i].program, "clear"))
 		clear_command();
 	else if (!ft_strcmp(command[i].program, "exit"))
 		exit_command();
-	else if (!ft_strcmp(command[i].program, "echo"))
-		echo(&(command[i]));
-	else if (! ft_strcmp(command[i].program, "cd"))
-		cd(&(command[i]), prompt);
 	else
 		printf("%s: command not found\n", command[i].program);
 }

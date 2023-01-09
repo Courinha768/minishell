@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:58:28 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 14:44:27 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:10:32 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ void	print_commands(t_command *commands)
 			printf("%s\n", commands[i].args[j]);
 		printf("=============\n");
 	}
-
 }

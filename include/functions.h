@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 14:29:14 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:10:02 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,16 @@ void			command_fork(t_command *command, int i, t_promptinfo *prompt);
 
 void			clear_shell(void);
 
-void			pwd_command(void);
+void			pwd_command(t_promptinfo *prompt, t_command *commands, int i);
 void			clear_command(void);
 void			exit_command(void);
 
 void			change(t_command command, t_promptinfo *prompt);
 void			change_colour(t_promptinfo *prompt, char *new_colour);
 
-// void			echo(void);
-void			echo(t_command *command);
-
-void			printworkdirec(t_promptinfo *prompt, t_command *commands, int i);
+//void			echo(void);
+//void			echo(t_command *command);
+void			echo(t_command *command, int i);
 
 void			cd(t_command *command, t_promptinfo *prompt);
 
