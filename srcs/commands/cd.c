@@ -1,36 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_commands.c                                   :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:57:14 by amaria-d         ###   ########.fr       */
+/*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
+/*   Updated: 2023/01/09 11:09:44 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	pwd_command(void)
+/* Changes the directory
+*/
+void	cd(t_command *command, t_promptinfo *prompt)
 {
-	char	*pwd;
-
-	pwd = getenv("PWD");
-	printf("%s\n", pwd);
-}
-
-void	printworkdirec(t_promptinfo *prompt)
-{
-	printf("%s\n", prompt->pwd);
-}
-
-void	clear_command(void)
-{
-	clear_shell();
-}
-
-void	exit_command(void)
-{
-	info()->finnished = 1;
+	//TODO: should be args[0]
+	if (chdir(command->args[1]) == -1)
+	{
+		printf("cd: no such file or directory %s\n", command->args[1]);
+		return ;
+	}
+	free(prompt->pwd);
+	//Alert: Allocation
+	prompt->pwd = getcwd(NULL, 0);
 }

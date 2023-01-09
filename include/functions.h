@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 09:52:05 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:01:09 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ void			change(t_command command, t_promptinfo *prompt);
 void			change_colour(t_promptinfo *prompt, char *new_colour);
 
 // void			echo(void);
-void			echo(t_command *command);
+void	echo(t_command *command);
+
+void	printworkdirec(t_promptinfo *prompt);
+
+void	cd(t_command *command, t_promptinfo *prompt);
 
 /* ========================================================================== */
 /*                                  UTILS                                     */
