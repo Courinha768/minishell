@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 15:21:01 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:17:11 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,16 @@ t_dict	*dict_new(char *key, char *val);
 int	dict_add(t_dict *dict, char *key, char *val);
 
 char	*dict_get(t_dict *dict, char *key);
+
+void	dict_iter(t_dict *dict, void (*f)(t_dict *));
+
+void	shenvprint(t_promptinfo *prompt, void (*printstyle)(t_dict *));
+
+void	envstyle(t_dict *dict);
+
+void	exportstyle(t_dict *dict);
+
+t_dict	*shenv_init(t_promptinfo *prompt);
+
 
 #endif

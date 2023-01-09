@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/09 15:18:40 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:21:13 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ t_dict	*dict_new(char *key, char *val)
 
 int	dict_add(t_dict *dict, char *key, char *val)
 {
+	//TODO: Sort Alphabetically for export func
 	t_dict	*new;
 
 	while (dict->next != NULL)
@@ -52,4 +53,35 @@ char	*dict_get(t_dict *dict, char *key)
 		dict = dict->next;
 	}
 	return (NULL);
+}
+
+void	dict_iter(t_dict *dict, void (*f)(t_dict *))
+{
+	while (dict)
+	{
+		f(dict);
+		dict = dict->next;
+	}
+}
+
+static void	dict_freeone(t_dict *dict)
+{
+	free(dict->key);
+	free(dict->value);
+	free(dict);
+}
+
+void	dict_free(t_dict **dict)
+{
+	t_dict	*here;
+	t_dict	*after;
+	
+	//TODO: Proctections
+	here = *dict;
+	while (here != NULL)
+	{
+		after = here->next;
+		dict_freeone(here);
+		here = after;
+	}
 }
