@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/09 11:09:44 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:48:48 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 */
 void	cd(t_command *command, t_promptinfo *prompt)
 {
-	//TODO: should be args[0]
 	if (chdir(command->args[1]) == -1)
 	{
 		printf("cd: no such file or directory %s\n", command->args[1]);

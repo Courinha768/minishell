@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:16:03 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:48:53 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ void	echo(t_command *command)
 
 	printlnb = 1;
 	i = 1;
-	//TODO: Should be args[0] but program in args[0]
 	if (! strcmp(command->args[1], "-n"))
 	{
 		printlnb = 0;
