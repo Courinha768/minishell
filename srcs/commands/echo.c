@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 19:45:52 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 10:16:03 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	screwnorm3(t_antinorm *fn)
 	ft_putchar_fd(info()->line[fn->i], 1);
 }
 
+/*
 void	echo(void)
 {
 	t_antinorm	fn;
@@ -50,15 +51,15 @@ void	echo(void)
 		screwnorm2(&fn);
 	while (is_valid(info()->line[++fn.i]))
 	{
-		if (info()->line[fn.i] == 34 || info()->line[fn.i] == 39)
+		if (info()->line[fn.i] == '\"' || info()->line[fn.i] == '\'')
 		{
 			if (!fn.flag_2)
 			fn.flag_2 = info()->line[fn.i];
 		}
-		else if (info()->line[fn.i] == 34 || info()->line[fn.i] == 39)
+		else if (info()->line[fn.i] == '\"' || info()->line[fn.i] == '\'')
 			if (info()->line[fn.i] == fn.flag_2)
 				fn.flag_2 = -1;
-		if (info()->line[fn.i] == 34 || info()->line[fn.i] == 39)
+		if (info()->line[fn.i] == '\"' || info()->line[fn.i] == '\'')
 		{
 			if (info()->line[fn.i] != fn.flag_2 && fn.flag_2 != -1)
 				screwnorm3(&fn);
@@ -68,4 +69,29 @@ void	echo(void)
 	}
 	if (!fn.flag_1)
 		printf("\n");
+}
+*/
+
+void	echo(t_command *command)
+{
+	int		printlnb;
+	size_t	i;
+
+	printlnb = 1;
+	i = 1;
+	//TODO: Should be args[0] but program in args[0]
+	if (! strcmp(command->args[1], "-n"))
+	{
+		printlnb = 0;
+		i++;
+	}
+	while (command->args[i] != NULL)
+	{
+		ft_putstr_fd(command->args[i], 1);
+		i++;
+		if (command->args[i] != NULL)
+			ft_putchar_fd(' ', 1);
+	}
+	if (printlnb)
+		ft_putchar_fd('\n', 1);
 }

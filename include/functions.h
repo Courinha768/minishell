@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 19:27:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 09:52:05 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void			exit_command(void);
 void			change(t_command command, t_promptinfo *prompt);
 void			change_colour(t_promptinfo *prompt, char *new_colour);
 
-void			echo(void);
+// void			echo(void);
+void			echo(t_command *command);
 
 /* ========================================================================== */
 /*                                  UTILS                                     */
@@ -63,5 +64,7 @@ int				ft_strcmp(const char *s1, const char *s2);
 int				is_valid(char c);
 int				line_valid(char c, char d);
 t_info			*info(void);
+
+int				ft_charinside(char c, const char *s);
 
 #endif
