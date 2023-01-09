@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:59:07 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:40:23 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,20 @@
 int	main(void)
 {
 	t_promptinfo	prompt_info;
+	char			*line;
 	t_command		*commands;
 
+	//TODO: Signals
 	//ignore_shell_signal();
 	clear_shell();
 	prompt_info = init_prompt();
 	info()->finnished = 0;
 	while (!info()->finnished)
 	{
-		commands = read_line(create_prompt(prompt_info));
+		line = create_prompt(&prompt_info);
+		//TODO: a lot
+		add_history(line);
+		commands = read_line(line);
 		token()->current_token = 0;
 		read_commands(commands, &prompt_info);
 	}

@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_commands.c                                   :+:      :+:    :+:   */
+/*   ft_charinside.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:57:14 by amaria-d         ###   ########.fr       */
+/*   Created: 2021/10/27 19:26:38 by amaria-d          #+#    #+#             */
+/*   Updated: 2023/01/09 09:28:32 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	pwd_command(void)
+int	ft_charinside(char c, const char *s)
 {
-	char	*pwd;
+	size_t	i;
 
-	pwd = getenv("PWD");
-	printf("%s\n", pwd);
-}
-
-void	printworkdirec(t_promptinfo *prompt)
-{
-	printf("%s\n", prompt->pwd);
-}
-
-void	clear_command(void)
-{
-	clear_shell();
-}
-
-void	exit_command(void)
-{
-	info()->finnished = 1;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
