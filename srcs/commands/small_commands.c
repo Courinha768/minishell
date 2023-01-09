@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:57:14 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:40:18 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,11 @@ void	pwd_command(void)
 	printf("%s\n", pwd);
 }
 
-void	printworkdirec(t_promptinfo *prompt)
+void	printworkdirec(t_promptinfo *prompt, t_command *commands, int i)
 {
 	printf("%s\n", prompt->pwd);
+	if (commands[i + 1].pipe_flag)
+		commands[i + 1].output = (void *)prompt->pwd;
 }
 
 void	clear_command(void)

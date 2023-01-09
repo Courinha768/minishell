@@ -3,33 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:57:06 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:45:18 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	command_fork(t_command command, t_promptinfo *prompt)
+void	command_fork(t_command *command, int i, t_promptinfo *prompt)
 {
 	// printf("%s\n", command.args[1]);
-	if (!ft_strcmp(command.program, "change"))
-		change(command, prompt);
-	else if (!ft_strcmp(command.program, "pwd"))
-		// pwd_command();
-		printworkdirec(prompt);
-	else if (!ft_strcmp(command.program, "clear"))
+	if (!ft_strcmp(command[i].program, "change"))
+		change(command[i], prompt);
+	else if (!ft_strcmp(command[i].program, "pwd"))
+		printworkdirec(prompt, command, i);
+	else if (!ft_strcmp(command[i].program, "clear"))
 		clear_command();
-	else if (!ft_strcmp(command.program, "exit"))
+	else if (!ft_strcmp(command[i].program, "exit"))
 		exit_command();
-	else if (!ft_strcmp(command.program, "echo"))
-		echo(&command);
-	else if (! ft_strcmp(command.program, "cd"))
-		cd(&command, prompt);
+	else if (!ft_strcmp(command[i].program, "echo"))
+		echo(&(command[i]));
+	else if (! ft_strcmp(command[i].program, "cd"))
+		cd(&(command[i]), prompt);
 	else
-		printf("%s: command not found\n", command.program);
+		printf("%s: command not found\n", command[i].program);
 }
 
 void	read_commands(t_command *commands, t_promptinfo *prompt)
@@ -38,6 +37,7 @@ void	read_commands(t_command *commands, t_promptinfo *prompt)
 
 	i = -1;
 	while (commands[++i].program)
-		command_fork(commands[i], prompt);
+		command_fork(commands, i, prompt);
+	//print_commands(commands);
 	free_commands(commands);
 }

@@ -6,11 +6,11 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:58:28 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 18:58:30 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:44:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/include.h"
+#include "../include/include.h"
 
 void	print_tokens(void)
 {
@@ -27,12 +27,16 @@ void	print_commands(t_command *commands)
 	int	j;
 
 	i = -1;
-	while (commands[++i].program)
+	printf("=============\n");
+	while (commands[++i].args)
 	{
 		j = -1;
-		if (i > 0)
-			printf("=============\n");
+		printf("pipe_flag = %d\n", commands[i].pipe_flag);
+		if (commands[i].pipe_flag)
+			printf("output = %s\n", (char *)commands[i].output);
 		while (commands[i].args[++j])
 			printf("%s\n", commands[i].args[j]);
+		printf("=============\n");
 	}
+
 }

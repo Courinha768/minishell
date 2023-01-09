@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 19:50:34 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:36:59 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,13 @@ t_command	create_commands(void)
 	t_command	command;
 	int			j;
 
-	command.program = ft_strdup(token()->token[token()->current_token]);
+	command.pipe_flag = 0;
 	j = 0;
+	if (!is_valid(token()->token[token()->current_token][0]))
+	{
+		command.pipe_flag = 1;
+		token()->current_token++;
+	}
 	command.args = (char **)malloc(sizeof(char *) * (args_counter() + 1));
 	if (!command.args)
 	{
@@ -62,6 +67,7 @@ t_command	create_commands(void)
 		command.args = NULL;
 		return (command);
 	}
+	command.program = ft_strdup(token()->token[token()->current_token]);
 	while (is_valid(token()->token[token()->current_token][0]))
 	{
 		command.args[j] = ft_strdup(token()->token[token()->current_token]);
@@ -69,8 +75,37 @@ t_command	create_commands(void)
 		token()->current_token++;
 	}
 	command.args[j] = NULL;
-	token()->current_token++;
+	command.output = NULL;
 	return (command);
+}
+
+void	strip_quotes(t_command *command)
+{
+	int	i;
+	int	j;
+	int	k;
+	int	l;
+
+	i = -1;
+	while (command[++i].args)
+	{
+		j = -1;
+		while (command[i].args[++j])
+		{
+			k = -1;
+			while (command[i].args[j][++k])
+			{
+				if (command[i].args[j][k] == 34)
+				{
+					command[i].args[j][k] = 0;
+					l = k;
+					while (command[i].args[j][++l])
+						command[i].args[j][l - 1] = command[i].args[j][l];
+					command[i].args[j][l - 1] = 0;
+				}
+			}
+		}
+	}
 }
 
 t_command	*read_line(char *prompt)
@@ -92,8 +127,10 @@ t_command	*read_line(char *prompt)
 		commands[i++] = create_commands();
 	commands[i].program = NULL;
 	commands[i].args = NULL;
+	commands[i].pipe_flag = 0;
 	if (info()->line)
 		free(info()->line);
 	info()->line = line;
+	strip_quotes(commands);
 	return (commands);
 }
