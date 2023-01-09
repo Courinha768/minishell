@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 11:01:09 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:28:00 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			free_promptinfo(t_promptinfo *prompt_info);
 /* ========================================================================== */
 
 t_promptinfo	init_prompt(void);
-char			*create_prompt(t_promptinfo prompt_struct);
+char			*create_prompt(t_promptinfo *prompt_struct);
 
 /* ========================================================================== */
 /*                             CREATE COMMANDS                                */

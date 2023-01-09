@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 10:54:49 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:40:25 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ t_promptinfo	init_prompt(void)
 	return (prompt);
 }
 
-char	*create_prompt(t_promptinfo prompt_struct)
+char	*create_prompt(t_promptinfo *prompt_struct)
 {
 	char	*temp_1;
 	char	*temp_2;
 	char	*prompt;
 
-	temp_1 = ft_strjoin("minishell@", prompt_struct.user);
+	temp_1 = ft_strjoin("minishell@", prompt_struct->user);
 	temp_2 = ft_strjoin(temp_1, " #\033[0m ");
-	prompt = ft_strjoin(prompt_struct.colour, temp_2);
+	prompt = ft_strjoin(prompt_struct->colour, temp_2);
 	free(temp_1);
 	free(temp_2);
 	return (prompt);
