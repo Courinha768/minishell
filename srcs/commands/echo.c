@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:44:05 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:08:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	echo(t_command *command, int i)
 	if (printlnb)
 		printf("\n");
 	if (command[i + 1].pipe_flag)
-		command[i + 1].output = str;
+		command[i + 1].output = ft_strdup(str);
+	free(str);
 }

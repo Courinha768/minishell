@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:59:00 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:58:01 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:07:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ void	free_commands(t_command *commands)
 	{
 		j = -1;
 		free(commands[i].program);
-		if (commands[i].output)
-			free(commands[i].output);
+		free(commands[i].output);
 		while (commands[i].args[++j])
 			free(commands[i].args[j]);
 		free(commands[i].args);
@@ -33,6 +32,7 @@ void	free_commands(t_command *commands)
 
 void	free_promptinfo(t_promptinfo *prompt_info)
 {
+	//if (*(prompt_info->pwd))
 	free(prompt_info->pwd);
 	free(prompt_info->user);
 	dict_free(prompt_info->shenv);
