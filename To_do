@@ -2,12 +2,19 @@ TO DO:
 
 1. Interpret |, <, >, <<, >>
 2. Create a history
-3. Handle enviromental variables
+?3. Handle enviromental variables
 5. Handle ctrl-C, ctrl-D and ctrl-\
-6. Add commands
-7. And folder navigation
 
+Commands done:
 
+echo
+cd
+pwd
+clear
+exit
+env
+export
+(missing unset)
 
-
-make sure || doesnt work, only |
+change
+clear
