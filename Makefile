@@ -4,7 +4,7 @@ SRCS		=	main.c $(shell find srcs/ -name '*.c') #mudar para n ser wildcard
 OBJS		=	$(SRCS:.c=.o)
 INCLUDES	=	./include
 
-CC			=	gcc
+CC			=	cc
 CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
 
 .c.o		:

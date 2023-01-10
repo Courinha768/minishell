@@ -1,5 +1,8 @@
 {
-	"files.associations": {
-		"libft.h": "c"
-	}
+    "files.associations": {
+        "so_long.h": "c",
+        "mlx.h": "c",
+        "libft.h": "c"
+    },
+    "C_Cpp.errorSquiggles": "Disabled"
 }

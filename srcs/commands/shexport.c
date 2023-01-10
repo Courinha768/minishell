@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 11:45:19 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:39:53 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	shexport_orderalpha(t_dict **shenv)
 
 		behindnewhead->next = oldhead;
 		oldhead->next = tmp;
+
+		(*shenv) = (*shenv)->next;
 	}
 }
 

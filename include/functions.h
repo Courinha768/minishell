@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 11:44:13 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:16:10 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,7 @@ int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
 t_dict	*dictget_it(t_dict *dict, ssize_t index);
 
 size_t	dictkeymin(t_dict *dict);
+
+int	antstrcmp(const char *s1, const char *s2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 11:20:47 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:36:34 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,17 @@ size_t	dictkeymin(t_dict *dict)
 	i = 0;
 	minidx = i;
 	min = dict->key;
-	dict = dict->next;
+	// dict = dict->next;
 
 	while (dict)
 	{
-		if (ft_strcmp(dict->key, min) < 0)
+		if (antstrcmp(dict->key, min) < 0)
 		{
 			minidx = i;
 			min = dict->key;
 		}
 		i++;
+		dict = dict->next;
 	}
 	return (minidx);
 }
