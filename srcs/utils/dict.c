@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 14:36:34 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:56:07 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,43 @@ int	dict_add(t_dict *dict, char *key, char *val)
 	new->value = val;
 	new->next = NULL;
 	return (1);
+}
+
+t_dict	*dict_pop(t_dict **dict, size_t	index)
+{
+	t_dict	*popped;
+
+	if (!(*dict))
+		return (NULL);
+	if (index == 0)
+	{
+		popped = *dict;
+		*dict = popped->next;
+	}
+	else
+	{
+		popped = dictget_it(*dict, index);
+		dictget_it(*dict, index - 1)->next = popped->next;
+	}
+	popped->next = NULL;
+	return (popped);
+}
+
+void	dict_insert(t_dict **dict, size_t index, t_dict *new)
+{
+	t_dict	*before;
+
+	if (!(*dict))
+		return ;
+	if (index == 0)
+	{
+		new->next = *dict;
+		*dict = new;
+		return ;
+	}
+	before = dictget_it(*dict, index - 1);
+	new->next = before->next;
+	before->next = new;
 }
 
 char	*dict_get(t_dict *dict, char *key)

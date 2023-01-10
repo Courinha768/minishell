@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 14:39:53 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:50:53 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,24 @@ int	dodictorder(t_dict *dict, t_dict **least, size_t i)
 	return (1);
 }
 
-void	shexport_orderalpha(t_dict **shenv)
+void	shexport_orderalpha(t_dict **shexport)
 {
-	t_dict	*oldhead;
 	t_dict	*tmp;
-	t_dict	*newhead;
-	t_dict	*behindnewhead;
 	size_t	minidx;
+	size_t	i;
 
-	while (*shenv != NULL)
+	i = 0;
+	while (i < dictsize(*shexport) / 2 + 1)
 	{
-		minidx = dictkeymin(*shenv);
+		minidx = i + dictkeymin(dictget_it(*shexport, i));
 		if (minidx <= 0)
 			break ;
-		oldhead = (*shenv);
-		behindnewhead = dictget_it(*shenv, minidx - 1);
-		newhead = dictget_it(*shenv, minidx);
-		tmp = newhead->next;
 
-		*shenv = newhead;
-		newhead->next = oldhead->next;
+		tmp = dict_pop(shexport, minidx);
 
-		behindnewhead->next = oldhead;
-		oldhead->next = tmp;
+		dict_insert(shexport, i, tmp);
 
-		(*shenv) = (*shenv)->next;
+		i++;
 	}
 }
 

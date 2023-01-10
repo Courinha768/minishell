@@ -6,15 +6,15 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:56:37 by amc               #+#    #+#             */
-/*   Updated: 2023/01/10 11:45:51 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 14:57:06 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-int	lstsize(t_dict *dict)
+size_t	dictsize(t_dict *dict)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (dict)
@@ -45,7 +45,7 @@ t_dict	*dictget_it(t_dict *dict, ssize_t index)
 	}
 	if (index < 0)
 		return (NULL);
-	size = lstsize(dict);
+	size = dictsize(dict);
 	if (-index > size)
 		return (NULL);
 	i = 0;

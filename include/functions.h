@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 14:16:10 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:43:48 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,12 @@ t_dict	*dictget_it(t_dict *dict, ssize_t index);
 size_t	dictkeymin(t_dict *dict);
 
 int	antstrcmp(const char *s1, const char *s2);
+
+size_t	dictsize(t_dict *dict);
+
+t_dict	*dict_pop(t_dict **dict, size_t	index);
+
+void	dict_insert(t_dict **dict, size_t index, t_dict *new);
+
 
 #endif
