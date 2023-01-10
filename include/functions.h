@@ -3,11 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/01/09 17:10:02 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:23:49 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +81,19 @@ char	*dict_get(t_dict *dict, char *key);
 
 void	dict_iter(t_dict *dict, void (*f)(t_dict *));
 
-void	shenvprint(t_promptinfo *prompt, void (*printstyle)(t_dict *));
+void	dictprint(t_dict *dict, void (*printstyle)(t_dict *));
 
 void	envstyle(t_dict *dict);
 
 void	exportstyle(t_dict *dict);
 
 t_dict	*shenv_init(t_promptinfo *prompt);
+
+t_dict	*shexport_init(t_dict *shenv);
+
+size_t	ft_mtrxlen(void **m);
+
+int	func_export(t_command command, t_promptinfo *prompt);
 
 
 #endif

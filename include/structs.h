@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/09 15:16:09 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:07:26 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_promptinfo {
 	char	*colour;
 	char	*pwd;
 	t_dict	*shenv;
-}	t_promptinfo;
+	t_dict	*shexport; // Shallow copy of shenv
+}	t_promptinfo;		// ordered alphabetically
 
 typedef struct s_token {
 	int		current_token;

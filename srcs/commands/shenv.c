@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/09 17:27:21 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:16:12 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	exportstyle(t_dict *dict)
 	printf("declare -x %s=\"%s\"\n", dict->key, dict->value);
 }
 
-void	shenvprint(t_promptinfo *prompt, void (*printstyle)(t_dict *))
+void	dictprint(t_dict *dict, void (*printstyle)(t_dict *))
 {
-	dict_iter(prompt->shenv, printstyle);
+	dict_iter(dict, printstyle);
 }
 
 t_dict	*shenv_init(t_promptinfo *prompt)

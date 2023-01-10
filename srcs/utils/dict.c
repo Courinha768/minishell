@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/09 17:21:13 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 09:05:04 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ t_dict	*dict_new(char *key, char *val)
 
 int	dict_add(t_dict *dict, char *key, char *val)
 {
-	//TODO: Sort Alphabetically for export func
 	t_dict	*new;
 
 	while (dict->next != NULL)
