@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:25:36 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 19:28:39 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 20:15:34 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,16 @@ int	is_valid(char c)
 {
 	if (!c)
 		return (0);
-	else if (c == 124 || c == 60 || c == 62)
+	else if (c == 124)
+		return (0);
+	return (1);
+}
+
+int	is_valid2(char c)
+{
+	if (!c)
+		return (0);
+	else if (c == 124 || c == '>' || c == '<')
 		return (0);
 	return (1);
 }

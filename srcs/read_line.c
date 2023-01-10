@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:12:50 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 19:43:40 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,8 @@ t_command	create_commands(void)
 	t_command	command;
 	int			j;
 
-	command.pipe_flag = 0;
 	j = 0;
-	if (!is_valid(token()->token[token()->current_token][0]))
-	{
-		command.pipe_flag = 1;
-		token()->current_token++;
-	}
+	command.pipe_flag = create_command_redirect_flag();
 	command.args = (char **)malloc(sizeof(char *) * (args_counter() + 1));
 	if (!command.args)
 		return (null_command());
@@ -104,6 +99,23 @@ void	strip_quotes(t_command *command)
 	}
 }
 
+void	create_flags(t_command *commands)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (commands[++i].args)
+	{
+		j = -1;
+		while (commands[i].args[++j])
+		{
+			if (commands[i].args[j][0] == '>')
+				commands[i].pipe_flag = 5;
+		}
+	}
+}
+
 t_command	*read_line(char *prompt)
 {
 	char		*line;
@@ -128,5 +140,6 @@ t_command	*read_line(char *prompt)
 		free(info()->line);
 	info()->line = line;
 	strip_quotes(commands);
+	create_flags(commands);
 	return (commands);
 }

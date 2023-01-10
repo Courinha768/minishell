@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 20:28:33 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/10 20:31:36 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/10 20:31:38 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	cd(t_command *command, t_promptinfo *prompt)
+void	pwd_command(t_promptinfo *prompt, t_command *commands, int i)
 {
-	if (chdir(command->args[1]) == -1)
-	{
-		printf("cd: no such file or directory %s\n", command->args[1]);
-		return ;
-	}
-	free(prompt->pwd);
-	prompt->pwd = getcwd(NULL, 0);
+	printf("%s\n", prompt->pwd);
+	if (commands[i].pipe_flag == 5)
+		write_into_file(prompt->pwd, commands[i].args[2]);
+	if (commands[i + 1].pipe_flag == 1)
+		commands[i + 1].output = ft_strdup(prompt->pwd);
 }
