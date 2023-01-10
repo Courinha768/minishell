@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 17:03:19 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:42:12 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_dict {
 
 typedef struct s_command {
 	int		pipe_flag;
-	void	*output;
+	char	*output;
 	char	*program;
 	char	**args;
 }	t_command;

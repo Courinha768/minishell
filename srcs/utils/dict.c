@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 17:07:48 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:51:35 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ size_t	dictkeymin(t_dict *dict)
 	}
 	return (minidx);
 }
-
-/* Functional Paradigm
+/*
+ Functional Paradigm
  * Inspired on mtrxdo
  * Replace t_dict with a struct that has a next-pointer
-*/
+
 int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
 {
 	size_t	i;
@@ -92,4 +92,4 @@ int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
 		(*lst) = (*lst)->next;
 	}
 	return (accumulate);
-}
+}*/

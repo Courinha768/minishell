@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:13:38 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:56:33 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ void			change_colour(t_promptinfo *prompt, char *new_colour);
 
 void			free_commands(t_command *commands);
 void			free_promptinfo(t_promptinfo *prompt_info);
-void			dict_free(t_dict **dict);
+void			dict_free(t_dict *dict);
+void			dict_shallowfree(t_dict *dict);
 void			dict_freeone(t_dict *dict);
 
 t_promptinfo	init_prompt(void);
