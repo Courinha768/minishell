@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 09:05:04 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:20:47 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,55 @@ void	dict_iter(t_dict *dict, void (*f)(t_dict *))
 		f(dict);
 		dict = dict->next;
 	}
+}
+
+size_t	dictkeymin(t_dict *dict)
+{
+	size_t	i;
+	size_t	minidx;
+	char	*min;
+
+	i = 0;
+	minidx = i;
+	min = dict->key;
+	dict = dict->next;
+
+	while (dict)
+	{
+		if (ft_strcmp(dict->key, min) < 0)
+		{
+			minidx = i;
+			min = dict->key;
+		}
+		i++;
+	}
+	return (minidx);
+}
+
+/* Functional Paradigm
+ * Inspired on mtrxdo
+ * Replace t_dict with a struct that has a next-pointer
+*/
+int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
+{
+	size_t	i;
+	int		instant;
+	int		accumulate;
+
+	accumulate = 0;
+	i = 0;
+	while (*lst != NULL)
+	{
+		i++;
+		instant = func(*lst, data, i);
+		if (! instant)
+		{
+			return (0);
+		}
+		accumulate += instant;
+		(*lst) = (*lst)->next;
+	}
+	return (accumulate);
 }
 
 static void	dict_freeone(t_dict *dict)

@@ -6,15 +6,46 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 09:29:58 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:45:19 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
+int	dodictorder(t_dict *dict, t_dict **least, size_t i)
+{
+	if (strcmp((*least)->key, dict->key) > 0) // least is bigger than dict
+	{
+		*least = dict;
+	}
+	(void)i;
+	return (1);
+}
+
 void	shexport_orderalpha(t_dict **shenv)
 {
-	
+	t_dict	*oldhead;
+	t_dict	*tmp;
+	t_dict	*newhead;
+	t_dict	*behindnewhead;
+	size_t	minidx;
+
+	while (*shenv != NULL)
+	{
+		minidx = dictkeymin(*shenv);
+		if (minidx <= 0)
+			break ;
+		oldhead = (*shenv);
+		behindnewhead = dictget_it(*shenv, minidx - 1);
+		newhead = dictget_it(*shenv, minidx);
+		tmp = newhead->next;
+
+		*shenv = newhead;
+		newhead->next = oldhead->next;
+
+		behindnewhead->next = oldhead;
+		oldhead->next = tmp;
+	}
 }
 
 t_dict	*shexport_init(t_dict *shenv)
@@ -31,7 +62,7 @@ t_dict	*shexport_init(t_dict *shenv)
 	}
 
 	// Order alphabetically
-	shexport_orderalpha(&shenv);
+	shexport_orderalpha(&shexport);
 	return (shexport);
 }
 
