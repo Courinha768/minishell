@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 17:11:25 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:12:50 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,7 @@ t_command	create_commands(void)
 	}
 	command.args = (char **)malloc(sizeof(char *) * (args_counter() + 1));
 	if (!command.args)
-	{
-		command.program = NULL;
-		command.args = NULL;
-		return (command);
-	}
+		return (null_command());
 	command.program = ft_strdup(token()->token[token()->current_token]);
 	while (is_valid(token()->token[token()->current_token][0]))
 	{

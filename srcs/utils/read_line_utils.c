@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:25:39 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/08 19:31:10 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:12:38 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,13 @@ int	count_commands(char *line)
 		}
 	}
 	return (counter + 1);
+}
+
+t_command	null_command(void)
+{
+	t_command	command;
+
+	command.program = NULL;
+	command.args = NULL;
+	return (command);
 }

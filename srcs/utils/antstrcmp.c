@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antstrcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:36:33 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 14:16:01 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:01:20 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	antstrcmp(const char *s1, const char *s2)
 
 	if (!s1 && !s2)
 		return (0);
-
 	i = 0;
 	while (! (s1[1] == '\0' || s2[i] == '\0'))
 	{

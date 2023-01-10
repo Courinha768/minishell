@@ -1,6 +1,6 @@
 NAME		=	minishell
 
-SRCS		=	main.c $(shell find srcs/ -name '*.c') #mudar para n ser wildcard
+SRCS		=	main.c debug.c $(shell find srcs/ -name '*.c') #mudar para n ser wildcard
 OBJS		=	$(SRCS:.c=.o)
 INCLUDES	=	./include
 

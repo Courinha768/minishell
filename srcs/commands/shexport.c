@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shexport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 15:50:53 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:08:18 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ void	shexport_orderalpha(t_dict **shexport)
 		minidx = i + dictkeymin(dictget_it(*shexport, i));
 		if (minidx <= 0)
 			break ;
-
 		tmp = dict_pop(shexport, minidx);
-
 		dict_insert(shexport, i, tmp);
-
 		i++;
 	}
 }
@@ -55,7 +52,6 @@ t_dict	*shexport_init(t_dict *shenv)
 		dict_add(shexport, shenv->key, shenv->value);
 		shenv = shenv->next;
 	}
-
 	// Order alphabetically
 	shexport_orderalpha(&shexport);
 	return (shexport);

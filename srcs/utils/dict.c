@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 15:56:07 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:07:48 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_dict	*dict_new(char *key, char *val)
 {
 	t_dict	*head;
-	
+
 	head = malloc(sizeof(t_dict));
 	if (!head)
 		return (NULL);
@@ -23,61 +23,6 @@ t_dict	*dict_new(char *key, char *val)
 	head->value = val;
 	head->next = NULL;
 	return (head);
-}
-
-int	dict_add(t_dict *dict, char *key, char *val)
-{
-	t_dict	*new;
-
-	while (dict->next != NULL)
-	{
-		dict = dict->next;
-	}
-	new = malloc(sizeof(t_dict));
-	if (!new)
-		return (0);
-	dict->next = new;
-	new->key = key;
-	new->value = val;
-	new->next = NULL;
-	return (1);
-}
-
-t_dict	*dict_pop(t_dict **dict, size_t	index)
-{
-	t_dict	*popped;
-
-	if (!(*dict))
-		return (NULL);
-	if (index == 0)
-	{
-		popped = *dict;
-		*dict = popped->next;
-	}
-	else
-	{
-		popped = dictget_it(*dict, index);
-		dictget_it(*dict, index - 1)->next = popped->next;
-	}
-	popped->next = NULL;
-	return (popped);
-}
-
-void	dict_insert(t_dict **dict, size_t index, t_dict *new)
-{
-	t_dict	*before;
-
-	if (!(*dict))
-		return ;
-	if (index == 0)
-	{
-		new->next = *dict;
-		*dict = new;
-		return ;
-	}
-	before = dictget_it(*dict, index - 1);
-	new->next = before->next;
-	before->next = new;
 }
 
 char	*dict_get(t_dict *dict, char *key)
@@ -110,7 +55,6 @@ size_t	dictkeymin(t_dict *dict)
 	minidx = i;
 	min = dict->key;
 	// dict = dict->next;
-
 	while (dict)
 	{
 		if (antstrcmp(dict->key, min) < 0)
@@ -148,26 +92,4 @@ int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
 		(*lst) = (*lst)->next;
 	}
 	return (accumulate);
-}
-
-static void	dict_freeone(t_dict *dict)
-{
-	free(dict->key);
-	free(dict->value);
-	free(dict);
-}
-
-void	dict_free(t_dict **dict)
-{
-	t_dict	*here;
-	t_dict	*after;
-	
-	//TODO: Proctections
-	here = *dict;
-	while (here != NULL)
-	{
-		after = here->next;
-		dict_freeone(here);
-		here = after;
-	}
 }
