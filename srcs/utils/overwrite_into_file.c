@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_commands.c                                   :+:      :+:    :+:   */
+/*   overwrite_into_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/08 17:55:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 18:06:23 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/10 20:30:36 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/11 16:49:57 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	pwd_command(t_promptinfo *prompt, t_command *commands, int i)
+void	overwrite_into_file(char *str, char *filename)
 {
-	printf("%s\n", prompt->pwd);
-	if (commands[i + 1].pipe_flag)
-		commands[i + 1].output = ft_strdup(prompt->pwd);
-}
+	int	fd;
 
-void	clear_command(void)
-{
-	clear_shell();
-}
-
-void	exit_command(void)
-{
-	info()->finished = 1;
+	fd = open(filename, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	//0644 = premissions i think
+	if (fd == -1)
+		return ;
+	ft_putstr_fd(str, fd);
+	close(fd);
 }

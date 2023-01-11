@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd.c                                               :+:      :+:    :+:   */
+/*   write_into_files.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 20:28:33 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/11 16:31:52 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/11 16:49:35 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	cd(t_command *command, t_promptinfo *prompt)
+void	write_into_file(char *str, char *filename)
 {
-	if (chdir(command->args[1]) == -1)
-	{
-		printf("cd: no such file or directory %s\n", command->args[1]);
+	int	fd;
+
+	fd = open(filename, O_RDWR | O_CREAT | O_APPEND, 0644);
+	//0644 = premissions i think
+	if (fd == -1)
 		return ;
-	}
-	free(prompt->pwd);
-	prompt->pwd = getcwd(NULL, 0);
+	ft_putstr_fd(str, fd);
+	close(fd);
 }

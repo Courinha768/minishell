@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:56:33 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:38:09 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_command		create_commands(void);
 void			strip_quotes(t_command *command);
 void			create_token(char *line);
 t_command		null_command(void);
+int				create_command_redirect_flag(void);
 
 /* ========================================================================== */
 /*                                COMMANDS                                    */
@@ -105,7 +106,11 @@ void			clear_shell(void);
 void			ignore_shell_signal(void);
 
 int				is_valid(char c);
+int				is_valid2(char c);
 int				line_valid(char c, char d);
+
+void			overwrite_into_file(char *str, char *filename);
+void			write_into_file(char *str, char *filename);
 
 /* ========================================================================== */
 /*                                 DEBUG                                      */
