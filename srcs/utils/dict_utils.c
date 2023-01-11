@@ -6,7 +6,11 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/13 17:32:25 by amaria-d         ###   ########.fr       */
+=======
+/*   Updated: 2023/01/11 18:45:16 by amaria-d         ###   ########.fr       */
+>>>>>>> Starting the re-implementation of dict as an array style container
 /*                                                                            */
 /* ************************************************************************** */
 

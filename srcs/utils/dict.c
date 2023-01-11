@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/12 18:39:54 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:38:42 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ void	dict_shallowfree(t_dict *dict)
 	free(dict->env);
 	free(dict);
 }
+/*
+ Functional Paradigm
+ * Inspired on mtrxdo
+ * Replace t_dict with a struct that has a next-pointer
 
 void	dict_free(t_dict *dict)
 {
