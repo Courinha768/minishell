@@ -3,26 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 17:51:35 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:23:25 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-t_dict	*dict_new(char *key, char *val)
+/* Creates and Intializes a new dict
+*/
+t_dict	*dict_new(void)
 {
-	t_dict	*head;
-
-	head = malloc(sizeof(t_dict));
-	if (!head)
-		return (NULL);
-	head->key = key;
-	head->value = val;
-	head->next = NULL;
-	return (head);
+	t_dict	*new;
+	//Alert: 2 mallocs!
+	
+	new = malloc(sizeof(t_dict) * 1);
+	new->env = malloc(sizeof(char *) * 500);
+	new->cap = 500;
+	new->count = 0;
+	return(new);
 }
 
 char	*dict_get(t_dict *dict, char *key)
@@ -67,6 +68,7 @@ size_t	dictkeymin(t_dict *dict)
 	}
 	return (minidx);
 }
+
 /*
  Functional Paradigm
  * Inspired on mtrxdo

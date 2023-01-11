@@ -3,32 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   dict_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:07:52 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:45:16 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
+void	dict_grow(t_dict *dict)
+{
+	char	**newenv;
+
+	dict->cap = dict->cap + dict->cap / 2;
+	
+	newenv = malloc(sizeof(char *) * dict->cap);
+
+	ft_memcpy(newenv, dict->env, dict->count * sizeof(char *));
+	free(dict->env);
+	dict->env = newenv;
+}
+
 int	dict_add(t_dict *dict, char *key, char *val)
 {
-	t_dict	*new;
+	//Alert: 2 mallocs. 1 is freed
+	char	*tmp;
+	
+	if (dict->count == dict->cap)
+		dict_grow(dict);
 
-	while (dict->next != NULL)
-	{
-		dict = dict->next;
-	}
-	new = malloc(sizeof(t_dict));
-	if (!new)
-		return (0);
-	dict->next = new;
-	new->key = key;
-	new->value = val;
-	new->next = NULL;
-	return (1);
+	tmp = ft_strjoin("=", val);
+	dict->env[dict->count] = ft_strjoin(key, tmp);
+	free(tmp);
+	dict->count++;
 }
+
 
 t_dict	*dict_pop(t_dict **dict, size_t	index)
 {

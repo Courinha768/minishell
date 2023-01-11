@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/12 22:24:31 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:24:11 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define STRUCTS_H
 
 typedef struct s_dict {
-	char			*key;
-	char			*value;
-	struct s_dict	*next;
+	char		**env;
+	size_t		cap;
+	size_t		count;
 }	t_dict;
 
 typedef struct s_command {
