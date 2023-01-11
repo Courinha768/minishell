@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 20:15:54 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:38:09 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ int				is_valid(char c);
 int				is_valid2(char c);
 int				line_valid(char c, char d);
 
+void			overwrite_into_file(char *str, char *filename);
 void			write_into_file(char *str, char *filename);
 
 /* ========================================================================== */

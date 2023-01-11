@@ -28,9 +28,9 @@ fclean		:	clean
 re			:	fclean all
 
 r:
-	make -s && ./minishell
+	@make -s && ./minishell
 
 fc:
-	make -s fclean
+	@make -s fclean
 
 .PHONY		:	all clean fclean re

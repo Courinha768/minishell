@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   write_into_file.c                                  :+:      :+:    :+:   */
+/*   overwrite_into_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:30:36 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 20:31:58 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:49:57 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	write_into_file(char *str, char *filename)
+void	overwrite_into_file(char *str, char *filename)
 {
 	int	fd;
 
@@ -21,4 +21,5 @@ void	write_into_file(char *str, char *filename)
 	if (fd == -1)
 		return ;
 	ft_putstr_fd(str, fd);
+	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 17:46:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:07:32 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ void	read_commands(t_command *commands, t_promptinfo *prompt)
 	i = -1;
 	while (commands[++i].program)
 		command_fork(commands, i, prompt);
-	print_commands(commands);
+	//print_commands(commands);
 	free_commands(commands);
 }

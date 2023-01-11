@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 20:35:09 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:01:33 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,17 @@ void	echo_flag_handler(t_command *command, int i, char *str)
 	int	k;
 
 	k = 0;
-	if (command[i].pipe_flag == 5)
+	if (command[i + 1].pipe_flag)
+		command[i + 1].output = ft_strdup(str);
+	if (command[i].pipe_flag == 5 || command[i].pipe_flag == 3)
 	{
 		while (command[i].args[k][0] != '>')
 			k++;
-		write_into_file(str, command[i].args[k + 1]);
+		if (command[i].pipe_flag == 3)
+			overwrite_into_file(str, command[i].args[k + 1]);
+		else if (command[i].pipe_flag == 5)
+			write_into_file(str, command[i].args[k + 1]);
 	}
-	if (command[i + 1].pipe_flag)
-		command[i + 1].output = ft_strdup(str);
 }
 
 void	echo(t_command *command, int i)
@@ -83,9 +86,13 @@ void	echo(t_command *command, int i)
 		j++;
 	}
 	create_str(command, i, j, str);
-	printf("%s", str);
-	if (printlnb)
-		printf("\n");
-	echo_flag_handler(command, i, str);
+	if (!command[i].pipe_flag)
+	{
+		printf("%s", str);
+		if (printlnb)
+			printf("\n");
+	}
+	else
+		echo_flag_handler(command, i, str);
 	free(str);
 }

@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:06:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 19:43:40 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:03:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,19 @@ void	create_flags(t_command *commands)
 		while (commands[i].args[++j])
 		{
 			if (commands[i].args[j][0] == '>')
-				commands[i].pipe_flag = 5;
+			{
+				if (commands[i].args[j][1] && commands[i].args[j][1] == '>')
+					commands[i].pipe_flag = 5;
+				else
+					commands[i].pipe_flag = 3;
+			}
+			else if (commands[i].args[j][0] == '<')
+			{
+				if (commands[i].args[j][1] && commands[i].args[j][1] == '<')
+					commands[i].pipe_flag = 4;
+				else
+					commands[i].pipe_flag = 2;
+			}
 		}
 	}
 }
