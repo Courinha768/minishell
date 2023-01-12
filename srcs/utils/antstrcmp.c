@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antstrcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:36:33 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 17:01:20 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:46:26 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,35 @@ int	antstrcmp(const char *s1, const char *s2)
 	if (!s1 && !s2)
 		return (0);
 	i = 0;
-	while (! (s1[1] == '\0' || s2[i] == '\0'))
+	while (s1[i] && s2[i])
 	{
-		if (s1[i] == '\0' || s2[i] == '\0')
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		if (s1[i] != s2[i])
 			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
-	return (0);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
+
+/* Gives pos where the strings diverge
+ * Not idx! 0 is wrong: 1 is first ([0])
+ * 2 is second ([1]) ...
+*/
+size_t	strcmpwhr(const char *s1, const char *s2)
+{
+	size_t	i;
+
+	if (!s1 && !s2)
+		return (0);
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (i + 1);
+		i++;
+	}
+	return (i + 1);
+}
+
 
 /*
 int main(void)

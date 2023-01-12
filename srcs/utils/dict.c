@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/12 16:24:56 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:00:29 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,19 @@ int	dict_add(t_dict *dict, char *key, char *val)
 	//Alert: 2 mallocs. 1 is freed
 	//TODO: not do 2 mallocs!
 	char	*tmp;
-	
+	size_t	i;
+
+	i = 0;
+	while (i < dict->count + 1)
+	{
+		if (dict->env[i] == NULL)
+		{
+			tmp = ft_strjoin("=", val);
+			dict->env[i] = ft_strjoin(key, tmp);
+			free(tmp);
+			return (1);			
+		}
+	}
 	if (dict->count == dict->cap)
 		dict_grow(dict);
 
@@ -59,64 +71,34 @@ int	dict_add(t_dict *dict, char *key, char *val)
 	return (1);
 }
 
-
-/*
-void	dict_iter(t_dict *dict, void (*f)(t_dict *))
+t_dict	*dict_pop(t_dict *dict, char *key)
 {
-	while (dict)
-	{
-		f(dict);
-		dict = dict->next;
-	}
+	char	*popped;
+	size_t	whr;
+
+	if (!(*dict))
+		return (NULL);
+	whr = dict_pos(dict, key);
+	popped = dict->env[whr - 1];
+	dict->env[whr - 1] = NULL;
+	return (popped);
 }
 
-size_t	dictkeymin(t_dict *dict)
+/*
+void	dict_insert(t_dict **dict, size_t index, t_dict *new)
 {
-	size_t	i;
-	size_t	minidx;
-	char	*min;
+	t_dict	*before;
 
-	i = 0;
-	minidx = i;
-	min = dict->key;
-	// dict = dict->next;
-	while (dict)
+	if (!(*dict))
+		return ;
+	if (index == 0)
 	{
-		if (antstrcmp(dict->key, min) < 0)
-		{
-			minidx = i;
-			min = dict->key;
-		}
-		i++;
-		dict = dict->next;
+		new->next = *dict;
+		*dict = new;
+		return ;
 	}
-	return (minidx);
+	before = dictget_it(*dict, index - 1);
+	new->next = before->next;
+	before->next = new;
 }
 */
-
-/*
- Functional Paradigm
- * Inspired on mtrxdo
- * Replace t_dict with a struct that has a next-pointer
-
-int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
-{
-	size_t	i;
-	int		instant;
-	int		accumulate;
-
-	accumulate = 0;
-	i = 0;
-	while (*lst != NULL)
-	{
-		i++;
-		instant = func(*lst, data, i);
-		if (! instant)
-		{
-			return (0);
-		}
-		accumulate += instant;
-		(*lst) = (*lst)->next;
-	}
-	return (accumulate);
-}*/

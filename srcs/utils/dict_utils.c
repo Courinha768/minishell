@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 16:44:37 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:54:21 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,31 +73,63 @@ char	*dict_getit(t_dict *dict, char *key)
 	return(dict->env[pos - 1]);
 }
 
-
 /*
-t_dict	*dict_pop(t_dict *dict, char *key)
+void	dict_iter(t_dict *dict, void (*f)(t_dict *))
 {
-	char	*popped;
-
-	if (!(*dict))
-		return (NULL);
-	
+	while (dict)
+	{
+		f(dict);
+		dict = dict->next;
+	}
 }
 
-void	dict_insert(t_dict **dict, size_t index, t_dict *new)
+size_t	dictkeymin(t_dict *dict)
 {
-	t_dict	*before;
+	size_t	i;
+	size_t	minidx;
+	char	*min;
 
-	if (!(*dict))
-		return ;
-	if (index == 0)
+	i = 0;
+	minidx = i;
+	min = dict->key;
+	// dict = dict->next;
+	while (dict)
 	{
-		new->next = *dict;
-		*dict = new;
-		return ;
+		if (antstrcmp(dict->key, min) < 0)
+		{
+			minidx = i;
+			min = dict->key;
+		}
+		i++;
+		dict = dict->next;
 	}
-	before = dictget_it(*dict, index - 1);
-	new->next = before->next;
-	before->next = new;
+	return (minidx);
 }
 */
+
+/*
+ Functional Paradigm
+ * Inspired on mtrxdo
+ * Replace t_dict with a struct that has a next-pointer
+
+int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
+{
+	size_t	i;
+	int		instant;
+	int		accumulate;
+
+	accumulate = 0;
+	i = 0;
+	while (*lst != NULL)
+	{
+		i++;
+		instant = func(*lst, data, i);
+		if (! instant)
+		{
+			return (0);
+		}
+		accumulate += instant;
+		(*lst) = (*lst)->next;
+	}
+	return (accumulate);
+}*/
