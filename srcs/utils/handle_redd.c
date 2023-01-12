@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:40:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 20:15:52 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:25:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ void	handle_redd(t_command *command, char **tokens, int *current_token)
 	{
 		if (tokens[*current_token] && tokens[*current_token][1] == '>')
 		{
-			command->fdout = open(tokens[*current_token + 1], O_WRONLY | O_CREAT | O_APPEND, 0644);
+			command->fdout = open(tokens[*current_token + 1], O_WRONLY
+					| O_CREAT | O_APPEND, 0644);
 		}
 		else
-			command->fdout = open(tokens[*current_token + 1], O_WRONLY | O_CREAT | O_TRUNC, 0644);
+			command->fdout = open(tokens[*current_token + 1], O_WRONLY
+					| O_CREAT | O_TRUNC, 0644);
 		*current_token += 2;
 	}
 	else if (tokens[*current_token] && tokens[*current_token][0] == '|')

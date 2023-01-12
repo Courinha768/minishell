@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 19:52:20 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:23:13 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,8 @@ int				line_valid(char **tokens);
 
 char			**fancy_split(char *s, char c);
 
-void			handle_redd(t_command *command, char **tokens, int *current_token);
+void			handle_redd(t_command *command, char **tokens,
+					int *current_token);
 
 /* ========================================================================== */
 /*                                 DEBUG                                      */

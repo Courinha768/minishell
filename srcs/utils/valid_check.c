@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:25:36 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 19:31:57 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:23:44 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,18 @@ int	is_valid2(char c)
 int	rl_is_valid(char c)
 {
 	return (c != '|' && c != '>' && c != '<' && c != '&');
+}
+
+int	line_valid(char **tokens)
+{
+	int	i;
+
+	i = -1;
+	while (tokens[++i])
+	{
+		if (!is_valid2(tokens[i][0]))
+			if (tokens[i + 1] && !is_valid2(tokens[i + 1][0]))
+				return (0);
+	}
+	return (1);
 }
