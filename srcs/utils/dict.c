@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:41:06 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:43:08 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	*dict_pop(t_dict *dict, char *key)
 	dict->env[whr - 1] = NULL; // very important!
 	return (popped);
 }
+*/
 
 void	dict_shallowfree(t_dict *dict)
 {
@@ -120,10 +121,10 @@ void	dict_insert(t_dict **dict, size_t index, t_dict *new)
 	if (index == 0)
 	{
 		new->next = *dict;
-		*dict = new;
-		return ;
-	}
-	before = dictget_it(*dict, index - 1);
+	fixed dict_add to make it work
+c282784 Revamped the base funcs for t_dict. I should make a t_array struct to further abstract. Hv to add pop
+881bfe0 In the middle of implementing dict_get
+180796c Starting the re-implementation of dict as an array stylebefore = dictget_it(*dict, index - 1);
 	new->next = before->next;
 	before->next = new;
 }
