@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 22:23:13 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:25:04 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			cd(t_command *command, t_promptinfo *prompt);
 
 void			echo(t_command command);
 
-t_dict			*shenv_init(t_promptinfo *prompt);
+t_dict	*shenv_init();
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
 void			envstyle(t_dict *dict);
 void			exportstyle(t_dict *dict);
@@ -42,6 +42,8 @@ void			shexport_orderalpha(t_dict **shenv);
 void			pwd_command(t_promptinfo *prompt, t_command commands);
 void			clear_command(void);
 void			exit_command(void);
+		
+		
 
 /* ========================================================================== */
 /*                            CUSTOM_COMMANDS                                 */
@@ -69,18 +71,21 @@ t_promptinfo	init_prompt(void);
 
 int				antstrcmp(const char *s1, const char *s2);
 
-void			dict_iter(t_dict *dict, void (*f)(t_dict *));
-t_dict			*dict_new(char *key, char *val);
+void	dict_iter(t_dict *dict, void (*f)(char *));
+t_dict	*dict_new(void);
 int				dict_add(t_dict *dict, char *key, char *val);
 char			*dict_get(t_dict *dict, char *key);
 size_t			dictkeymin(t_dict *dict);
 int				lstdo(t_dict **lst, t_dict **data,
 					int (*func)(t_dict *, t_dict **, size_t));
+size_t	strcmpwhr(const char *s1, const char *s2);
 
-t_dict			*dictget_it(t_dict *dict, ssize_t index);
+size_t	dict_pos(t_dict *dict, char *key);
+char	*dict_getit(t_dict *dict, char *key);
 size_t			dictsize(t_dict *dict);
-t_dict			*dict_pop(t_dict **dict, size_t	index);
+char	*dict_pop(t_dict *dict, char *key);
 void			dict_insert(t_dict **dict, size_t index, t_dict *new);
+void	d_iterprint(char *keyval);
 
 int				ft_charinside(char c, const char *s);
 
