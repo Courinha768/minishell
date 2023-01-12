@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/11 16:38:09 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:52:20 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,13 @@ void			ignore_shell_signal(void);
 
 int				is_valid(char c);
 int				is_valid2(char c);
-int				line_valid(char c, char d);
+int				rl_is_valid(char c);
+
+int				line_valid(char **tokens);
 
 char			**fancy_split(char *s, char c);
+
+void			handle_redd(t_command *command, char **tokens, int *current_token);
 
 /* ========================================================================== */
 /*                                 DEBUG                                      */

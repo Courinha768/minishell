@@ -1,7 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   readline.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/12 20:14:34 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/include.h"
 
-
-//trocar isto para receber os tokkens em vez da line
 int	countcommands(char *line)
 {
 	int	i;
@@ -13,12 +23,6 @@ int	countcommands(char *line)
 	{
 		if (line[i] == '|')
 			counter++;
-		if (line[i] == '>' || line[i] == '<')
-		{
-			counter++;
-			if (line[i + 1] == '>' || line[i + 1] == '<')
-				i++;
-		}
 		if (line[i] == '&')
 		{
 			counter++;
@@ -28,15 +32,11 @@ int	countcommands(char *line)
 	return (counter);
 }
 
-int	rl_is_valid(char c)
-{
-	return (c != '|' && c != '>' && c != '<' && c != '&');
-}
-
 int	countargs(char **tokens, int i)
 {
 	int	counter;
 
+	counter = 0;
 	while (tokens[i] && rl_is_valid(tokens[i][0]))
 	{
 		counter++;
@@ -47,13 +47,12 @@ int	countargs(char **tokens, int i)
 
 t_command	nullcommand(void)
 {
-	t_command command;
+	t_command	command;
 
 	command.args = NULL;
 	command.program = NULL;
 	command.fdin = 0;
 	command.fdout = 0;
-	command.redd_flag = 0;
 	return (command);
 }
 
@@ -68,12 +67,12 @@ t_command	createcommand(char **tokens)
 		static_current_token = 0;
 	command.fdin = 0;
 	command.fdout = 1;
-	command.redd_flag = 0;
 	current_token = static_current_token;
 	if (current_token)
 		current_token++;
 	command.program = ft_strdup(tokens[current_token]);
-	command.args = (char **)malloc(sizeof(char *) * (countargs(tokens, current_token) + 1));
+	command.args = (char **)malloc(sizeof(char *)
+			* (countargs(tokens, current_token) + 1));
 	if (!command.args)
 		return (nullcommand());
 	i = 0;
@@ -83,14 +82,12 @@ t_command	createcommand(char **tokens)
 		current_token++;
 	}
 	command.args[i] = NULL;
-	//handle reddirects
+	handle_redd(&command, tokens, &current_token);
 	static_current_token = current_token;
 	if (!tokens[current_token])
 		static_current_token = 0;
 	return (command);
 }
-
-// echo hello > cat | hello && goodbye
 
 t_command	*read_line(char *prompt)
 {
@@ -102,8 +99,12 @@ t_command	*read_line(char *prompt)
 
 	line = readline(prompt);
 	free(prompt);
-	//check if line is valid
 	tokens = fancy_split(ft_strdup(line), ' ');
+	if (!line_valid(tokens))
+	{
+		printf("line not valid\n");
+		return (NULL);
+	}
 	nbr_of_commands = countcommands(line);
 	free(line);
 	commands = malloc(sizeof(t_command) * (nbr_of_commands + 1));
