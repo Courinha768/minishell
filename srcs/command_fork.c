@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 20:24:09 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:47:45 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	command_fork(t_command *commands, int i, t_promptinfo *prompt)
 	else if (! ft_strcmp(commands[i].program, "export"))
 		func_export(commands[i], prompt);
 	//else if (! ft_strncmp(commands[i].program, "/bin", 4))
-		//execve("/bin/ls", "-la", getenv("ENV"));
+	//	execve(commands[i].program, commands[i].args, (char *const *)getenv("ENV"));
 	else
 		printf("%s: command not found\n", commands[i].program);
 }
