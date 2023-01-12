@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/12 17:00:29 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:39:54 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_dict	*dict_new(void)
 	//Alert: 2 mallocs!
 	
 	new = malloc(sizeof(t_dict) * 1);
-	new->env = ft_calloc(500, sizeof(char *)); // very important to calloc
+	new->env = malloc(500 * sizeof(char *));
 	new->cap = 500;
 	new->count = 0;
 	return(new);
@@ -57,8 +57,10 @@ int	dict_add(t_dict *dict, char *key, char *val)
 			tmp = ft_strjoin("=", val);
 			dict->env[i] = ft_strjoin(key, tmp);
 			free(tmp);
+			dict->count++;
 			return (1);			
 		}
+		i++;
 	}
 	if (dict->count == dict->cap)
 		dict_grow(dict);
@@ -71,17 +73,37 @@ int	dict_add(t_dict *dict, char *key, char *val)
 	return (1);
 }
 
-t_dict	*dict_pop(t_dict *dict, char *key)
+char	*dict_pop(t_dict *dict, char *key)
 {
 	char	*popped;
 	size_t	whr;
 
-	if (!(*dict))
+	if (!dict)
 		return (NULL);
 	whr = dict_pos(dict, key);
 	popped = dict->env[whr - 1];
-	dict->env[whr - 1] = NULL;
+	dict->env[whr - 1] = NULL; // very important!
 	return (popped);
+}
+
+void	dict_shallowfree(t_dict *dict)
+{
+	free(dict->env);
+	free(dict);
+}
+
+void	dict_free(t_dict *dict)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < dict->count)
+	{
+		if (dict->env[i] != NULL)
+			free(dict->env[i]);
+		i++;
+	}
+	dict_shallowfree(dict);	
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 16:54:21 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:29:26 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*dict_get(t_dict *dict, char *key)
 {
 	size_t	i;
 	size_t	whr;
-	size_t	pos;
 
 	i = 0;
 	while (i < dict->count)
@@ -73,16 +72,26 @@ char	*dict_getit(t_dict *dict, char *key)
 	return(dict->env[pos - 1]);
 }
 
-/*
-void	dict_iter(t_dict *dict, void (*f)(t_dict *))
+
+void	d_iterprint(char *keyval)
 {
-	while (dict)
+	if (keyval)
+		printf("%s\n", keyval);
+}
+
+void	dict_iter(t_dict *dict, void (*f)(char *))
+{
+	size_t	i;
+
+	i = 0;
+	while (i < dict->count)
 	{
-		f(dict);
-		dict = dict->next;
+		f(dict->env[i]);
+		i++;
 	}
 }
 
+/*
 size_t	dictkeymin(t_dict *dict)
 {
 	size_t	i;

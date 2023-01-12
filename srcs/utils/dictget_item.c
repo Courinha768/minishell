@@ -6,12 +6,13 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 15:56:37 by amc               #+#    #+#             */
-/*   Updated: 2023/01/12 16:20:16 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:14:09 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
+/*
 size_t	dictsize(t_dict *dict)
 {
 	size_t	i;
@@ -24,4 +25,4 @@ size_t	dictsize(t_dict *dict)
 	}
 	return (i);
 }
-
+*/
