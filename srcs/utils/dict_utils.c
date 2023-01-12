@@ -6,58 +6,82 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 15:16:50 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:44:37 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	dict_grow(t_dict *dict)
+/* Gets val referenced by key
+ * Can return char * -> '\0'
+ * if val hasn't been set yet
+*/
+char	*dict_get(t_dict *dict, char *key)
 {
-	char	**newenv;
+	size_t	i;
+	size_t	whr;
+	size_t	pos;
 
-	dict->cap = dict->cap + dict->cap / 2;
-	
-	newenv = malloc(sizeof(char *) * dict->cap);
-
-	ft_memcpy(newenv, dict->env, dict->count * sizeof(char *));
-	free(dict->env);
-	dict->env = newenv;
+	i = 0;
+	while (i < dict->count)
+	{
+		whr = strcmpwhr(dict->env[i], key);
+		if (dict->env[i][whr - 1] == '='
+			&& key[whr - 1] == '\0')
+			// && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
+			return (dict->env[i] + whr);
+		i++;
+	}
+	return (NULL);
 }
 
-int	dict_add(t_dict *dict, char *key, char *val)
+/**
+ * Gets idx of env where char * is
+ * Returns 0 on error so
+ * return value is NOT idx:
+ * 1 is first ([0]), 2 is second ([1]) ...
+*/
+size_t	dict_pos(t_dict *dict, char *key)
 {
-	//Alert: 2 mallocs. 1 is freed
-	char	*tmp;
-	
-	if (dict->count == dict->cap)
-		dict_grow(dict);
+	size_t	i;
+	size_t	whr;
 
-	tmp = ft_strjoin("=", val);
-	dict->env[dict->count] = ft_strjoin(key, tmp);
-	free(tmp);
-	dict->count++;
+	i = 0;
+	while (i < dict->count)
+	{
+		whr = strcmpwhr(dict->env[i], key);
+		if (dict->env[i][whr - 1] == '='
+			&& key[whr - 1] == '\0')
+			// && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}
+
+/**
+ * Gets entire char * referenced by key
+ * including key
+*/
+char	*dict_getit(t_dict *dict, char *key)
+{
+	size_t	pos;
+
+	pos = dict_pos(dict, key);
+	if (pos == 0)
+		return (NULL);
+	return(dict->env[pos - 1]);
 }
 
 
-t_dict	*dict_pop(t_dict **dict, size_t	index)
+/*
+t_dict	*dict_pop(t_dict *dict, char *key)
 {
-	t_dict	*popped;
+	char	*popped;
 
 	if (!(*dict))
 		return (NULL);
-	if (index == 0)
-	{
-		popped = *dict;
-		*dict = popped->next;
-	}
-	else
-	{
-		popped = dictget_it(*dict, index);
-		dictget_it(*dict, index - 1)->next = popped->next;
-	}
-	popped->next = NULL;
-	return (popped);
+	
 }
 
 void	dict_insert(t_dict **dict, size_t index, t_dict *new)
@@ -76,3 +100,4 @@ void	dict_insert(t_dict **dict, size_t index, t_dict *new)
 	new->next = before->next;
 	before->next = new;
 }
+*/

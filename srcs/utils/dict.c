@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/12 15:31:33 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:24:56 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,44 @@ t_dict	*dict_new(void)
 	//Alert: 2 mallocs!
 	
 	new = malloc(sizeof(t_dict) * 1);
-	new->env = malloc(sizeof(char *) * 500);
+	new->env = ft_calloc(500, sizeof(char *)); // very important to calloc
 	new->cap = 500;
 	new->count = 0;
 	return(new);
 }
 
-size_t	strcmptil(char *s1, char *s2, char del)
+void	dict_grow(t_dict *dict)
 {
-	size_t	i;
+	char	**newenv;
 
-	i = 0;
-	while (s1[i] && s2[i])
-	{
-		ft_strncmp
-		if (s1)
-	}
-	return (i);
+	dict->cap = dict->cap + dict->cap / 2;
+	
+	newenv = malloc(sizeof(char *) * dict->cap);
+
+	ft_memcpy(newenv, dict->env, dict->count * sizeof(char *));
+	free(dict->env);
+	dict->env = newenv;
 }
 
-char	*dict_get(t_dict *dict, char *key)
+int	dict_add(t_dict *dict, char *key, char *val)
 {
-	size_t	i;
+	//Alert: 2 mallocs. 1 is freed
+	//TODO: not do 2 mallocs!
+	char	*tmp;
+	
+	if (dict->count == dict->cap)
+		dict_grow(dict);
 
-	i = 0;
-	while (i < dict->cap)
-	{
-		``if (key == dict.env[i] before '=')``
-			return (after '=');
-		i++;
-	}
-	return (NULL);
+	tmp = ft_strjoin("=", val);
+	dict->env[dict->count] = ft_strjoin(key, tmp);
+	free(tmp);
+	dict->count++;
+
+	return (1);
 }
 
+
+/*
 void	dict_iter(t_dict *dict, void (*f)(t_dict *))
 {
 	while (dict)
@@ -87,6 +92,7 @@ size_t	dictkeymin(t_dict *dict)
 	}
 	return (minidx);
 }
+*/
 
 /*
  Functional Paradigm
