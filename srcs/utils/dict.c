@@ -6,13 +6,16 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/11 18:23:25 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:31:33 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
 /* Creates and Intializes a new dict
+ * For libft, could receive var
+ * 0 will make it the default
+ * else the var
 */
 t_dict	*dict_new(void)
 {
@@ -26,13 +29,29 @@ t_dict	*dict_new(void)
 	return(new);
 }
 
+size_t	strcmptil(char *s1, char *s2, char del)
+{
+	size_t	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		ft_strncmp
+		if (s1)
+	}
+	return (i);
+}
+
 char	*dict_get(t_dict *dict, char *key)
 {
-	while (dict)
+	size_t	i;
+
+	i = 0;
+	while (i < dict->cap)
 	{
-		if (! strcmp(dict->key, key))
-			return (dict->value);
-		dict = dict->next;
+		``if (key == dict.env[i] before '=')``
+			return (after '=');
+		i++;
 	}
 	return (NULL);
 }
