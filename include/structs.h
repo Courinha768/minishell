@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:36:50 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:44:52 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ typedef struct s_dict {
 	size_t		cap;
 	size_t		count; // is not the amount!!
 }	t_dict;			   //   because there can be empty elements
-	size_t		count;
-}	t_dict;
 
 typedef struct s_command {
 	int		fdin;
