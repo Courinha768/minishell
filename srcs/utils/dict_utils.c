@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2023/01/16 16:42:52 by amaria-d         ###   ########.fr       */
 =======
 /*   Updated: 2023/01/12 16:54:21 by amaria-d         ###   ########.fr       */
 >>>>>>> Added dict_pop and fixed dict_add to make it work
+=======
+/*   Updated: 2023/01/12 18:29:26 by amaria-d         ###   ########.fr       */
+>>>>>>> Finished implementation of dict. Hv to do shallowcopy func for shexport
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +85,28 @@ void	d_iterprint(char *keyval)
 {
 	if (keyval)
 		printf("%s\n", keyval);
+<<<<<<< HEAD
 }
 
 void	dict_iter(t_dict *dict, void (*f)(char *))
+=======
+}
+
+void	dict_iter(t_dict *dict, void (*f)(char *))
+{
+	size_t	i;
+
+	i = 0;
+	while (i < dict->count)
+	{
+		f(dict->env[i]);
+		i++;
+	}
+}
+
+/*
+size_t	dictkeymin(t_dict *dict)
+>>>>>>> Finished implementation of dict. Hv to do shallowcopy func for shexport
 {
 	size_t	i;
 
