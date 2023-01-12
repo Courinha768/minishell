@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:43:08 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:44:01 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ char	*dict_pop(t_dict *dict, char *key)
 	dict->env[whr - 1] = NULL; // very important!
 	return (popped);
 }
-*/
 
 void	dict_shallowfree(t_dict *dict)
 {

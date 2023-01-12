@@ -6,7 +6,11 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/16 16:42:52 by amaria-d         ###   ########.fr       */
+=======
+/*   Updated: 2023/01/12 16:54:21 by amaria-d         ###   ########.fr       */
+>>>>>>> Added dict_pop and fixed dict_add to make it work
 /*                                                                            */
 /* ************************************************************************** */
 
