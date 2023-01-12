@@ -28,12 +28,9 @@ void	print_commands(t_command *commands)
 
 	i = -1;
 	printf("=============\n");
-	while (commands[++i].args)
+	while (commands[++i].program)
 	{
 		j = -1;
-		printf("pipe_flag = %d\n", commands[i].pipe_flag);
-		if (commands[i].pipe_flag)
-			printf("output = %s\n", (char *)commands[i].output);
 		while (commands[i].args[++j])
 			printf("%s\n", commands[i].args[j]);
 		printf("=============\n");

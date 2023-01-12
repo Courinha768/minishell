@@ -22,7 +22,6 @@ void	free_commands(t_command *commands)
 	{
 		j = -1;
 		free(commands[i].program);
-		free(commands[i].output);
 		while (commands[i].args[++j])
 			free(commands[i].args[j]);
 		free(commands[i].args);

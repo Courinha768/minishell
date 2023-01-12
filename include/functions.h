@@ -15,27 +15,19 @@
 
 char			*create_prompt(t_promptinfo *prompt_struct);
 
-int				count_commands(char *line);
-int				args_counter(void);
 t_command		*read_line(char *prompt);
-t_command		create_commands(void);
-void			strip_quotes(t_command *command);
-void			create_token(char *line);
-t_command		null_command(void);
-int				create_command_redirect_flag(void);
+
+void			command_fork(t_command *command, int i, t_promptinfo *prompt);
 
 /* ========================================================================== */
 /*                                COMMANDS                                    */
 /* ========================================================================== */
 
 void			read_commands(t_command *commands, t_promptinfo *prompt);
-void			command_fork(t_command *command, int i, t_promptinfo *prompt);
 
 void			cd(t_command *command, t_promptinfo *prompt);
 
-int				args_str_len(t_command	*command);
-void			create_str(t_command *command, int i, int j, char *str);
-void			echo(t_command *command, int i);
+void			echo(t_command command);
 
 t_dict			*shenv_init(t_promptinfo *prompt);
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
@@ -47,7 +39,7 @@ int				dodictorder(t_dict *dict, t_dict **least, size_t i);
 t_dict			*shexport_init(t_dict *shenv);
 void			shexport_orderalpha(t_dict **shenv);
 
-void			pwd_command(t_promptinfo *prompt, t_command *commands, int i);
+void			pwd_command(t_promptinfo *prompt, t_command commands);
 void			clear_command(void);
 void			exit_command(void);
 
@@ -109,8 +101,7 @@ int				is_valid(char c);
 int				is_valid2(char c);
 int				line_valid(char c, char d);
 
-void			overwrite_into_file(char *str, char *filename);
-void			write_into_file(char *str, char *filename);
+char			**fancy_split(char *s, char c);
 
 /* ========================================================================== */
 /*                                 DEBUG                                      */

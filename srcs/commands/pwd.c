@@ -12,14 +12,7 @@
 
 #include "../../include/include.h"
 
-void	pwd_command(t_promptinfo *prompt, t_command *commands, int i)
+void	pwd_command(t_promptinfo *prompt, t_command command)
 {
-	if (commands[i + 1].pipe_flag == 1)
-		commands[i + 1].output = ft_strdup(prompt->pwd);
-	else if (commands[i].pipe_flag == 3)
-		overwrite_into_file(prompt->pwd, commands[i].args[2]);	
-	else if (commands[i].pipe_flag == 5)
-		write_into_file(prompt->pwd, commands[i].args[2]);
-	else
-		printf("%s\n", prompt->pwd);
+	ft_putstr_fd(prompt->pwd, command.fdout);
 }

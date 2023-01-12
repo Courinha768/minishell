@@ -10,18 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+#include "../include/include.h"
 
 void	command_fork(t_command *commands, int i, t_promptinfo *prompt)
 {
 	if (!ft_strcmp(commands[i].program, "change"))
 		change(commands[i], prompt);
 	else if (!ft_strcmp(commands[i].program, "echo"))
-		echo(commands, i);
+		echo(commands[i]);
 	else if (! ft_strcmp(commands[i].program, "cd"))
 		cd(&(commands[i]), prompt);
 	else if (!ft_strcmp(commands[i].program, "pwd"))
-		pwd_command(prompt, commands, i);
+		pwd_command(prompt, commands[i]);
 	else if (!ft_strcmp(commands[i].program, "clear"))
 		clear_command();
 	else if (!ft_strcmp(commands[i].program, "exit"))

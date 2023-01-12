@@ -32,67 +32,42 @@ int	args_str_len(t_command	*command)
 	return (counter);
 }
 
-void	create_str(t_command *command, int i, int j, char *str)
+void	create_str(t_command command, int j, char *str)
 {
 	int	k;
 	int	l;
 
 	l = -1;
-	while (command[i].args[++j] && is_valid2(command[i].args[j][0]))
+	while (command.args[++j] && is_valid2(command.args[j][0]))
 	{
 		k = -1;
-		while (command[i].args[j][++k])
-			str[++l] = command[i].args[j][k];
-		if (command[i].args[j + 1])
+		while (command.args[j][++k])
+			str[++l] = command.args[j][k];
+		if (command.args[j + 1])
 			str[++l] = 32;
 	}
-	if (!(command[i].pipe_flag > 1))
-		l++;
-	str[l] = 0;
+	str[++l] = 0;
 }
 
-void	echo_flag_handler(t_command *command, int i, char *str)
-{
-	int	k;
-
-	k = 0;
-	if (command[i + 1].pipe_flag)
-		command[i + 1].output = ft_strdup(str);
-	if (command[i].pipe_flag == 5 || command[i].pipe_flag == 3)
-	{
-		while (command[i].args[k][0] != '>')
-			k++;
-		if (command[i].pipe_flag == 3)
-			overwrite_into_file(str, command[i].args[k + 1]);
-		else if (command[i].pipe_flag == 5)
-			write_into_file(str, command[i].args[k + 1]);
-	}
-}
-
-void	echo(t_command *command, int i)
+void	echo(t_command command)
 {
 	int		printlnb;
 	char	*str;
 	int		j;
 
-	str = (char *)malloc(sizeof(char) * args_str_len(&(command[i])));
+	str = (char *)malloc(sizeof(char) * args_str_len(&command));
 	if (!str)
 		return ;
 	j = 0;
 	printlnb = 1;
-	if (!strcmp(command[i].args[1], "-n"))
+	if (!strcmp(command.args[1], "-n"))
 	{
 		printlnb = 0;
 		j++;
 	}
-	create_str(command, i, j, str);
-	if (!command[i].pipe_flag)
-	{
-		printf("%s", str);
-		if (printlnb)
-			printf("\n");
-	}
-	else
-		echo_flag_handler(command, i, str);
+	create_str(command, j, str);
+	ft_putstr_fd(str, command.fdout);
+	if (printlnb)
+		ft_putstr_fd("\n", command.fdout);
 	free(str);
 }

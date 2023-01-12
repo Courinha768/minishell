@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/include.h"
+#include "../../include/include.h"
 
 int	tokencounter(char const *s, char c)
 {
@@ -39,19 +39,17 @@ int	tokencounter(char const *s, char c)
 			else
 				inside_squote = 0;
 		}
-		else if (s[i] == ' ' && !inside_quote && !inside_squote)
+		else if (s[i] == c && !inside_quote && !inside_squote)
 		{
 			counter++;
-			while (s[i] == ' ');
+			while (s[i] == c)
 				i++;
 		}
 	}
 	return (counter + 1);
 }
 
-// hello"world" how      are "you doing"
-
-int	tokenlen(char *s, int i, char c)
+int	tokenlen(char const *s, int i, char c)
 {
 	int	counter;
 	int	inside_quote;
@@ -60,7 +58,7 @@ int	tokenlen(char *s, int i, char c)
 	counter = 0;
 	inside_quote = 0;
 	inside_squote = 0;
-	while (s[++i] != c || inside_quote || inside_squote)
+	while (s[++i] && (s[i] != c || inside_quote || inside_squote))
 	{
 		if (s[i] == '\"')
 		{
@@ -81,7 +79,7 @@ int	tokenlen(char *s, int i, char c)
 	return (counter + 1);
 }
 
-int	fsplit_is_valid(char c, char breaker)
+int	fsplit_is_valid(char const c, char breaker)
 {
 	static int	inside_quote;
 	static int	inside_squote;
@@ -105,7 +103,7 @@ int	fsplit_is_valid(char c, char breaker)
 	return (1);
 }
 
-char	**fancy_split(char const *s, char c)
+char	**fancy_split(char *s, char c)
 {
 	char	**fsplit;
 	int		i;
@@ -122,14 +120,17 @@ char	**fancy_split(char const *s, char c)
 		s_j = 0;
 		if (s[i] != c)
 		{
-			fsplit[s_i] = (char *)malloc(tokenlen(s, i, c));
+			fsplit[s_i] = (char *)malloc(tokenlen(s, i, c) + 1);
 			if (!fsplit[s_i])
 				return (NULL);
 			while (s[i] && fsplit_is_valid(s[i], c))
 				fsplit[s_i][s_j++] = s[i++];
 			fsplit[s_i++][s_j] = 0;
 		}
+		if (!s[i])
+			break ;
 	}
 	fsplit[s_i] = NULL;
+	free(s);
 	return (fsplit);
 }

@@ -20,13 +20,21 @@ typedef struct s_dict {
 }	t_dict;
 
 typedef struct s_command {
-	int		pipe_flag;
 	int		fdin;
 	int		fdout;
-	char	*output;
+	int		redd_flag;
 	char	*program;
 	char	**args;
 }	t_command;
+
+// typedef struct s_command {
+// 	int		pipe_flag;
+// 	int		fdin;
+// 	int		fdout;
+// 	char	*output;
+// 	char	*program;
+// 	char	**args;
+// }	t_command;
 
 typedef struct s_promptinfo {
 	char	*user;
