@@ -6,12 +6,13 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/11 18:19:44 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/12 18:33:30 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
+/*
 void	envstyle(t_dict *dict)
 {
 	//TODO: dont print if not value
@@ -28,8 +29,9 @@ void	dictprint(t_dict *dict, void (*printstyle)(t_dict *))
 {
 	dict_iter(dict, printstyle);
 }
+*/
 
-t_dict	*shenv_init(t_promptinfo *prompt)
+t_dict	*shenv_init()
 {
 	t_dict	*head;
 

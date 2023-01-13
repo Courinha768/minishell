@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 18:29:26 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/13 17:32:25 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ void	dict_iter(t_dict *dict, void (*f)(char *))
 {
 	size_t	i;
 
+	if (! dict)
+		return ;
 	i = 0;
 	while (i < dict->count)
 	{
@@ -91,30 +93,28 @@ void	dict_iter(t_dict *dict, void (*f)(char *))
 	}
 }
 
-/*
-size_t	dictkeymin(t_dict *dict)
-{
-	size_t	i;
-	size_t	minidx;
-	char	*min;
+// size_t	dictkeymin(t_dict *dict)
+// {
+// 	size_t	i;
+// 	size_t	minidx;
+// 	char	*min;
 
-	i = 0;
-	minidx = i;
-	min = dict->key;
-	// dict = dict->next;
-	while (dict)
-	{
-		if (antstrcmp(dict->key, min) < 0)
-		{
-			minidx = i;
-			min = dict->key;
-		}
-		i++;
-		dict = dict->next;
-	}
-	return (minidx);
-}
-*/
+// 	i = 0;
+// 	minidx = i;
+// 	min = dict->key;
+// 	// dict = dict->next;
+// 	while (i < dict->count)
+// 	{
+// 		if (antstrcmp(dict->key, min) < 0)
+// 		{
+// 			minidx = i;
+// 			min = dict->key;
+// 		}
+// 		i++;
+// 		dict = dict->next;
+// 	}
+// 	return (minidx);
+// }
 
 /*
  Functional Paradigm
