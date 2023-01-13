@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 17:42:12 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:24:31 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef struct s_dict {
 }	t_dict;
 
 typedef struct s_command {
-	int		pipe_flag;
-	char	*output;
+	int		fdin;
+	int		fdout;
 	char	*program;
 	char	**args;
 }	t_command;
@@ -31,8 +31,8 @@ typedef struct s_promptinfo {
 	char	*colour;
 	char	*pwd;
 	t_dict	*shenv;
-	t_dict	*shexport; // Shallow copy of shenv
-}	t_promptinfo;		// ordered alphabetically
+	t_dict	*shexport;
+}	t_promptinfo;
 
 typedef struct s_token {
 	int		current_token;

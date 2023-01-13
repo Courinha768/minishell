@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:58:28 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/09 17:10:32 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:38:58 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,16 @@ void	print_commands(t_command *commands)
 
 	i = -1;
 	printf("=============\n");
-	while (commands[++i].args)
+	while (commands[++i].program)
 	{
 		j = -1;
-		printf("pipe_flag = %d\n", commands[i].pipe_flag);
-		if (commands[i].pipe_flag)
-			printf("output = %s\n", (char *)commands[i].output);
+		printf("fdin    : %d\n", commands[i].fdin);
+		printf("fdout   : %d\n", commands[i].fdout);
+		printf("program : %s\n", commands[i].program);
+		printf("args    : ");
 		while (commands[i].args[++j])
-			printf("%s\n", commands[i].args[j]);
+			printf("%s ", commands[i].args[j]);
+		printf("\n");
 		printf("=============\n");
 	}
 }
