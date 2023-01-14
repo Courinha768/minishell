@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:06:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/11 19:16:38 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:49:05 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,19 +58,20 @@ int	tokenlen(char const *s, int i, char c)
 	counter = 0;
 	inside_quote = 0;
 	inside_squote = 0;
+	i--;
 	while (s[++i] && (s[i] != c || inside_quote || inside_squote))
 	{
-		if (s[i] == '\"')
+		if (s[i] == '\"' && !inside_squote)
 		{
 			if (!inside_quote)
 				inside_quote = 1;
 			else
 				inside_quote = 0;
 		}
-		else if (s[i] == '\'')
+		else if (s[i] == '\'' && !inside_quote)
 		{
 			if (!inside_squote)
-				inside_quote = 1;
+				inside_squote = 1;
 			else
 				inside_squote = 0;
 		}
@@ -94,7 +95,7 @@ int	fsplit_is_valid(char const c, char breaker)
 	else if (c == '\'')
 	{
 		if (!inside_squote)
-			inside_quote = 1;
+			inside_squote = 1;
 		else
 			inside_squote = 0;
 	}

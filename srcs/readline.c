@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 23:54:51 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:23:31 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ t_command	*read_line(char *prompt)
 		printf("line not valid\n");
 		return (NULL);
 	}
+	strip_quotes(tokens);
 	nbr_of_commands = countcommands(line);
 	free(line);
 	commands = malloc(sizeof(t_command) * (nbr_of_commands + 1));
@@ -117,7 +118,6 @@ t_command	*read_line(char *prompt)
 		i++;
 	}
 	commands[i] = nullcommand();
-	//strip_quotes(commands);
 	i = -1;
 	while (tokens[++i])
 		free(tokens[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/13 16:25:04 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:24:12 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ char			**fancy_split(char *s, char c);
 
 void			handle_redd(t_command *command, char **tokens,
 					int *current_token);
+
+void			strip_quotes(char **tokens);
 
 /* ========================================================================== */
 /*                                 DEBUG                                      */

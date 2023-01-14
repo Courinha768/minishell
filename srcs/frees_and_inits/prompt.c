@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 09:01:49 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/14 18:25:02 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_promptinfo	init_prompt(void)
 	prompt.colour = "\e[1;32m";
 	prompt.pwd = ft_strdup(getenv("PWD"));
 	prompt.shenv = shenv_init(&prompt);
-	prompt.shexport = shexport_init(prompt.shenv);
 	return (prompt);
 }
 
