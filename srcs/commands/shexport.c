@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/14 19:07:18 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:04:26 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,20 @@ int	func_export(t_command command, t_promptinfo *prompt)
 {
 	t_dict	shexport;
 
-	shexport.env = malloc(sizeof(char *) * prompt->shenv->count);
-	ft_memcpy(shexport.env, prompt->shenv->env, prompt->shenv->count * sizeof(char *));
-	shexport.cap = prompt->shenv->count;
-	shexport.count = shexport.cap;
-	dictorderalpha(&shexport);
-	dict_iter(&shexport, d_iterprint);
-	free(shexport.env);
-	(void)command;
+	if (ft_mtrxlen((void **)command.args) < 1)
+	{
+		// Only order-alpha and print
+		shexport.env = malloc(sizeof(char *) * prompt->shenv->count);
+		ft_memcpy(shexport.env, prompt->shenv->env, prompt->shenv->count * sizeof(char *));
+		shexport.cap = prompt->shenv->count;
+		shexport.count = shexport.cap;
+		dictorderalpha(&shexport);
+		dict_iter(&shexport, d_iterprint);
+		free(shexport.env);
+		return (1);
+	}
+
+
 	return (1);
 }
 

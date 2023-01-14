@@ -6,7 +6,11 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/16 16:44:24 by amaria-d         ###   ########.fr       */
+=======
+/*   Updated: 2023/01/14 19:23:20 by amaria-d         ###   ########.fr       */
+>>>>>>> Finished alpha-ordering of shexport but afinal isn't how the real one
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +58,10 @@ int	dict_add(t_dict *dict, char *key, char *val)
 	{
 		if (dict->env[i] == NULL)
 		{
-			tmp = ft_strjoin("=", val);
+			if (val == NULL)
+				tmp = ft_strjoin("=", "''");
+			else
+				tmp = ft_strjoin("=", val);
 			dict->env[i] = ft_strjoin(key, tmp);
 			free(tmp);
 			dict->count++;
@@ -65,7 +72,10 @@ int	dict_add(t_dict *dict, char *key, char *val)
 	if (dict->count == dict->cap)
 		dict_grow(dict);
 
-	tmp = ft_strjoin("=", val);
+	if (val == NULL)
+		tmp = ft_strjoin("=", "''");
+	else
+		tmp = ft_strjoin("=", val);
 	dict->env[dict->count] = ft_strjoin(key, tmp);
 	free(tmp);
 	dict->count++;
