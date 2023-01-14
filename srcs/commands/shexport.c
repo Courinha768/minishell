@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/13 17:31:34 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:07:18 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,15 @@ size_t	ft_min(size_t a, size_t b)
 	if (b < a)
 		return (b);
 	return (a);
+}
+
+void	ft_strswap(char **s1, char **s2)
+{
+	char	*tmp;
+
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
 }
 
 /* Gives pos where the char is
@@ -31,7 +40,8 @@ size_t	strichr(const char *s, int c)
 	while (s[i])
 	{
 		if (s[i] == (char)c)
-			return (i);
+			return (i + 1);
+		i++;
 	}
 	return (0);
 }
@@ -41,24 +51,45 @@ void	dictorderalpha(t_dict *dict)
 {
 	size_t	j;
 	size_t	i;
-	char	*min;
+	char	**min;
 	size_t	whr;
 
-	min = dict->env[0];
-	whr = strichr(min, '=');
-	j = 1;
-	while (j < dict->count / 2 + 1)
+	j = 0;
+	while (j < dict->count)
 	{
-		i = j;
-		while (i < dict->count)
+		min = &dict->env[j];
+		whr = strichr(*min, '=');
+		i = j + 1;
+		while (i < dict->count / 2 + 1)
 		{
 			whr = ft_min(whr, strichr(dict->env[i], '='));
-			if (strncmp(min, dict->env[i], whr) > 0)
-				printf("DO SOMETHING!\n");
+			if (strncmp(*min, dict->env[i], whr) > 0)
+			{
+				ft_strswap(min, &(dict->env[i]));
+				whr = strichr(*min, '=');
+			}
 			i++;
 		}
 		j++;
 	}
+}
+
+/**
+ * Export with no options
+*/
+int	func_export(t_command command, t_promptinfo *prompt)
+{
+	t_dict	shexport;
+
+	shexport.env = malloc(sizeof(char *) * prompt->shenv->count);
+	ft_memcpy(shexport.env, prompt->shenv->env, prompt->shenv->count * sizeof(char *));
+	shexport.cap = prompt->shenv->count;
+	shexport.count = shexport.cap;
+	dictorderalpha(&shexport);
+	dict_iter(&shexport, d_iterprint);
+	free(shexport.env);
+	(void)command;
+	return (1);
 }
 
 /*
@@ -90,20 +121,3 @@ t_dict	*shexport_init(t_dict *shenv)
 	return (shexport);
 }
 */
-
-/**
- * Export with no options
-*/
-int	func_export(t_command command, t_promptinfo *prompt)
-{
-	t_dict	shexport;
-
-	shexport.env = malloc(sizeof(char *) * prompt->shenv->count);
-	ft_memcpy(shexport.env, prompt->shenv->env, prompt->shenv->count * sizeof(char *));
-	shexport.cap = prompt->shenv->count;
-	shexport.count = shexport.cap;
-	dict_iter(&shexport, d_iterprint);
-	free(shexport.env);
-	(void)command;
-	return (1);
-}
