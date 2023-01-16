@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:47:43 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:07:02 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void			cd(t_command *command, t_promptinfo *prompt);
 void			echo(t_promptinfo *prompt, t_command *commands);
 
 t_dict			shenv_init(char **envp);
+void	d_envprint(char *keyval);
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
 void			envstyle(t_dict *dict);
 void			exportstyle(t_dict *dict);
 
-int				func_export(t_command command, t_promptinfo *prompt);
+void	func_export(t_command command, t_promptinfo *prompt);
 int				dodictorder(t_dict *dict, t_dict **least, size_t i);
 t_dict			*shexport_init(t_dict *env);
 void			shexport_orderalpha(t_dict **env);
@@ -45,7 +46,8 @@ void			exit_command(void);
 
 int				path_command(t_command *command,t_dict *env);
 		
-		
+void	func_unset(t_command command, t_promptinfo *prompt);
+
 
 /* ========================================================================== */
 /*                            CUSTOM_COMMANDS                                 */
@@ -72,14 +74,14 @@ t_promptinfo	init_prompt(char **envp);
 /* ========================================================================== */
 
 int				antstrcmp(const char *s1, const char *s2);
-void			dict_insert(t_dict **dict, size_t index, t_dict *new);
+void	dict_insert(t_dict *dict, size_t index, char *keyval);
 void			d_iterprint(char *keyval);
 void			dict_iter(t_dict *dict, void (*f)(char *));
 char			*dict_getit(t_dict *dict, char *key);
 size_t			dict_pos(t_dict *dict, char *key);
 char			*dict_get(t_dict *dict, char *key);
 t_dict			dict_new(void);
-int				dict_add(t_dict *dict, char *key, char *val);
+int	dict_add(t_dict *dict, char *keyval);
 char			*dict_pop(t_dict *dict, char *key);
 void			dict_shallowfree(t_dict *dict);
 
@@ -113,6 +115,8 @@ void			handle_redd(t_command *command, char **tokens,
 
 void			strip_quotes(char **tokens);
 
+size_t	ft_min(size_t a, size_t b);
+size_t	ft_max(size_t a, size_t b);
 /* ========================================================================== */
 /*                                 DEBUG                                      */
 /* ========================================================================== */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:56:06 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:01:55 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,38 +42,32 @@ static void	dict_grow(t_dict *dict)
 	dict->env = newenv;
 }
 
-int	dict_add(t_dict *dict, char *key, char *val)
+/**
+ * Adds key-value pair to dict
+ * Does not presume '=' is inside keyval
+ * Receives keyval ALREADY malloc'ed
+*/
+int	dict_add(t_dict *dict, char *keyval)
 {
 	//Alert: 2 mallocs. 1 is freed
 	//TODO: not do 2 mallocs!
-	char	*tmp;
 	size_t	i;
 
+	if (keyval == NULL)
+		return (0);
 	i = 0;
 	while (i < dict->count + 1)
 	{
 		if (dict->env[i] == NULL)
 		{
-			if (val == NULL)
-				tmp = ft_strjoin("=", "''");
-			else
-				tmp = ft_strjoin("=", val);
-			dict->env[i] = ft_strjoin(key, tmp);
-			free(tmp);
-			dict->count++;
-			return (1);			
+			dict_insert(dict, i, keyval);
+			return (1);
 		}
 		i++;
 	}
 	if (dict->count == dict->cap)
 		dict_grow(dict);
-
-	if (val == NULL)
-		tmp = ft_strjoin("=", "''");
-	else
-		tmp = ft_strjoin("=", val);
-	dict->env[dict->count] = ft_strjoin(key, tmp);
-	free(tmp);
+	dict->env[dict->count] = keyval;
 	dict->count++;
 
 	return (1);
@@ -82,13 +76,15 @@ int	dict_add(t_dict *dict, char *key, char *val)
 char	*dict_pop(t_dict *dict, char *key)
 {
 	char	*popped;
-	size_t	whr;
+	size_t	pos;
 
 	if (!dict)
 		return (NULL);
-	whr = dict_pos(dict, key);
-	popped = dict->env[whr - 1];
-	dict->env[whr - 1] = NULL; // very important!
+	pos = dict_pos(dict, key);
+	if (pos == 0)
+		return (NULL);
+	popped = dict->env[pos - 1];
+	dict->env[pos - 1] = NULL; // very important!
 	return (popped);
 }
 
@@ -117,18 +113,10 @@ void	dict_free(t_dict *dict)
 	dict_shallowfree(dict);	
 }
 
-/*
-void	dict_insert(t_dict **dict, size_t index, t_dict *new)
-{
-	t_dict	*before;
-
-	if (!(*dict))
-		return ;
-	if (index == 0)
-	{
-		new->next = *dict;
-	fixed dict_add to make it work
-	new->next = before->next;
-	before->next = new;
-}
+/**
+ * Inserts ALREADY malloc'ed keyval at index
 */
+void	dict_insert(t_dict *dict, size_t index, char *keyval)
+{
+	dict->env[index] = keyval;
+}

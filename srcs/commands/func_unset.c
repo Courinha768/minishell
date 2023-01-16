@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   func_unset.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 13:05:43 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 23:07:00 by amaria-d         ###   ########.fr       */
+/*   Created: 2023/01/16 19:40:45 by amaria-d          #+#    #+#             */
+/*   Updated: 2023/01/16 20:01:36 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDE_H
-# define INCLUDE_H
+#include "../../include/include.h"
 
-# include "../libft/libft.h"
-# include "./structs.h"
-# include "./functions.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <signal.h>
-# include <sys/stat.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <fcntl.h>
+void	func_unset(t_command command, t_promptinfo *prompt)
+{
+	size_t	i;
+	size_t	pos;
 
-#endif
+	i = 0;
+	while (i < ft_mtrxlen((void **)command.args))
+	{
+		pos = dict_pos(&prompt->newenv, command.args[i]);
+		if (pos != 0)
+		{
+			free(dict_pop(&prompt->newenv, command.args[i]));
+		}
+		i++;
+	}
+}

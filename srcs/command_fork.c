@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:58:36 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:06:55 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,21 @@ void	command_fork(t_command *commands, t_promptinfo *prompt, t_dict *env)
 		clear_command();
 	else if (!ft_strcmp(commands->program, "exit"))
 		exit_command();
-	else if (! ft_strcmp(commands->program, "env"))
-		dict_iter(&prompt->newenv, d_iterprint);
-	else if (! ft_strcmp(commands->program, "export"))
-		func_export(*commands, prompt);
-	else if (path_command(commands, env))
-		return ;
+	else if (! ft_strcmp(commands[i].program, "env"))
+		dict_iter(&prompt->newenv, d_envprint);
+	else if (! ft_strcmp(commands[i].program, "export"))
+		func_export(commands[i], prompt);
+	else if (! ft_strcmp(commands[i].program, "unset"))
+		func_unset(commands[i], prompt)h. When you rebase develop t;
+	//else if (! ft_strncmp(commands[i].program, "/bin", 4))
+	//{
+	//	int pid = fork();
+	//	if (!pid)
+	//	{
+	//		execve(commands[i].program, commands[i].args, (char *const *)getenv("ENV"));
+	//		exit(1);
+	//	}
+	//}
 	else
 		printf("%s: command not found\n", commands->program);
 }

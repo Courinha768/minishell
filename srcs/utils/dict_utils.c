@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:16:22 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:08:42 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,56 @@ char	*dict_get(t_dict *dict, char *key)
 	return (NULL);
 }
 
+int	abs(int d)
+{
+	if (d < 0)
+		return (-d);
+	return (d);
+}
+
+
+size_t	strpos(char *str, char c)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] == c)
+			return (i + 1);
+		i++;
+	}
+	return (0);
+
+}
+
 /**
- * Gets idx of env where char * is
+ * Gets pos of env where char * is
  * Returns 0 on error so
  * return value is NOT idx:
  * 1 is first ([0]), 2 is second ([1]) ...
 */
 size_t	dict_pos(t_dict *dict, char *key)
 {
+	//TODO: Not working:
 	size_t	i;
 	size_t	whr;
+	// size_t	mlen;
+	int		cmp;
+	size_t	eqpos;
 
 	i = 0;
 	while (i < dict->count)
 	{
 		whr = strcmpwhr(dict->env[i], key);
-		if (dict->env[i][whr - 1] == '='
-			&& key[whr - 1] == '\0')
-			// && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
+
+		cmp = abs(ft_strncmp(dict->env[i], key, whr));
+		if (cmp == 0 || cmp == '=')
+			return (i + 1);
+
+		eqpos = strpos(dict->env[i], '=');
+
+		if (eqpos < whr)
 			return (i + 1);
 		i++;
 	}
@@ -91,45 +123,6 @@ void	dict_iter(t_dict *dict, void (*f)(char *))
 }
 
 /*
-size_t	dictkeymin(t_dict *dict)
->>>>>>> Finished implementation of dict. Hv to do shallowcopy func for shexport
-{
-	size_t	i;
-
-	if (! dict)
-		return ;
-	i = 0;
-	while (i < dict->count)
-	{
-		f(dict->env[i]);
-		i++;
-	}
-}
-
-// size_t	dictkeymin(t_dict *dict)
-// {
-// 	size_t	i;
-// 	size_t	minidx;
-// 	char	*min;
-
-// 	i = 0;
-// 	minidx = i;
-// 	min = dict->key;
-// 	// dict = dict->next;
-// 	while (i < dict->count)
-// 	{
-// 		if (antstrcmp(dict->key, min) < 0)
-// 		{
-// 			minidx = i;
-// 			min = dict->key;
-// 		}
-// 		i++;
-// 		dict = dict->next;
-// 	}
-// 	return (minidx);
-// }
-
-
  Functional Paradigm
  * Inspired on mtrxdo
  * Replace t_dict with a struct that has a next-pointer

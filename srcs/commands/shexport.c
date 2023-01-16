@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 17:22:48 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:43:24 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ size_t	ft_min(size_t a, size_t b)
 	return (a);
 }
 
+size_t	ft_max(size_t a, size_t b)
+{
+	if (b > a)
+		return (b);
+	return (a);
+}
 void	ft_strswap(char **s1, char **s2)
 {
 	char	*tmp;
@@ -63,6 +69,7 @@ void	dictorderalpha(t_dict *dict)
 		while (i < dict->count)
 		{
 			whr = ft_min(whr, strichr(dict->env[i], '='));
+			//TODO: use our strncmp
 			if (strncmp(*min, dict->env[i], whr) > 0)
 			{
 				ft_strswap(min, &(dict->env[i]));
@@ -74,29 +81,51 @@ void	dictorderalpha(t_dict *dict)
 	}
 }
 
-/**
- * Export with no options
-*/
-int	func_export(t_command command, t_promptinfo *prompt)
+void	export_print(t_dict *dict)
 {
 	t_dict	shexport;
-
-	if (ft_mtrxlen((void **)command.args) <= 1)
-	{
-		// Only order-alpha and print
-		shexport.env = malloc(sizeof(char *) * prompt->newenv.count);
-		ft_memcpy(shexport.env, prompt->newenv.env, prompt->newenv.count * sizeof(char *));
-		shexport.cap = prompt->newenv.count;
-		shexport.count = shexport.cap;
-		dictorderalpha(&shexport);
-		dict_iter(&shexport, d_iterprint);
-		free(shexport.env);
-		return (1);
-	}
-
-
-	return (1);
+	
+	// Only order-alpha and print
+	shexport.env = malloc(sizeof(char *) * dict->count);
+	ft_memcpy(shexport.env, dict->env, dict->count * sizeof(char *));
+	shexport.cap = dict->count;
+	shexport.count = shexport.cap;
+	dictorderalpha(&shexport);
+	dict_iter(&shexport, d_iterprint);
+	free(shexport.env);
 }
+
+/**
+ * Export
+*/
+void	func_export(t_command command, t_promptinfo *prompt)
+{
+	size_t	len;
+	size_t	i;
+	size_t	pos;
+
+	len = ft_mtrxlen((void **)command.args);
+	if (len <= 1)
+		return (export_print(&prompt->newenv));
+	i = 1;
+	while (i < len)
+	{
+		// printf("%s\n", dict_get(&prompt->newenv, command.args[i]));
+		pos = dict_pos(&prompt->newenv, command.args[i]);
+		if (pos == 0)
+			dict_add(&prompt->newenv, ft_strdup(command.args[i]));
+		else
+		{
+			// In-situ replace
+			if (strchr(command.args[i], '=') > 0)
+			{
+				free(prompt->newenv.env[pos - 1]);
+				dict_insert(&prompt->newenv, pos -1, ft_strdup(command.args[i]));
+			}
+		}
+		i++;
+	}
+	}
 
 /*
 int	dodictorder(t_dict *dict, t_dict **least, size_t i)
