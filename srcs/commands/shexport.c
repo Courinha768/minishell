@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 18:37:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:34:40 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	func_export(t_command command, t_promptinfo *prompt)
 	t_dict	shexport;
 	size_t	len;
 	size_t	i;
+	size_t	pos;
 
 	len = ft_mtrxlen((void **)command.args);
 	if (len <= 1)
@@ -101,8 +102,19 @@ int	func_export(t_command command, t_promptinfo *prompt)
 	i = 1;
 	while (i < len)
 	{
-		printf("%s\n", dict_get(&prompt->newenv, command.args[i]));
-		dict_add(&prompt->newenv, ft_strdup(command.args[i]));
+		// printf("%s\n", dict_get(&prompt->newenv, command.args[i]));
+		pos = dict_pos(&prompt->newenv, command.args[i]);
+		if (pos == 0)
+			dict_add(&prompt->newenv, ft_strdup(command.args[i]));
+		else
+		{
+			// In-situ replace
+			if (strchr(command.args[i], '=') > 0)
+			{
+				free(prompt->newenv.env[pos - 1]);
+				dict_insert(&prompt->newenv, pos -1, ft_strdup(command.args[i]));
+			}
+		}
 		i++;
 	}
 	return (1);

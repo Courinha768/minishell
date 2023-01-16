@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 18:17:10 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:36:21 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,15 @@ char	*dict_get(t_dict *dict, char *key)
 	return (NULL);
 }
 
-/**
- * Gets idx of env where char * is
+int	abs(int d)
+{
+	if (d < 0)
+		return (-d);
+	return (d);
+}
+
+/** UNCONFIRMED
+ * Gets pos of env where char * is
  * Returns 0 on error so
  * return value is NOT idx:
  * 1 is first ([0]), 2 is second ([1]) ...
@@ -43,16 +50,17 @@ char	*dict_get(t_dict *dict, char *key)
 size_t	dict_pos(t_dict *dict, char *key)
 {
 	size_t	i;
-	size_t	whr;
+	// size_t	whr;
 
 	i = 0;
 	while (i < dict->count)
 	{
-		whr = strcmpwhr(dict->env[i], key);
-		if (dict->env[i][whr - 1] == '='
-			&& key[whr - 1] == '\0')
-			// && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
+		if (antstrcmp(dict->env[i], key) == 0 || abs(antstrcmp(dict->env[i], key)) == '=')
 			return (i + 1);
+		// whr = strcmpwhr(dict->env[i], key);
+		// // && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
+		// if (dict->env[i][whr - 1] == '=' && key[whr - 1] == '\0')
+		// 	return (i + 1);
 		i++;
 	}
 	return (0);

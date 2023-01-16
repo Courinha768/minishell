@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 18:36:25 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:52:39 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ static void	dict_grow(t_dict *dict)
 
 /**
  * Adds key-value pair to dict
- * Presumes '=' is inside either key or val
- * Receives key and val ALREADY malloc'ed
- * Frees given key and val
+ * Does not presume '=' is inside keyval
+ * Receives keyval ALREADY malloc'ed
 */
 int	dict_add(t_dict *dict, char *keyval)
 {
