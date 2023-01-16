@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 17:22:48 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:37:42 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	dictorderalpha(t_dict *dict)
 		while (i < dict->count)
 		{
 			whr = ft_min(whr, strichr(dict->env[i], '='));
+			//TODO: use our strncmp
 			if (strncmp(*min, dict->env[i], whr) > 0)
 			{
 				ft_strswap(min, &(dict->env[i]));
@@ -80,8 +81,11 @@ void	dictorderalpha(t_dict *dict)
 int	func_export(t_command command, t_promptinfo *prompt)
 {
 	t_dict	shexport;
+	size_t	len;
+	size_t	i;
 
-	if (ft_mtrxlen((void **)command.args) <= 1)
+	len = ft_mtrxlen((void **)command.args);
+	if (len <= 1)
 	{
 		// Only order-alpha and print
 		shexport.env = malloc(sizeof(char *) * prompt->newenv.count);
@@ -94,7 +98,13 @@ int	func_export(t_command command, t_promptinfo *prompt)
 		return (1);
 	}
 
-
+	i = 1;
+	while (i < len)
+	{
+		printf("%s\n", dict_get(&prompt->newenv, command.args[i]));
+		dict_add(&prompt->newenv, ft_strdup(command.args[i]));
+		i++;
+	}
 	return (1);
 }
 

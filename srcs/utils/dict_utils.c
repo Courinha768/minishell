@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:53:47 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:17:10 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,11 @@ void	d_iterprint(char *keyval)
 		printf("%s\n", keyval);
 }
 
+void	d_envprint(char *keyval)
+{
+	//TODO: print the keyval only if val exists
+	(void)keyval;
+}
 
 void	dict_iter(t_dict *dict, void (*f)(char *))
 {

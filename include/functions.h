@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:53:32 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 18:34:11 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ t_promptinfo	init_prompt(char **envp);
 /* ========================================================================== */
 
 int				antstrcmp(const char *s1, const char *s2);
-void			dict_insert(t_dict **dict, size_t index, t_dict *new);
+void	dict_insert(t_dict *dict, size_t index, char *keyval);
 void			d_iterprint(char *keyval);
 void			dict_iter(t_dict *dict, void (*f)(char *));
 char			*dict_getit(t_dict *dict, char *key);
 size_t			dict_pos(t_dict *dict, char *key);
 char			*dict_get(t_dict *dict, char *key);
 t_dict			dict_new(void);
-int				dict_add(t_dict *dict, char *key, char *val);
+int	dict_add(t_dict *dict, char *keyval);
 char			*dict_pop(t_dict *dict, char *key);
 void			dict_shallowfree(t_dict *dict);
 
