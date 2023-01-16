@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:44:31 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:53:32 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,6 @@ int	abs(int d)
 	return (d);
 }
 
-char	*strix(char *str, size_t q)
-{
-	return (&str[q]);
-}
 
 size_t	strpos(char *str, char c)
 {
@@ -113,12 +109,6 @@ void	d_iterprint(char *keyval)
 {
 	if (keyval)
 		printf("%s\n", keyval);
-}
-
-void	d_envprint(char *keyval)
-{
-	//TODO: print the keyval only if val exists
-	(void)keyval;
 }
 
 void	dict_iter(t_dict *dict, void (*f)(char *))

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:44:08 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:53:01 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void			cd(t_command *command, t_promptinfo *prompt);
 void			echo(t_command command);
 
 t_dict			shenv_init(char **envp);
+void	d_envprint(char *keyval);
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
 void			envstyle(t_dict *dict);
 void			exportstyle(t_dict *dict);

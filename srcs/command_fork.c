@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 19:40:16 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:50:21 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	command_fork(t_command *commands, int i, t_promptinfo *prompt)
 	else if (!ft_strcmp(commands[i].program, "exit"))
 		exit_command();
 	else if (! ft_strcmp(commands[i].program, "env"))
-		dict_iter(&prompt->newenv, d_iterprint);
+		dict_iter(&prompt->newenv, d_envprint);
 	else if (! ft_strcmp(commands[i].program, "export"))
 		func_export(commands[i], prompt);
 	else if (! ft_strcmp(commands[i].program, "unset"))

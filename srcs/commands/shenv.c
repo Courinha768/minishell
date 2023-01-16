@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 17:21:31 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:54:36 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,28 @@ void	dictprint(t_dict *dict, void (*printstyle)(t_dict *))
 	dict_iter(dict, printstyle);
 }
 */
+
+char	*strix(char *str, size_t q)
+{
+	return (&str[q]);
+}
+
+void	d_envprint(char *keyval)
+{
+	//TODO: print the keyval only if val exists
+	if (keyval)
+	{
+		if (ft_strchr(keyval, '=') != NULL)
+		{
+			if (strix(ft_strchr(keyval, '='), 1) != NULL)
+				printf("%s\n", keyval);
+			
+		}
+		
+	}
+	(void)keyval;
+}
+
 
 t_dict	shenv_init(char **envp)
 {
