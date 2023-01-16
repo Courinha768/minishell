@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 18:34:11 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:52:03 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void			pwd_command(t_promptinfo *prompt, t_command commands);
 void			clear_command(void);
 void			exit_command(void);
 		
-		
+void	func_unset(t_command command, t_promptinfo *prompt);
+
 
 /* ========================================================================== */
 /*                            CUSTOM_COMMANDS                                 */

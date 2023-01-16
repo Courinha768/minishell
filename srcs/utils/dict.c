@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 18:52:39 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:57:03 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,15 @@ int	dict_add(t_dict *dict, char *keyval)
 char	*dict_pop(t_dict *dict, char *key)
 {
 	char	*popped;
-	size_t	whr;
+	size_t	pos;
 
 	if (!dict)
 		return (NULL);
-	whr = dict_pos(dict, key);
-	popped = dict->env[whr - 1];
-	dict->env[whr - 1] = NULL; // very important!
+	pos = dict_pos(dict, key);
+	if (pop == 0)
+		return (NULL);
+	popped = dict->env[pos - 1];
+	dict->env[pos - 1] = NULL; // very important!
 	return (popped);
 }
 

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 19:36:21 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:53:46 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ size_t	dict_pos(t_dict *dict, char *key)
 	i = 0;
 	while (i < dict->count)
 	{
+		//TODO: Not working:
+		//	abs(antstrcmp("a=hello", "a=bye"))
 		if (antstrcmp(dict->env[i], key) == 0 || abs(antstrcmp(dict->env[i], key)) == '=')
 			return (i + 1);
 		// whr = strcmpwhr(dict->env[i], key);
