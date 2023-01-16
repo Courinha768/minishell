@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   antstrcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:36:33 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/12 16:46:26 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:15:50 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ size_t	strcmpwhr(const char *s1, const char *s2)
 	}
 	return (i + 1);
 }
-
 
 /*
 int main(void)

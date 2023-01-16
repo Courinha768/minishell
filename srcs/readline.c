@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/14 18:23:31 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:03:53 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ t_command	*read_line(char *prompt)
 	t_command	*commands;
 
 	line = readline(prompt);
+	add_history(line);
 	free(prompt);
 	tokens = fancy_split(ft_strdup(line), ' ');
 	if (!line_valid(tokens))

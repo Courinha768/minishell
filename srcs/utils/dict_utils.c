@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:53:47 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:16:22 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,16 +69,14 @@ char	*dict_getit(t_dict *dict, char *key)
 	pos = dict_pos(dict, key);
 	if (pos == 0)
 		return (NULL);
-	return(dict->env[pos - 1]);
+	return (dict->env[pos - 1]);
 }
-
 
 void	d_iterprint(char *keyval)
 {
 	if (keyval)
 		printf("%s\n", keyval);
 }
-
 
 void	dict_iter(t_dict *dict, void (*f)(char *))
 {

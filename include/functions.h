@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 19:38:18 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:27:58 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void			shexport_orderalpha(t_dict **env);
 void			pwd_command(t_promptinfo *prompt, t_command *commands);
 void			clear_command(void);
 void			exit_command(void);
+
+int				path_command(t_command *command,t_dict *env);
 		
 		
 

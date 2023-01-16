@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 19:47:15 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:59:28 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_command {
 	int		fdout;
 	char	*program;
 	char	**args;
+	int		pid;
 }	t_command;
 
 typedef struct s_promptinfo {
