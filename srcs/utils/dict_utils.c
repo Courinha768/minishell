@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 21:19:06 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:37:37 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,24 @@ int	abs(int d)
 	return (d);
 }
 
-size_t	plaincmp(t_dict *dict, char *key)
+char	*strix(char *str, size_t q)
+{
+	return (&str[q]);
+}
+
+size_t	strpos(char *str, char c)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < dict->count)
+	while (str[i] != '\0')
 	{
-		if (antstrcmp(dict->env[i], key) == 0)
+		if (str[i] == c)
 			return (i + 1);
 		i++;
 	}
 	return (0);
+
 }
 
 /**
@@ -66,29 +72,24 @@ size_t	dict_pos(t_dict *dict, char *key)
 	//TODO: Not working:
 	size_t	i;
 	size_t	whr;
-	size_t	mlen;
-
-	if (strchr(key, '=') == NULL)
-		return (plaincmp(dict, key));
+	// size_t	mlen;
+	int		cmp;
+	size_t	eqpos;
 
 	dict_iter(dict, d_iterprint);
 	i = 0;
 	while (i < dict->count)
 	{
 		whr = strcmpwhr(dict->env[i], key);
-		if (whr > ft_max(ft_strlen(dict->env[i]), ft_strlen(key)))
+
+		cmp = abs(ft_strncmp(dict->env[i], key, whr));
+		if (cmp == 0 || cmp == '=')
 			return (i + 1);
-		mlen = ft_min(ft_strlen(dict->env[i]), ft_strlen(key));
-		if (whr <= mlen)
-		{
-			if (ft_strchr(&key[whr - 1], '=') == NULL)
-				return (i + 1);
-		}
-		// if (whr == 0 || abs(whr) == '=')
-		// 	return (i + 1);
-		// // && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
-		// if (dict->env[i][whr - 1] == '=' && key[whr - 1] == '\0')
-		// 	return (i + 1);
+
+		eqpos = strpos(dict->env[i], '=');
+
+		if (eqpos < whr)
+			return (i + 1);
 		i++;
 	}
 	return (0);

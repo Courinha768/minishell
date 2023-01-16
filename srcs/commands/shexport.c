@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 21:18:19 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:38:10 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int	func_export(t_command command, t_promptinfo *prompt)
 		}
 		i++;
 	}
+	// dict_iter(&prompt->newenv, d_iterprint);
 	return (1);
 }
 
