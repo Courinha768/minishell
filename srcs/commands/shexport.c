@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 19:34:40 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:18:19 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ size_t	ft_min(size_t a, size_t b)
 	return (a);
 }
 
+size_t	ft_max(size_t a, size_t b)
+{
+	if (b > a)
+		return (b);
+	return (a);
+}
 void	ft_strswap(char **s1, char **s2)
 {
 	char	*tmp;
@@ -76,7 +82,7 @@ void	dictorderalpha(t_dict *dict)
 }
 
 /**
- * Export with no options
+ * Export
 */
 int	func_export(t_command command, t_promptinfo *prompt)
 {

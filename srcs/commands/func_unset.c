@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:40:45 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 19:56:40 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:01:36 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	func_unset(t_command command, t_promptinfo *prompt)
 		pos = dict_pos(&prompt->newenv, command.args[i]);
 		if (pos != 0)
 		{
-			free(dict_pop(&prompt->newenv, command.args[i]))
+			free(dict_pop(&prompt->newenv, command.args[i]));
 		}
 		i++;
 	}

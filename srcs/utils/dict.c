@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 19:57:03 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:01:55 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char	*dict_pop(t_dict *dict, char *key)
 	if (!dict)
 		return (NULL);
 	pos = dict_pos(dict, key);
-	if (pop == 0)
+	if (pos == 0)
 		return (NULL);
 	popped = dict->env[pos - 1];
 	dict->env[pos - 1] = NULL; // very important!
