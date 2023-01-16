@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:23:08 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:22:48 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	dictorderalpha(t_dict *dict)
 	size_t	whr;
 
 	j = 0;
-	while (j < dict->count / 2 + 1)
+	while (j < dict->count)
 	{
 		min = &dict->env[j];
 		whr = strichr(*min, '=');
 		i = j + 1;
-		while (i < dict->count / 2 + 1)
+		while (i < dict->count)
 		{
 			whr = ft_min(whr, strichr(dict->env[i], '='));
 			if (strncmp(*min, dict->env[i], whr) > 0)
@@ -70,7 +70,6 @@ void	dictorderalpha(t_dict *dict)
 			}
 			i++;
 		}
-		// dict_iter(dict, d_iterprint);
 		j++;
 	}
 }
