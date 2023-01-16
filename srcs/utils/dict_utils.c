@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:37:37 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:44:31 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ size_t	dict_pos(t_dict *dict, char *key)
 	int		cmp;
 	size_t	eqpos;
 
-	dict_iter(dict, d_iterprint);
 	i = 0;
 	while (i < dict->count)
 	{

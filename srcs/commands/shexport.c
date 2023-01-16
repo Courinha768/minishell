@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 22:38:10 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:43:24 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,30 +81,32 @@ void	dictorderalpha(t_dict *dict)
 	}
 }
 
+void	export_print(t_dict *dict)
+{
+	t_dict	shexport;
+	
+	// Only order-alpha and print
+	shexport.env = malloc(sizeof(char *) * dict->count);
+	ft_memcpy(shexport.env, dict->env, dict->count * sizeof(char *));
+	shexport.cap = dict->count;
+	shexport.count = shexport.cap;
+	dictorderalpha(&shexport);
+	dict_iter(&shexport, d_iterprint);
+	free(shexport.env);
+}
+
 /**
  * Export
 */
-int	func_export(t_command command, t_promptinfo *prompt)
+void	func_export(t_command command, t_promptinfo *prompt)
 {
-	t_dict	shexport;
 	size_t	len;
 	size_t	i;
 	size_t	pos;
 
 	len = ft_mtrxlen((void **)command.args);
 	if (len <= 1)
-	{
-		// Only order-alpha and print
-		shexport.env = malloc(sizeof(char *) * prompt->newenv.count);
-		ft_memcpy(shexport.env, prompt->newenv.env, prompt->newenv.count * sizeof(char *));
-		shexport.cap = prompt->newenv.count;
-		shexport.count = shexport.cap;
-		dictorderalpha(&shexport);
-		dict_iter(&shexport, d_iterprint);
-		free(shexport.env);
-		return (1);
-	}
-
+		return (export_print(&prompt->newenv));
 	i = 1;
 	while (i < len)
 	{
@@ -123,9 +125,7 @@ int	func_export(t_command command, t_promptinfo *prompt)
 		}
 		i++;
 	}
-	// dict_iter(&prompt->newenv, d_iterprint);
-	return (1);
-}
+	}
 
 /*
 int	dodictorder(t_dict *dict, t_dict **least, size_t i)

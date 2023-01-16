@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 21:18:29 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:44:08 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
 void			envstyle(t_dict *dict);
 void			exportstyle(t_dict *dict);
 
-int				func_export(t_command command, t_promptinfo *prompt);
+void	func_export(t_command command, t_promptinfo *prompt);
 int				dodictorder(t_dict *dict, t_dict **least, size_t i);
 t_dict			*shexport_init(t_dict *env);
 void			shexport_orderalpha(t_dict **env);
