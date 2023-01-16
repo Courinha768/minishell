@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 19:31:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 09:26:32 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:17:40 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ size_t	ft_mtrxlen(void **m)
 /*
 int main(void)
 {
+	char	*pointer;
+	char	**mtrx;
+
+	pointer = NULL;
+	printf("%zu\n", ft_mtrxlen((void **)&pointer));
 	printf("%zu\n", ft_strlen(""));
 	printf("%zu\n", ft_strlen("a"));
 	printf("%zu\n", ft_strlen("ab"));

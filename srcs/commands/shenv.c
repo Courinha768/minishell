@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:45:47 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:46:42 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,25 @@ void	dictprint(t_dict *dict, void (*printstyle)(t_dict *))
 
 t_dict	shenv_init(char **envp)
 {
-	t_dict	env;
+	t_dict	newenv;
 	size_t	mtrxlen;
 	size_t	i;
 	
-	env = dict_new();
+	newenv = dict_new();
+	/*
 	mtrxlen = ft_mtrxlen((void **)envp);
 	i = 0;
-	while (i < mtrxlen);
+	while (i < mtrxlen)
 	{
-		env[i] = ft_strdup(envp[i]);
+		newenv.env[i] = ft_strdup(envp[i]);
 		i++;
 	}
-
+	newenv.cap = mtrxlen;
+	newenv.count = i;
+	*/
+	dict_add(&newenv, "aa", "aa");
+	dict_add(&newenv, "zz", "zz");
+	dict_add(&newenv, "bb", "bb");
 	
-	return (env);
+	return (newenv);
 }

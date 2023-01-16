@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:46:30 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:46:50 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_dict	dict_new(void)
 {
 	t_dict	new;
 	//Alert: 2 mallocs!
-	
+
 	// new = malloc(sizeof(t_dict) * 1);
 	new.env = malloc(500 * sizeof(char *));
 	new.cap = 500;
@@ -95,7 +95,7 @@ char	*dict_pop(t_dict *dict, char *key)
 void	dict_shallowfree(t_dict *dict)
 {
 	free(dict->env);
-	free(dict);
+	// free(dict);
 }
 /*
  Functional Paradigm
