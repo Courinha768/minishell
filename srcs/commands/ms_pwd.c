@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clear.c                                            :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 20:31:22 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/10 20:31:24 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/10 20:31:36 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/16 23:52:03 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	clear_command(void)
+void	ms_pwd(t_promptinfo *prompt, t_command *command)
 {
-	clear_shell();
+	ft_putstr_fd(prompt->pwd, command->fdout);
+	ft_putchar_fd('\n', command->fdout);
 }

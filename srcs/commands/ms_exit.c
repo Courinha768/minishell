@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 20:31:36 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 19:35:31 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/10 20:30:57 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/16 23:51:51 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	pwd_command(t_promptinfo *prompt, t_command *command)
+void	ms_exit(t_command *command, t_promptinfo *prompt)
 {
-	ft_putstr_fd(prompt->pwd, command->fdout);
-	ft_putchar_fd('\n', command->fdout);
+	(void)command;
+	(void)prompt;
+	info()->finished = 1;
+	printf("exit\n");
 }

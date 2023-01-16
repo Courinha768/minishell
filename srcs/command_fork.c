@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 23:06:55 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:53:25 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	exe_fuc(t_promptinfo *prompt, t_command *command, function fun)
+static void	exe_fuc(t_promptinfo *prompt, t_command *command, function fun)
 {
 	int	pid;
 
@@ -36,37 +36,30 @@ void	exe_fuc(t_promptinfo *prompt, t_command *command, function fun)
 	command->pid = pid;
 }
 
-void	command_fork(t_command *commands, t_promptinfo *prompt, t_dict *env)
+static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 {
-	if (!ft_strcmp(commands->program, "change"))
-		change(*commands, prompt);
-	else if (!ft_strcmp(commands->program, "echo"))
-		exe_fuc(prompt, commands, echo);
-	else if (! ft_strcmp(commands->program, "cd"))
-		cd(commands, prompt);
-	else if (!ft_strcmp(commands->program, "pwd"))
-		exe_fuc(prompt, commands, pwd_command);
-	else if (!ft_strcmp(commands->program, "clear"))
-		clear_command();
-	else if (!ft_strcmp(commands->program, "exit"))
-		exit_command();
-	else if (! ft_strcmp(commands[i].program, "env"))
+	if (!ft_strcmp(command->program, "change"))
+		change(*command, prompt);
+	else if (!ft_strcmp(command->program, "echo"))
+		exe_fuc(prompt, command, ms_echo);
+	else if (! ft_strcmp(command->program, "cd"))
+		exe_fuc(prompt, command, ms_cd);
+	else if (!ft_strcmp(command->program, "pwd"))
+		exe_fuc(prompt, command, ms_pwd);
+	else if (!ft_strcmp(command->program, "clear"))
+		exe_fuc(prompt, command, ms_clear);
+	else if (!ft_strcmp(command->program, "exit"))
+		exe_fuc(prompt, command, ms_exit);
+	else if (!ft_strcmp(command->program, "env"))
 		dict_iter(&prompt->newenv, d_envprint);
-	else if (! ft_strcmp(commands[i].program, "export"))
-		func_export(commands[i], prompt);
-	else if (! ft_strcmp(commands[i].program, "unset"))
-		func_unset(commands[i], prompt)h. When you rebase develop t;
-	//else if (! ft_strncmp(commands[i].program, "/bin", 4))
-	//{
-	//	int pid = fork();
-	//	if (!pid)
-	//	{
-	//		execve(commands[i].program, commands[i].args, (char *const *)getenv("ENV"));
-	//		exit(1);
-	//	}
-	//}
+	else if (!ft_strcmp(command->program, "export"))
+		func_export(*command, prompt);
+	else if (!ft_strcmp(command->program, "unset"))
+		func_unset(*command, prompt);
+	else if (path_command(command, env))
+		return ;
 	else
-		printf("%s: command not found\n", commands->program);
+		printf("%s: command not found\n", command->program);
 }
 
 void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
