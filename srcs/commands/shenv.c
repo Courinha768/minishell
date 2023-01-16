@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:37:05 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:45:47 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,21 @@ void	dictprint(t_dict *dict, void (*printstyle)(t_dict *))
 }
 */
 
-t_dict	*shenv_init()
+t_dict	shenv_init(char **envp)
 {
-	t_dict	*head;
-
-	//Alert: Allocation
-	// head = dict_new(ft_strdup("SHELL"), ft_strjoin(prompt->pwd, "/minishell"));
-	head = dict_new();
+	t_dict	env;
+	size_t	mtrxlen;
+	size_t	i;
 	
-	// dict_add(head, ft_strdup("SHELL"), ft_strjoin(prompt->pwd, "/minishell"));
-	dict_add(head, ft_strdup("PWD"), ft_strdup(getenv("PWD")));
-	dict_add(head, ft_strdup("PATH"), ft_strdup(getenv("PATH")));
-	dict_add(head, ft_strdup("HOME"), ft_strdup(getenv("HOME")));
-	dict_add(head, ft_strdup("USER"), ft_strdup(getenv("USER")));
-	return (head);
+	env = dict_new();
+	mtrxlen = ft_mtrxlen((void **)envp);
+	i = 0;
+	while (i < mtrxlen);
+	{
+		env[i] = ft_strdup(envp[i]);
+		i++;
+	}
+
+	
+	return (env);
 }

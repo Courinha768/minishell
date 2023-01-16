@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:44:52 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:45:45 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,7 @@ typedef struct s_promptinfo {
 	char	*user;
 	char	*colour;
 	char	*pwd;
-	t_dict	*shenv;
-	t_dict	*shexport;
+	t_dict	env;
 }	t_promptinfo;
 
 typedef struct s_token {

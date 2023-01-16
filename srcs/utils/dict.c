@@ -6,11 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/01/16 16:44:24 by amaria-d         ###   ########.fr       */
-=======
-/*   Updated: 2023/01/14 19:23:20 by amaria-d         ###   ########.fr       */
->>>>>>> Finished alpha-ordering of shexport but afinal isn't how the real one
+/*   Updated: 2023/01/16 16:46:30 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +17,15 @@
  * 0 will make it the default
  * else the var
 */
-t_dict	*dict_new(void)
+t_dict	dict_new(void)
 {
-	t_dict	*new;
+	t_dict	new;
 	//Alert: 2 mallocs!
 	
-	new = malloc(sizeof(t_dict) * 1);
-	new->env = malloc(500 * sizeof(char *));
-	new->cap = 500;
-	new->count = 0;
+	// new = malloc(sizeof(t_dict) * 1);
+	new.env = malloc(500 * sizeof(char *));
+	new.cap = 500;
+	new.count = 0;
 	return(new);
 }
 
@@ -131,9 +127,6 @@ void	dict_insert(t_dict **dict, size_t index, t_dict *new)
 	{
 		new->next = *dict;
 	fixed dict_add to make it work
-c282784 Revamped the base funcs for t_dict. I should make a t_array struct to further abstract. Hv to add pop
-881bfe0 In the middle of implementing dict_get
-180796c Starting the re-implementation of dict as an array stylebefore = dictget_it(*dict, index - 1);
 	new->next = before->next;
 	before->next = new;
 }

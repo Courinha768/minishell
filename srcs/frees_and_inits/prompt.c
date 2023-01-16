@@ -6,20 +6,21 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:45:12 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:46:08 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-t_promptinfo	init_prompt(void)
+t_promptinfo	init_prompt(char **envp)
 {
 	t_promptinfo	prompt;
 
 	prompt.user = ft_strdup(getenv("USER"));
 	prompt.colour = "\e[1;32m";
 	prompt.pwd = ft_strdup(getenv("PWD"));
-	prompt.shenv = shenv_init(&prompt);
+	prompt.env = shenv_init(envp);
+	// prompt.shexport = shexport_init(prompt.env);
 	return (prompt);
 }
 
