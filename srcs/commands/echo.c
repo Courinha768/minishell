@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/11 17:01:33 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:38:51 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,25 @@ void	create_str(t_command command, int j, char *str)
 	str[++l] = 0;
 }
 
-void	echo(t_command command)
+void	echo(t_command *command)
 {
 	int		printlnb;
 	char	*str;
 	int		j;
 
-	str = (char *)malloc(sizeof(char) * args_str_len(&command));
+	str = (char *)malloc(sizeof(char) * args_str_len(command));
 	if (!str)
 		return ;
 	j = 0;
 	printlnb = 1;
-	if (!strcmp(command.args[1], "-n"))
+	if (!strcmp(command->args[1], "-n"))
 	{
 		printlnb = 0;
 		j++;
 	}
-	create_str(command, j, str);
-	ft_putstr_fd(str, command.fdout);
+	create_str(*command, j, str);
+	ft_putstr_fd(str, command->fdout);
 	if (printlnb)
-		ft_putstr_fd("\n", command.fdout);
+		ft_putstr_fd("\n", command->fdout);
 	free(str);
 }

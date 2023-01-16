@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:53:32 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:38:18 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@ char			*create_prompt(t_promptinfo *prompt_struct);
 
 t_command		*read_line(char *prompt);
 
-void			command_fork(t_command *command, int i, t_promptinfo *prompt);
+void			command_fork(t_command *command, t_promptinfo *prompt, t_dict *env);
 
 /* ========================================================================== */
 /*                                COMMANDS                                    */
 /* ========================================================================== */
 
-void			read_commands(t_command *commands, t_promptinfo *prompt);
+void			read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env);
 
 void			cd(t_command *command, t_promptinfo *prompt);
 
-void			echo(t_command command);
+void			echo(t_command *command);
 
 t_dict			shenv_init(char **envp);
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
@@ -39,7 +39,7 @@ int				dodictorder(t_dict *dict, t_dict **least, size_t i);
 t_dict			*shexport_init(t_dict *env);
 void			shexport_orderalpha(t_dict **env);
 
-void			pwd_command(t_promptinfo *prompt, t_command commands);
+void			pwd_command(t_promptinfo *prompt, t_command *commands);
 void			clear_command(void);
 void			exit_command(void);
 		
