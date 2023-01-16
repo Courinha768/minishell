@@ -3,18 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2023/01/16 16:42:52 by amaria-d         ###   ########.fr       */
-=======
-/*   Updated: 2023/01/12 16:54:21 by amaria-d         ###   ########.fr       */
->>>>>>> Added dict_pop and fixed dict_add to make it work
-=======
-/*   Updated: 2023/01/12 18:29:26 by amaria-d         ###   ########.fr       */
->>>>>>> Finished implementation of dict. Hv to do shallowcopy func for shexport
+/*   Updated: 2023/01/16 16:53:47 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +77,8 @@ void	d_iterprint(char *keyval)
 {
 	if (keyval)
 		printf("%s\n", keyval);
-<<<<<<< HEAD
 }
 
-void	dict_iter(t_dict *dict, void (*f)(char *))
-=======
-}
 
 void	dict_iter(t_dict *dict, void (*f)(char *))
 {
@@ -143,7 +131,7 @@ size_t	dictkeymin(t_dict *dict)
 // 	return (minidx);
 // }
 
-/*
+
  Functional Paradigm
  * Inspired on mtrxdo
  * Replace t_dict with a struct that has a next-pointer

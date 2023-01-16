@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shenv.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:46:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:52:38 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ t_dict	shenv_init(char **envp)
 	size_t	mtrxlen;
 	size_t	i;
 	
+	(void)envp;
+	(void)mtrxlen;
+	(void)i;
 	newenv = dict_new();
 	/*
 	mtrxlen = ft_mtrxlen((void **)envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 16:46:50 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:56:06 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_dict	dict_new(void)
 	return(new);
 }
 
-void	dict_grow(t_dict *dict)
+static void	dict_grow(t_dict *dict)
 {
 	char	**newenv;
 
@@ -98,10 +98,11 @@ void	dict_shallowfree(t_dict *dict)
 	// free(dict);
 }
 /*
+
  Functional Paradigm
  * Inspired on mtrxdo
  * Replace t_dict with a struct that has a next-pointer
-
+*/
 void	dict_free(t_dict *dict)
 {
 	size_t	i;

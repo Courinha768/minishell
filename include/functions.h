@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:45:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:53:32 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			cd(t_command *command, t_promptinfo *prompt);
 
 void			echo(t_command command);
 
-t_dict	shenv_init(char **envp);
+t_dict			shenv_init(char **envp);
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
 void			envstyle(t_dict *dict);
 void			exportstyle(t_dict *dict);
@@ -70,9 +70,18 @@ t_promptinfo	init_prompt(char **envp);
 /* ========================================================================== */
 
 int				antstrcmp(const char *s1, const char *s2);
- --cont_dict *dict, char *key);
 void			dict_insert(t_dict **dict, size_t index, t_dict *new);
-void	d_iterprint(char *keyval);
+void			d_iterprint(char *keyval);
+void			dict_iter(t_dict *dict, void (*f)(char *));
+char			*dict_getit(t_dict *dict, char *key);
+size_t			dict_pos(t_dict *dict, char *key);
+char			*dict_get(t_dict *dict, char *key);
+t_dict			dict_new(void);
+int				dict_add(t_dict *dict, char *key, char *val);
+char			*dict_pop(t_dict *dict, char *key);
+void			dict_shallowfree(t_dict *dict);
+
+size_t			strcmpwhr(const char *s1, const char *s2);
 
 int				ft_charinside(char c, const char *s);
 
