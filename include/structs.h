@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 21:59:28 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:46:58 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,7 @@ typedef struct s_info {
 	int		finished;
 	char	*line;
 }	t_info;
+
+typedef void (*function)(t_promptinfo *prompt_arg, t_command *command_arg);
 
 #endif

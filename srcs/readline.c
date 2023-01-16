@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:03:53 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:56:13 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	countcommands(char *line)
 	int	i;
 	int	counter;
 
+	if (!line)
+		return (0);
 	i = -1;
 	counter = 1;
 	while (line[++i])
@@ -98,6 +100,8 @@ t_command	*read_line(char *prompt)
 	t_command	*commands;
 
 	line = readline(prompt);
+	if (!line[0])
+		return (NULL);
 	add_history(line);
 	free(prompt);
 	tokens = fancy_split(ft_strdup(line), ' ');

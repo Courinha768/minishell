@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:27:58 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/16 22:47:43 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env);
 
 void			cd(t_command *command, t_promptinfo *prompt);
 
-void			echo(t_command *command);
+void			echo(t_promptinfo *prompt, t_command *commands);
 
 t_dict			shenv_init(char **envp);
 void			dictprint(t_dict *dict, void (*printstyle)(t_dict *));
