@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 09:31:15 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:48:20 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,21 @@ char	*strix(char *str, size_t q)
 
 t_dict	shenv_init(char **envp)
 {
-	t_dict	newenv;
 	size_t	mtrxlen;
+	t_dict	newenv;
 	size_t	i;
 	
 	(void)envp;
 	(void)mtrxlen;
 	(void)i;
-	newenv = dict_new();
 	mtrxlen = ft_mtrxlen((void **)envp);
+	newenv = dict_new(mtrxlen);
 	i = 0;
 	while (i < mtrxlen)
 	{
-		newenv.env[i] = ft_strdup(envp[i]);
+		dict_add(&newenv, ft_strdup(envp[i]));
 		i++;
 	}
-	newenv.cap = mtrxlen;
-	newenv.count = i;
 	return (newenv);
 }
 

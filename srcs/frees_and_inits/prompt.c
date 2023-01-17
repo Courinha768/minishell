@@ -3,21 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 23:34:20 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:40:03 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
+char	*trygetenv(char *key)
+{
+	char	*val;
+
+	val = getenv(key);
+	if (val == NULL)
+		return (ft_strdup(key));
+	return (ft_strdup(val));
+}
+
 t_promptinfo	init_prompt(char **envp)
 {
 	t_promptinfo	prompt;
+	char			*tmp;
 
-	prompt.user = ft_strdup(getenv("USER"));
-	prompt.pwd = ft_strdup(getenv("PWD"));
+	tmp = 
+	prompt.user = trygetenv("USER");
+	prompt.pwd = trygetenv("PWD");
 	prompt.newenv = shenv_init(envp);
 	prompt.colour = "\e[1;32m";
 	return (prompt);

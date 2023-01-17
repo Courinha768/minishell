@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 10:05:50 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:45:57 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@
  * 0 will make it the default
  * else the var
 */
-t_dict	dict_new(void)
+t_dict	dict_new(size_t amount)
 {
 	t_dict	new;
 	//Alert: 2 mallocs!
 
 	// new = malloc(sizeof(t_dict) * 1);
-	new.env = malloc(500 * sizeof(char *));
-	new.cap = 500;
+	if (amount == 0)
+		amount = 500;
+	new.env = malloc(amount * sizeof(char *));
+	new.cap = amount;
 	new.count = 0;
 	return(new);
 }

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 10:24:25 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:52:06 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	d_itexprtprint(char *keyval)
 		printf("%c", keyval[i]);
 		if (keyval[i] == '=')
 		{
-			printf("\"%s\"\n", keyval + i);
+			printf("\"%s\"\n", &keyval[i + 1]);
 			break ;
 		}
 		i++;

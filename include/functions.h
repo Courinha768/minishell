@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 09:31:34 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:44:56 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void			dict_iter(t_dict *dict, void (*f)(char *));
 char			*dict_getit(t_dict *dict, char *key);
 size_t			dict_pos(t_dict *dict, char *key);
 char			*dict_get(t_dict *dict, char *key);
-t_dict			dict_new(void);
+t_dict	dict_new(size_t amount);
 int	dict_add(t_dict *dict, char *keyval);
 char			*dict_pop(t_dict *dict, char *key);
 void			dict_shallowfree(t_dict *dict);
