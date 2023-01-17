@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 17:25:36 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 22:23:44 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:02:13 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	is_valid(char c)
 {
 	if (!c)
 		return (0);
-	else if (c == 124)
+	else if (c == '|')
 		return (0);
 	return (1);
 }

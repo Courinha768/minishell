@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:56:13 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:59:18 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ t_command	*read_line(char *prompt)
 		return (NULL);
 	add_history(line);
 	free(prompt);
-	tokens = fancy_split(ft_strdup(line), ' ');
+	tokens = fancy_split(ft_strdup(line), ' '); //Alert: allocation
 	if (!line_valid(tokens))
 	{
 		printf("line not valid\n");
