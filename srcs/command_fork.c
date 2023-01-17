@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 11:29:25 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:43:22 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,6 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 	i = -1;
 	while (commands[++i].program)
 		waitpid(commands[i].pid, NULL, 0); //ALert: some funcs, like change don't create
-	print_commands(commands);				// children. Will this break?
+	// print_commands(commands);				// children. Will this break?
 	free_commands(commands);
 }

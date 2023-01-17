@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   ms_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 22:16:15 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 23:51:36 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:41:49 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ms_echo(t_command *command, t_promptinfo *prompt)
 	(void)prompt;
 	printlnb = 1;
 	i = 1;
-	if (! strcmp(command->args[1], "-n"))
+	if (command->args[1] && ! strcmp(command->args[1], "-n"))
 	{
 		printlnb = 0;
 		i++;
