@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 20:56:10 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:28:50 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[], char *envp[])
 
 	(void)argc;
 	(void)argv;
-	//ignore_shell_signal();
+	shell_signal();
 	//clear_shell();
 	prompt_info = init_prompt(envp);
 	info()->finished = 0;

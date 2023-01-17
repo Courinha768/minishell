@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 22:09:19 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:28:56 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			strip_quotes(t_command *commands, t_dict *env);
 t_info			*info(void);
 
 void			clear_shell(void);
-void			ignore_shell_signal(void);
+void	shell_signal(void);
 
 int				is_valid(char c);
 int				is_valid2(char c);
