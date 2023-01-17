@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 09:31:49 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 09:50:04 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 	else if (!ft_strcmp(command->program, "env"))
 		ms_env(&prompt->newenv);
 	else if (!ft_strcmp(command->program, "export"))
-		exe_fuc(command, prompt, ms_export);
+		ms_export(command, prompt);
+		// exe_fuc(command, prompt, ms_export);
 	else if (!ft_strcmp(command->program, "unset"))
 		exe_fuc(command, prompt, ms_unset);
 	else if (path_command(command, env))
