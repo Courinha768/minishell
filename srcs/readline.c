@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 13:23:43 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:45:37 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,10 +91,12 @@ t_command	createcommand(char **tokens)
 	return (command);
 }
 
-char	*read_line(char *prompt)
+char	*read_line(t_promptinfo *promptinfo)
 {
+	char		*prompt;
 	char		*line;
 
+	prompt = create_prompt(promptinfo);
 	line = readline(prompt);
 	free(prompt);
 	if (!line)
@@ -116,7 +118,7 @@ t_command	*create_commands(char *line)
 	char		**tokens;
 	t_command	*commands;
 
-	if (!line[0])
+	if (!line || !line[0])
 		return (NULL);
 	tokens = fancy_split(ft_strdup(line), ' '); //Alert: allocation
 	if (!line_valid(tokens))

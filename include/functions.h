@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 13:19:53 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 16:43:54 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define FUNCTIONS_H
 
 char			*create_prompt(t_promptinfo *prompt_struct);
-char	*read_line(char *prompt);
+char	*read_line(t_promptinfo *promptinfo);
+
 t_command		*ms_readline(char *prompt, char **env);
 t_command	*create_commands(char *line);
 
