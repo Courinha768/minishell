@@ -3,37 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 11:31:40 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:34:47 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
-
-size_t	ft_min(size_t a, size_t b)
-{
-	if (b < a)
-		return (b);
-	return (a);
-}
-
-size_t	ft_max(size_t a, size_t b)
-{
-	if (b > a)
-		return (b);
-	return (a);
-}
-
-void	ft_strswap(char **s1, char **s2)
-{
-	char	*tmp;
-
-	tmp = *s1;
-	*s1 = *s2;
-	*s2 = tmp;
-}
 
 /* Gives pos where the char is
  * Not idx! 0 is not-found: 1 is first ([0])
@@ -41,7 +18,7 @@ void	ft_strswap(char **s1, char **s2)
 */
 size_t	strichr(const char *s, int c)
 {
-	size_t  i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])
@@ -52,7 +29,6 @@ size_t	strichr(const char *s, int c)
 	}
 	return (0);
 }
-
 
 void	dictorderalpha(t_dict *dict)
 {
@@ -107,12 +83,11 @@ void	d_itexprtprint(char *keyval)
 	}
 }
 
-
 void	export_print(t_command *command, t_promptinfo *prompt)
 {
 	t_dict	*dict;
 	t_dict	shexport;
-	
+
 	(void)command;
 	//TODO: do we really need to receive command?
 	//TODO: must we receive prompt and not dict?
@@ -152,7 +127,8 @@ void	ms_export(t_command *command, t_promptinfo *prompt)
 			if (strichr(command->args[i], '=') > 0)
 			{
 				free(prompt->newenv.env[pos - 1]);
-				dict_insert(&prompt->newenv, pos -1, ft_strdup(command->args[i]));
+				dict_insert(&prompt->newenv, pos -1,
+					ft_strdup(command->args[i]));
 			}
 		}
 		i++;

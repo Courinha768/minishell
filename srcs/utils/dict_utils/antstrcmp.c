@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   antstrcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:36:33 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 23:06:53 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:17:09 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+#include "../../../include/include.h"
 
 int	antstrcmp(const char *s1, const char *s2)
 {

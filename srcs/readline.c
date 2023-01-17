@@ -3,91 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 16:45:37 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:54:44 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-int	countcommands(char *line)
-{
-	int	i;
-	int	counter;
-
-	if (!line)
-		return (0);
-	i = -1;
-	counter = 1;
-	while (line[++i])
-	{
-		if (line[i] == '|')
-			counter++;
-		if (line[i] == '&')
-		{
-			counter++;
-			i++;
-		}
-	}
-	return (counter);
-}
-
-int	countargs(char **tokens, int i)
-{
-	int	counter;
-
-	counter = 0;
-	while (tokens[i] && rl_is_valid(tokens[i][0]))
-	{
-		counter++;
-		i++;
-	}
-	return (counter);
-}
-
-t_command	nullcommand(void)
-{
-	t_command	command;
-
-	command.args = NULL;
-	command.program = NULL;
-	command.fdin = 0;
-	command.fdout = 0;
-	return (command);
-}
-
 t_command	createcommand(char **tokens)
 {
 	t_command	command;
-	static int	static_current_token;
-	int			current_token;
+	static int	s_token;
 	int			i;
 
-	if (!static_current_token)
-		static_current_token = 0;
+	if (!s_token)
+		s_token = 0;
 	command.fdin = 0;
 	command.fdout = 1;
-	current_token = static_current_token;
-	if (current_token)
-		current_token++;
-	command.program = ft_strdup(tokens[current_token]);
+	command.pid = 0;
+	if (s_token)
+		s_token++;
+	command.program = ft_strdup(tokens[s_token]);
 	command.args = (char **)malloc(sizeof(char *)
-			* (countargs(tokens, current_token) + 1));
+			* (countargs(tokens, s_token) + 1));
 	if (!command.args)
 		return (nullcommand());
 	i = 0;
-	while (tokens[current_token] && rl_is_valid(tokens[current_token][0]))
-	{
-		command.args[i++] = ft_strdup(tokens[current_token]);
-		current_token++;
-	}
+	while (tokens[s_token] && rl_is_valid(tokens[s_token][0]))
+		command.args[i++] = ft_strdup(tokens[s_token++]);
 	command.args[i] = NULL;
-	handle_redd(&command, tokens, &current_token);
-	static_current_token = current_token;
-	if (!tokens[current_token])
-		static_current_token = 0;
+	handle_redd(&command, tokens, &s_token);
+	if (!tokens[s_token])
+		s_token = 0;
 	return (command);
 }
 
@@ -102,13 +51,24 @@ char	*read_line(t_promptinfo *promptinfo)
 	if (!line)
 	{
 		return (NULL);
-		// free_promptinfo()
-		// exit(0);
 	}
 	if (!line[0])
+	{
+		free(line);
 		return (NULL);
+	}
 	add_history(line);
 	return (line);
+}
+
+void	free_tokens(char **tokens)
+{
+	int	i;
+
+	i = -1;
+	while (tokens[++i])
+		free(tokens[i]);
+	free(tokens);
 }
 
 t_command	*create_commands(char *line)
@@ -134,14 +94,8 @@ t_command	*create_commands(char *line)
 		return (NULL);
 	i = 0;
 	while (nbr_of_commands--)
-	{
-		commands[i] = createcommand(tokens);
-		i++;
-	}
+		commands[i++] = createcommand(tokens);
 	commands[i] = nullcommand();
-	i = -1;
-	while (tokens[++i])
-		free(tokens[i]);
-	free(tokens);
+	free_tokens(tokens);
 	return (commands);
 }

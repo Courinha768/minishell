@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 21:21:48 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:25:39 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[], char *envp[])
 	info()->finished = 0;
 	while (!info()->finished)
 	{
-		// prompt = create_prompt(&prompt_info);
+		//line = create_prompt(&prompt_info);
 		//melhorar o readline
 		line = read_line(&prompt_info); //Alert: frees prompt
 		commands = create_commands(line); //Alert: frees line

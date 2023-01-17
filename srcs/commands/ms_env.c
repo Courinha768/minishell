@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 11:50:59 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:14:43 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ char	*strix(char *str, size_t q)
 
 t_dict	shenv_init(char **envp)
 {
-	size_t	mtrxlen;
+	int		mtrxlen;
 	t_dict	newenv;
-	size_t	i;
-	
-	mtrxlen = ft_mtrxlen((void **)envp);
+	int		i;
+
+	mtrxlen = (int)ft_mtrxlen((void **)envp);
 	newenv = dict_new(mtrxlen);
 	i = 0;
 	while (i < mtrxlen)
@@ -43,9 +43,7 @@ void	d_envprint(char *keyval)
 		{
 			if (strix(ft_strchr(keyval, '='), 1) != NULL)
 				printf("%s\n", keyval);
-			
 		}
-		
 	}
 	(void)keyval;
 }

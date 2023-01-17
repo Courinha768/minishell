@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_free.c                                          :+:      :+:    :+:   */
+/*   ms_export_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 19:05:39 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:25:31 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/17 19:32:19 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/17 19:33:35 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
-void	rl_free_utils(char *cl, char *prompt, char **tokens)
+size_t	ft_min(size_t a, size_t b)
 {
-	int	i;
+	if (b < a)
+		return (b);
+	return (a);
+}
 
-	free(cl);
-	free(prompt);
-	i = -1;
-	while (tokens[++i])
-		free(tokens[i]);
-	free(tokens);
+size_t	ft_max(size_t a, size_t b)
+{
+	if (b > a)
+		return (b);
+	return (a);
+}
+
+void	ft_strswap(char **s1, char **s2)
+{
+	char	*tmp;
+
+	tmp = *s1;
+	*s1 = *s2;
+	*s2 = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 22:50:59 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:06:55 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static char	**define_path(t_dict *env)
 {
-	char **path;
-	char *p;
+	char	**path;
+	char	*p;
 
 	p = dict_get(env, "PATH");
 	path = ft_split(p, ':');
@@ -57,10 +57,11 @@ static char	*find_path(t_command *command, t_dict *env)
 	path = define_path(env);
 	while (path[++i])
 	{
-		command_path = ft_strjoin3(path[i], "/",command->program);
-		if (!access(command_path, F_OK))
+		command_path = ft_strjoin3(path[i], "/", command->program);
+		if (command_path && !access(command_path, F_OK))
 			break ;
-		free(command_path);
+		if (command_path)
+			free(command_path);
 	}
 	i = -1;
 	while (path[++i])

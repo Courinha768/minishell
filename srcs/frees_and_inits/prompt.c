@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 10:40:03 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:05:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,7 @@ char	*trygetenv(char *key)
 t_promptinfo	init_prompt(char **envp)
 {
 	t_promptinfo	prompt;
-	char			*tmp;
 
-	tmp = 
 	prompt.user = trygetenv("USER");
 	prompt.pwd = trygetenv("PWD");
 	prompt.newenv = shenv_init(envp);
