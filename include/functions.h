@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 16:43:54 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 21:21:00 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ t_token			*token(void);
 t_info			*info(void);
 
 void			clear_shell(void);
-void			ignore_shell_signal(void);
+void	shell_signal(void);
 
 int				is_valid(char c);
 int				is_valid2(char c);
