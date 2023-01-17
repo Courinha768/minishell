@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:54:44 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:47:34 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	free_tokens(char **tokens)
 	free(tokens);
 }
 
-t_command	*create_commands(char *line)
+t_command	*create_commands(char *line, t_dict *env)
 {
 	int			nbr_of_commands;
 	int			i;
@@ -86,7 +86,7 @@ t_command	*create_commands(char *line)
 		printf("line not valid\n");
 		return (NULL);
 	}
-	strip_quotes(tokens);
+	(void)env;
 	nbr_of_commands = countcommands(line);
 	free(line);
 	commands = malloc(sizeof(t_command) * (nbr_of_commands + 1));
@@ -96,6 +96,8 @@ t_command	*create_commands(char *line)
 	while (nbr_of_commands--)
 		commands[i++] = createcommand(tokens);
 	commands[i] = nullcommand();
+	//print_commands(commands);
+	strip_quotes(commands, env);
 	free_tokens(tokens);
 	return (commands);
 }

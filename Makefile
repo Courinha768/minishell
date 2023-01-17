@@ -5,7 +5,7 @@ OBJS		=	$(SRCS:.c=.o)
 INCLUDES	=	./include
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g3 #-fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
 
 .c.o		:
 	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)

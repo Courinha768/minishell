@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:06:55 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:19:22 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	path_command(t_command *command, t_dict *env)
 		dup2(command->fdin, 0);
 		if (command->fdin != 0)
 			close(command->fdin);
-		execve(path, command->args, NULL);
+		execve(path, command->args, env->env);
 		exit(1);
 	}
 	if (command->fdout != 1)

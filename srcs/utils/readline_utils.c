@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:52:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:52:28 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:15:32 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ int	countcommands(char *line)
 {
 	int	i;
 	int	counter;
+	int inside_quote;
 
+	inside_quote = -1;
 	if (!line)
 		return (0);
 	i = -1;
 	counter = 1;
 	while (line[++i])
 	{
-		if (line[i] == '|')
+		if (line[i] == '\"' || line[i] == '\'')
+			inside_quote *= -1;
+		if (line[i] == '|' && inside_quote < 0)
 			counter++;
-		if (line[i] == '&')
+		if (line[i] == '&' && inside_quote < 0)
 		{
 			counter++;
 			i++;

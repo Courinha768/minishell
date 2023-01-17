@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:40:56 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 20:56:10 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[], char *envp[])
 		//line = create_prompt(&prompt_info);
 		//melhorar o readline
 		line = read_line(&prompt_info); //Alert: frees prompt
-		commands = create_commands(line); //Alert: frees line
+		commands = create_commands(line, &prompt_info.newenv); //Alert: frees line
 		if (commands)
 		{
 			token()->current_token = 0;

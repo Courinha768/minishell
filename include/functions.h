@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:53:03 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:09:19 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char			*create_prompt(t_promptinfo *prompt_struct);
 char			*read_line(t_promptinfo *promptinfo);
-t_command		*create_commands(char *line);
+t_command		*create_commands(char *line, t_dict *env);
 
 /* ========================================================================== */
 /*                                COMMANDS                                    */
@@ -79,7 +79,7 @@ int				ft_strcmp(const char *s1, const char *s2);
 
 t_token			*token(void);
 
-void			strip_quotes(char **tokens);
+void			strip_quotes(t_command *commands, t_dict *env);
 
 t_info			*info(void);
 

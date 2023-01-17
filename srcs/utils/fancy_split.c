@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 18:06:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/14 17:49:05 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:18:55 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ char	**fancy_split(char *s, char c)
 	int		s_i;
 	int		s_j;
 
-	fsplit = (char **)malloc(sizeof(char *) * (tokencounter(s, c) + 1));
+	fsplit = (char **)malloc(sizeof(char *) * (tokencounter(s, c) + 2));
 	if (!fsplit)
 		return (NULL);
 	i = -1;
@@ -127,6 +127,7 @@ char	**fancy_split(char *s, char c)
 			while (s[i] && fsplit_is_valid(s[i], c))
 				fsplit[s_i][s_j++] = s[i++];
 			fsplit[s_i++][s_j] = 0;
+			fsplit[s_i] = 0;
 		}
 		if (!s[i])
 			break ;
