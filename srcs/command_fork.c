@@ -12,7 +12,7 @@
 
 #include "../include/include.h"
 
-static void	exe_fuc(t_promptinfo *prompt, t_command *command, function fun)
+static void	exe_fuc(t_command *command, t_promptinfo *prompt, function fun)
 {
 	int	pid;
 
@@ -25,7 +25,7 @@ static void	exe_fuc(t_promptinfo *prompt, t_command *command, function fun)
 		dup2(command->fdin, 0);
 		if (command->fdin != 0)
 			close(command->fdin);
-		fun(prompt, command);
+		fun(command, prompt);
 		free_promptinfo(prompt);
 		exit(1);
 	}
@@ -41,21 +41,21 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 	if (!ft_strcmp(command->program, "change"))
 		change(*command, prompt);
 	else if (!ft_strcmp(command->program, "echo"))
-		exe_fuc(prompt, command, ms_echo);
+		exe_fuc(command, prompt, ms_echo);
 	else if (! ft_strcmp(command->program, "cd"))
-		exe_fuc(prompt, command, ms_cd);
+		ms_cd(command, prompt);
 	else if (!ft_strcmp(command->program, "pwd"))
-		exe_fuc(prompt, command, ms_pwd);
+		exe_fuc(command, prompt, ms_pwd);
 	else if (!ft_strcmp(command->program, "clear"))
-		exe_fuc(prompt, command, ms_clear);
+		exe_fuc(command, prompt, ms_clear);
 	else if (!ft_strcmp(command->program, "exit"))
-		exe_fuc(prompt, command, ms_exit);
+		ms_exit(command, prompt);
 	else if (!ft_strcmp(command->program, "env"))
-		dict_iter(&prompt->newenv, d_envprint);
+		ms_env(&prompt->newenv, d_envprint);
 	else if (!ft_strcmp(command->program, "export"))
-		func_export(*command, prompt);
+		exe_fuc(command, prompt, ms_export);
 	else if (!ft_strcmp(command->program, "unset"))
-		func_unset(*command, prompt);
+		exe_fuc(command, prompt, ms_unset);
 	else if (path_command(command, env))
 		return ;
 	else
@@ -72,6 +72,6 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 	i = -1;
 	while (commands[++i].program)
 		waitpid(commands[i].pid, NULL, 0);
-	//print_commands(commands);
+	print_commands(commands);
 	free_commands(commands);
 }

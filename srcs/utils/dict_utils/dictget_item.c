@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+#include "../../../include/include.h"
 
 /*
 size_t	dictsize(t_dict *dict)

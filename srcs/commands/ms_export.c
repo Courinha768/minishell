@@ -25,6 +25,7 @@ size_t	ft_max(size_t a, size_t b)
 		return (b);
 	return (a);
 }
+
 void	ft_strswap(char **s1, char **s2)
 {
 	char	*tmp;
@@ -98,61 +99,30 @@ void	export_print(t_dict *dict)
 /**
  * Export
 */
-void	func_export(t_command command, t_promptinfo *prompt)
+void	ms_export(t_command *command, t_promptinfo *prompt)
 {
 	size_t	len;
 	size_t	i;
 	size_t	pos;
 
-	len = ft_mtrxlen((void **)command.args);
+	len = ft_mtrxlen((void **)command->args);
 	if (len <= 1)
 		return (export_print(&prompt->newenv));
 	i = 1;
 	while (i < len)
 	{
-		// printf("%s\n", dict_get(&prompt->newenv, command.args[i]));
-		pos = dict_pos(&prompt->newenv, command.args[i]);
+		pos = dict_pos(&prompt->newenv, command->args[i]);
 		if (pos == 0)
-			dict_add(&prompt->newenv, ft_strdup(command.args[i]));
+			dict_add(&prompt->newenv, ft_strdup(command->args[i]));
 		else
 		{
 			// In-situ replace
-			if (strchr(command.args[i], '=') > 0)
+			if (strichr(command->args[i], '=') > 0)
 			{
 				free(prompt->newenv.env[pos - 1]);
-				dict_insert(&prompt->newenv, pos -1, ft_strdup(command.args[i]));
+				dict_insert(&prompt->newenv, pos -1, ft_strdup(command->args[i]));
 			}
 		}
 		i++;
 	}
-	}
-
-/*
-int	dodictorder(t_dict *dict, t_dict **least, size_t i)
-{
-	if (strcmp((*least)->key, dict->key) > 0) // least is bigger than dict
-	{
-		*least = dict;
-	}
-	(void)i;
-	return (1);
 }
-
-
-t_dict	*shexport_init(t_dict *env)
-{
-	t_dict	*shexport;
-
-	// Shalllow copy of env
-	shexport = dict_new(env->key, env->value);
-	env = env->next;
-	while (env)
-	{
-		dict_add(shexport, env->key, env->value);
-		shenv = env->next;
-	}
-	// Order alphabetically
-	shexport_orderalpha(&shexport);
-	return (shexport);
-}
-*/

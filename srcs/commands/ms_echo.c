@@ -12,7 +12,7 @@
 
 #include "../../include/include.h"
 
-void	ms_echo(t_promptinfo *prompt, t_command *command)
+void	ms_echo(t_command *command, t_promptinfo *prompt)
 {
 	int		printlnb;
 	size_t	i;

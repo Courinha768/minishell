@@ -16,8 +16,8 @@
 typedef struct s_dict {
 	char		**env;
 	size_t		cap;
-	size_t		count; // is not the amount!!
-}	t_dict;			   //   because there can be empty elements
+	size_t		count;
+}	t_dict;
 
 typedef struct s_command {
 	int		fdin;
@@ -44,6 +44,6 @@ typedef struct s_info {
 	char	*line;
 }	t_info;
 
-typedef void (*function)(t_promptinfo *prompt_arg, t_command *command_arg);
+typedef void (*function)(t_command *command_arg, t_promptinfo *prompt_arg);
 
 #endif

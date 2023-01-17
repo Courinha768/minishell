@@ -12,7 +12,7 @@
 
 #include "../../include/include.h"
 
-void	ms_pwd(t_promptinfo *prompt, t_command *command)
+void	ms_pwd(t_command *command, t_promptinfo *prompt)
 {
 	ft_putstr_fd(prompt->pwd, command->fdout);
 	ft_putchar_fd('\n', command->fdout);

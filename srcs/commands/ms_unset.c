@@ -12,18 +12,18 @@
 
 #include "../../include/include.h"
 
-void	func_unset(t_command command, t_promptinfo *prompt)
+void	ms_unset(t_command *command, t_promptinfo *prompt)
 {
 	size_t	i;
 	size_t	pos;
 
 	i = 0;
-	while (i < ft_mtrxlen((void **)command.args))
+	while (i < ft_mtrxlen((void **)command->args))
 	{
-		pos = dict_pos(&prompt->newenv, command.args[i]);
+		pos = dict_pos(&prompt->newenv, command->args[i]);
 		if (pos != 0)
 		{
-			free(dict_pop(&prompt->newenv, command.args[i]));
+			free(dict_pop(&prompt->newenv, command->args[i]));
 		}
 		i++;
 	}

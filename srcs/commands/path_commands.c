@@ -14,11 +14,9 @@
 
 static char	**define_path(t_dict *env)
 {
-	int	i;
 	char **path;
 	char *p;
 
-	i = -1;
 	p = dict_get(env, "PATH");
 	path = ft_split(p, ':');
 	return (path);
@@ -74,13 +72,11 @@ static char	*find_path(t_command *command, t_dict *env)
 		return (command->program);
 }
 
-int	path_command(t_command *command,t_dict *env)
+int	path_command(t_command *command, t_dict *env)
 {
 	char	*path;
 	int		pid;
-	int		r;
 
-	r = 0;
 	path = find_path(command, env);
 	if (access(path, F_OK))
 		return (0);

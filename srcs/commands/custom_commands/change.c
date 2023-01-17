@@ -10,26 +10,26 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+#include "../../../include/include.h"
 
 void	change_colour(t_promptinfo *prompt, char *new_colour)
 {
 	if (!ft_strcmp(new_colour, "black"))
-		prompt->colour = "\e[1;30m";
+		prompt->colour = BBLK;
 	else if (!ft_strcmp(new_colour, "red"))
-		prompt->colour = "\e[1;31m";
+		prompt->colour = BRED;
 	else if (!ft_strcmp(new_colour, "green"))
-		prompt->colour = "\e[1;32m";
+		prompt->colour = BGRN;
 	else if (!ft_strcmp(new_colour, "yellow"))
-		prompt->colour = "\e[1;33m";
+		prompt->colour = BYEL;
 	else if (!ft_strcmp(new_colour, "blue"))
-		prompt->colour = "\e[1;34m";
+		prompt->colour = BBLU;
 	else if (!ft_strcmp(new_colour, "mangenta"))
-		prompt->colour = "\e[1;35m";
+		prompt->colour = BMAG;
 	else if (!ft_strcmp(new_colour, "cyan"))
-		prompt->colour = "\e[1;36m";
+		prompt->colour = BCYN;
 	else if (!ft_strcmp(new_colour, "white"))
-		prompt->colour = "\e[1;37m";
+		prompt->colour = BWHT;
 	else
 		printf("change colour: %s not found\n", new_colour);
 }

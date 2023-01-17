@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+#include "../../../include/include.h"
 
 /* Gets val referenced by key
  * Can return char * -> '\0'
@@ -110,7 +110,7 @@ void	d_iterprint(char *keyval)
 		printf("%s\n", keyval);
 }
 
-void	dict_iter(t_dict *dict, void (*f)(char *))
+void	ms_env(t_dict *dict, void (*f)(char *))
 {
 	size_t	i;
 

@@ -12,25 +12,6 @@
 
 #include "../../include/include.h"
 
-/*
-void	envstyle(t_dict *dict)
-{
-	//TODO: dont print if not value
-	printf("%s=%s\n", dict->key, dict->value);
-}
-
-void	exportstyle(t_dict *dict)
-{
-	//TODO: order aplphabetically
-	printf("declare -x %s=\"%s\"\n", dict->key, dict->value);
-}
-
-void	dictprint(t_dict *dict, void (*printstyle)(t_dict *))
-{
-	dict_iter(dict, printstyle);
-}
-*/
-
 char	*strix(char *str, size_t q)
 {
 	return (&str[q]);
@@ -51,7 +32,6 @@ void	d_envprint(char *keyval)
 	}
 	(void)keyval;
 }
-
 
 t_dict	shenv_init(char **envp)
 {

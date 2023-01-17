@@ -16,12 +16,13 @@
 # include "../libft/libft.h"
 # include "./structs.h"
 # include "./functions.h"
+# include "./colours.h"
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <signal.h>
+# include <fcntl.h>
 # include <sys/stat.h>
 # include <sys/types.h>
 # include <sys/wait.h>
-# include <fcntl.h>
 
 #endif
