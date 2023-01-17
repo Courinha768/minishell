@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 20:01:55 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:05:50 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,24 @@ int	dict_add(t_dict *dict, char *keyval)
 	return (1);
 }
 
-char	*dict_pop(t_dict *dict, char *key)
+/**
+ * Works exactly like dict_pop but uses index
+*/
+char	*dict_rmv(t_dict *dict, size_t index)
 {
 	char	*popped;
+
+	if (!dict)
+		return (NULL);
+	popped = dict->env[index];
+	dict->env[index] = NULL; // very important!
+	if (index == dict->count - 1)
+		dict->count--; // also very important!
+	return (popped);
+}
+
+char	*dict_pop(t_dict *dict, char *key)
+{
 	size_t	pos;
 
 	if (!dict)
@@ -83,9 +98,15 @@ char	*dict_pop(t_dict *dict, char *key)
 	pos = dict_pos(dict, key);
 	if (pos == 0)
 		return (NULL);
-	popped = dict->env[pos - 1];
-	dict->env[pos - 1] = NULL; // very important!
-	return (popped);
+	return (dict_rmv(dict, pos - 1));
+}
+
+/**
+ * Inserts ALREADY malloc'ed keyval at index
+*/
+void	dict_insert(t_dict *dict, size_t index, char *keyval)
+{
+	dict->env[index] = keyval;
 }
 
 void	dict_shallowfree(t_dict *dict)
@@ -111,12 +132,4 @@ void	dict_free(t_dict *dict)
 		i++;
 	}
 	dict_shallowfree(dict);	
-}
-
-/**
- * Inserts ALREADY malloc'ed keyval at index
-*/
-void	dict_insert(t_dict *dict, size_t index, char *keyval)
-{
-	dict->env[index] = keyval;
 }
