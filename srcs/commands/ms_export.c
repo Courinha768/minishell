@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shexport.c                                         :+:      :+:    :+:   */
+/*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 23:16:11 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 10:24:25 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,32 @@ void	dictorderalpha(t_dict *dict)
 	}
 }
 
+void	d_itexprtprint(char *keyval)
+{
+	size_t	i;
+
+	if (!keyval)
+		return ;
+	printf("declare -x ");
+	if (ft_strchr(keyval, '=') == NULL)
+	{
+		printf("%s\n", keyval);
+		return ;
+	}
+	i = 0;
+	while (keyval[i] != '\0')
+	{
+		printf("%c", keyval[i]);
+		if (keyval[i] == '=')
+		{
+			printf("\"%s\"\n", keyval + i);
+			break ;
+		}
+		i++;
+	}
+}
+
+
 void	export_print(t_dict *dict)
 {
 	t_dict	shexport;
@@ -92,7 +118,7 @@ void	export_print(t_dict *dict)
 	shexport.cap = dict->count;
 	shexport.count = shexport.cap;
 	dictorderalpha(&shexport);
-	dict_iter(&shexport, d_iterprint);
+	dict_iter(&shexport, d_itexprtprint);
 	free(shexport.env);
 }
 
