@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 18:23:13 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/14 18:24:30 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:55:23 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	remove_quote(char *token, int i)
 		token[i - 1] = token[i];
 	token[i - 1] = 0;
 }
+
+/*a lot is gonna change*/
 
 void	strip_quotes(char **tokens)
 {

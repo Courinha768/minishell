@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 11:49:12 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:39:50 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void	exe_fuc(t_command *command, t_promptinfo *prompt, function fun)
+void	exe_fuc(t_command *command, t_promptinfo *prompt, t_function fun)
 {
 	int	pid;
 
@@ -54,11 +54,9 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 		exe_fuc(command, prompt, ms_env);
 		// ms_env(&prompt->newenv);
 	else if (!ft_strcmp(command->program, "export"))
-		ms_export(command, prompt); //Alert: has exec_fuc inside
-		// exe_fuc(command, prompt, ms_export);
+		ms_export(command, prompt);
 	else if (!ft_strcmp(command->program, "unset"))
 		ms_unset(command, prompt);
-		// exe_fuc(command, prompt, ms_unset);
 	else if (path_command(command, env))
 		return ;
 	else
@@ -74,7 +72,7 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 		command_fork(&commands[i], prompt, env);
 	i = -1;
 	while (commands[++i].program)
-		waitpid(commands[i].pid, NULL, 0); //ALert: some funcs, like change don't create
-	// print_commands(commands);				// children. Will this break?
+		waitpid(commands[i].pid, NULL, 0);
+	// print_commands(commands);
 	free_commands(commands);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/16 23:06:58 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:39:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ typedef struct s_info {
 	char	*line;
 }	t_info;
 
-typedef void (*function)(t_command *command_arg, t_promptinfo *prompt_arg);
+typedef void	(*t_function)(t_command *command_arg, t_promptinfo *prompt_arg);
 
 #endif

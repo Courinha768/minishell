@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rl_free.c                                          :+:      :+:    :+:   */
+/*   ms_readline_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 19:05:39 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:25:31 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/17 19:11:21 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/17 19:56:37 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+//#include "../include/include.h"
 
-void	rl_free_utils(char *cl, char *prompt, char **tokens)
-{
-	int	i;
+//t_command	nullcommand(void)
+//{
+//	t_command	command;
 
-	free(cl);
-	free(prompt);
-	i = -1;
-	while (tokens[++i])
-		free(tokens[i]);
-	free(tokens);
-}
+//	command.args = NULL;
+//	command.program = NULL;
+//	command.fdin = 0;
+//	command.fdout = 0;
+//	return (command);
+//}
+
+//int	rl_dif_command_valid_char(char c)
+//{
+//	return (c == '&' || c == '|');
+//}
+
+//int	rl_args_valid_char(char c)
+//{
+//	return (c == '&' || c == '|' || c == '>' || c == '<');
+//}

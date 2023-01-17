@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 09:28:44 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:30:25 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	abs(int d)
 	return (d);
 }
 
-
 size_t	strpos(char *str, char c)
 {
 	size_t	i;
@@ -54,7 +53,6 @@ size_t	strpos(char *str, char c)
 		i++;
 	}
 	return (0);
-
 }
 
 /**
@@ -65,10 +63,8 @@ size_t	strpos(char *str, char c)
 */
 size_t	dict_pos(t_dict *dict, char *key)
 {
-	//TODO: Not working:
 	size_t	i;
 	size_t	whr;
-	// size_t	mlen;
 	int		cmp;
 	size_t	eqpos;
 
@@ -76,13 +72,10 @@ size_t	dict_pos(t_dict *dict, char *key)
 	while (i < dict->count)
 	{
 		whr = strcmpwhr(dict->env[i], key);
-
 		cmp = abs(ft_strncmp(dict->env[i], key, whr));
 		if (cmp == 0 || cmp == '=')
 			return (i + 1);
-
 		eqpos = strpos(dict->env[i], '=');
-
 		if (eqpos < whr)
 			return (i + 1);
 		i++;
@@ -103,48 +96,3 @@ char	*dict_getit(t_dict *dict, char *key)
 		return (NULL);
 	return (dict->env[pos - 1]);
 }
-
-void	d_iterprint(char *keyval)
-{
-	if (keyval)
-		printf("%s\n", keyval);
-}
-
-void	dict_iter(t_dict *dict, void (*f)(char *))
-{
-	size_t	i;
-
-	i = 0;
-	while (i < dict->count)
-	{
-		f(dict->env[i]);
-		i++;
-	}
-}
-
-/*
- Functional Paradigm
- * Inspired on mtrxdo
- * Replace t_dict with a struct that has a next-pointer
-
-int	lstdo(t_dict **lst, t_dict **data, int (*func)(t_dict *, t_dict **, size_t))
-{
-	size_t	i;
-	int		instant;
-	int		accumulate;
-
-	accumulate = 0;
-	i = 0;
-	while (*lst != NULL)
-	{
-		i++;
-		instant = func(*lst, data, i);
-		if (! instant)
-		{
-			return (0);
-		}
-		accumulate += instant;
-		(*lst) = (*lst)->next;
-	}
-	return (accumulate);
-}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 20:55:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 12:57:34 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:41:24 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ void	sig_print(int signal)
 void	ignore_shell_signal(void)
 {
 	signal(SIGINT, SIG_IGN);
-	// signal(SIGTSTP, SIG_IGN);
-	signal(SIGQUIT, SIG_IGN);
+	signal(SIGTSTP, SIG_IGN);
+	signal(SIGQUIT, sig_print);
 }

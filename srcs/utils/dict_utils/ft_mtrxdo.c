@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_mtrxdo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 18:25:23 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/10 10:23:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 19:17:39 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/include.h"
+#include "../../../include/include.h"
 
 /* Functional Paradigm
  * Data can be anything. The func function has to know how to deal with it
  * The (void *) is the data that the function receives
  * Anything that's not a 0 is a success
-*/
+ * */
 int	mtrxdo(char **mtrx, void *data, int (*func)(char, void *, size_t, size_t))
 {
 	size_t	j;
