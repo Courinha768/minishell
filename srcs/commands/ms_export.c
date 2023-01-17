@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 10:52:06 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:31:40 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,15 @@ void	d_itexprtprint(char *keyval)
 }
 
 
-void	export_print(t_dict *dict)
+void	export_print(t_command *command, t_promptinfo *prompt)
 {
+	t_dict	*dict;
 	t_dict	shexport;
 	
-	// Only order-alpha and print
+	(void)command;
+	//TODO: do we really need to receive command?
+	//TODO: must we receive prompt and not dict?
+	dict = &prompt->newenv;
 	shexport.env = malloc(sizeof(char *) * dict->count);
 	ft_memcpy(shexport.env, dict->env, dict->count * sizeof(char *));
 	shexport.cap = dict->count;
@@ -133,7 +137,9 @@ void	ms_export(t_command *command, t_promptinfo *prompt)
 
 	len = ft_mtrxlen((void **)command->args);
 	if (len <= 1)
-		return (export_print(&prompt->newenv));
+		return (
+			exe_fuc(command, prompt, export_print)
+		);
 	i = 1;
 	while (i < len)
 	{

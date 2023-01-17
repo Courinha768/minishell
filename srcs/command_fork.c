@@ -6,13 +6,13 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 09:53:45 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:29:25 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-static void	exe_fuc(t_command *command, t_promptinfo *prompt, function fun)
+void	exe_fuc(t_command *command, t_promptinfo *prompt, function fun)
 {
 	int	pid;
 
@@ -53,7 +53,7 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 	else if (!ft_strcmp(command->program, "env"))
 		ms_env(&prompt->newenv);
 	else if (!ft_strcmp(command->program, "export"))
-		ms_export(command, prompt);
+		ms_export(command, prompt); //Alert: has exec_fuc inside
 		// exe_fuc(command, prompt, ms_export);
 	else if (!ft_strcmp(command->program, "unset"))
 		ms_unset(command, prompt);
@@ -73,7 +73,7 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 		command_fork(&commands[i], prompt, env);
 	i = -1;
 	while (commands[++i].program)
-		waitpid(commands[i].pid, NULL, 0);
-	print_commands(commands);
+		waitpid(commands[i].pid, NULL, 0); //ALert: some funcs, like change don't create
+	print_commands(commands);				// children. Will this break?
 	free_commands(commands);
 }
