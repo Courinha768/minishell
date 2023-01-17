@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 23:53:25 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 09:31:49 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 	else if (!ft_strcmp(command->program, "exit"))
 		ms_exit(command, prompt);
 	else if (!ft_strcmp(command->program, "env"))
-		ms_env(&prompt->newenv, d_envprint);
+		ms_env(&prompt->newenv);
 	else if (!ft_strcmp(command->program, "export"))
 		exe_fuc(command, prompt, ms_export);
 	else if (!ft_strcmp(command->program, "unset"))

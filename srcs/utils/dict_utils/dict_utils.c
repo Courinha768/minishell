@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 23:08:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 09:28:44 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	d_iterprint(char *keyval)
 		printf("%s\n", keyval);
 }
 
-void	ms_env(t_dict *dict, void (*f)(char *))
+void	dict_iter(t_dict *dict, void (*f)(char *))
 {
 	size_t	i;
 
