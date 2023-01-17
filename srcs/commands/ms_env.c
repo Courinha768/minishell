@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 10:53:07 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:50:59 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	d_envprint(char *keyval)
 	(void)keyval;
 }
 
-void	ms_env(t_dict *dict)
+void	ms_env(t_command *command, t_promptinfo *prompt)
 {
-	dict_iter(dict, d_envprint);
+	(void)command;
+	dict_iter(&prompt->newenv, d_envprint);
 }

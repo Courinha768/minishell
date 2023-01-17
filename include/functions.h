@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 11:29:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/17 11:51:06 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			ms_cd(t_command *command, t_promptinfo *prompt);
 void			ms_clear(t_command *command, t_promptinfo *prompt);
 void			ms_echo(t_command *command, t_promptinfo *prompt);
 void			ms_exit(t_command *command, t_promptinfo *prompt);
-void	ms_env(t_dict *dict);
+void	ms_env(t_command *command, t_promptinfo *prompt);
 
 void			ms_export(t_command *command, t_promptinfo *prompt);
 void			ms_pwd(t_command *command, t_promptinfo *prompt);
