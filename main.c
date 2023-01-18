@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 15:55:06 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:11:04 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	main(int argc, char *argv[], char *envp[])
 		//line = create_prompt(&prompt_info);
 		//melhorar o readline
 		line = read_line(&prompt_info); //Alert: frees prompt
+		if (!line)
+		{
+			printf("exit\n");
+			break ;
+		}
 		commands = create_commands(line, &prompt_info.newenv); //Alert: frees line
 		if (commands)
 		{
