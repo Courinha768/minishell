@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 18:23:13 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 22:19:46 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:08:11 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	build_new_token(int size, char **token, char *content)
 	j++;
 	while (ft_isalnum((*token)[j]))
 		j++;
-	while ((*token)[j] && (*token)[++j])
-		new_token[i++] = (*token)[j];
+	while ((*token)[j])
+		new_token[i++] = (*token)[j++];
 	new_token[i] = 0;
 	free(*token);
 	*token = new_token;

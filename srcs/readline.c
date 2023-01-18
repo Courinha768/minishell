@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 22:47:34 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:54:20 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ t_command	*create_commands(char *line, t_dict *env)
 
 	if (!line || !line[0])
 		return (NULL);
-	tokens = fancy_split(ft_strdup(line), ' '); //Alert: allocation
+	tokens = ms_split(ft_strdup(line)); //Alert: allocation
 	if (!line_valid(tokens))
 	{
 		printf("line not valid\n");
