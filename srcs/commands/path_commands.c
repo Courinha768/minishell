@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 15:41:57 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:29:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static char	**define_path(t_dict *env)
 	char	*p;
 
 	p = dict_get(env, "PATH");
+	if (!p)
+		return (NULL);
 	path = ft_split(p, ':');
 	return (path);
 }
@@ -55,6 +57,8 @@ static char	*find_path(t_command *command, t_dict *env)
 
 	i = -1;
 	path = define_path(env);
+	if (!path)
+		return (NULL);
 	if (command->program[0] == '/')
 	{
 		i = -1;
@@ -87,7 +91,7 @@ int	path_command(t_command *command, t_dict *env)
 	int		pid;
 
 	path = find_path(command, env);
-	if (access(path, F_OK))
+	if (access(path, F_OK) || !path)
 		return (0);
 	pid = fork();
 	if (!pid)

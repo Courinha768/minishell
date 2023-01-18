@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 19:30:25 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:28:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*dict_get(t_dict *dict, char *key)
 	while (i < dict->count)
 	{
 		whr = strcmpwhr(dict->env[i], key);
+		if (!whr)
+			return (NULL);
 		if (dict->env[i][whr - 1] == '='
 			&& key[whr - 1] == '\0')
 			// && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
