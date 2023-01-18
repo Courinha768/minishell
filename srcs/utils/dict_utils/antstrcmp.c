@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 12:36:33 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 19:17:09 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 17:27:25 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ size_t	strcmpwhr(const char *s1, const char *s2)
 	size_t	i;
 
 	if (!s1 && !s2)
+		return (0);
+	if (!s1)
+		return (0);
+	if (!s2)
 		return (0);
 	i = 0;
 	while (s1[i] && s2[i])

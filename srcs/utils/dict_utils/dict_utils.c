@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:07:23 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 20:54:20 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:49:46 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ char	*dict_get(t_dict *dict, char *key)
 	while (i < dict->count)
 	{
 		whr = strcmpwhr(dict->env[i], key);
+		if (!whr)
+			return (NULL);
 		if (dict->env[i][whr - 1] == '='
 			&& key[whr - 1] == '\0')
 			// && (key[whr - 1] == '=' || key[whr - 1] == '\0'))
