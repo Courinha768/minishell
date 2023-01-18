@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   readline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:24:27 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 15:03:58 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:21:30 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,11 @@ char	*read_line(t_promptinfo *promptinfo)
 	free(prompt);
 	if (!line)
 	{
-		return (NULL);
+		return (line);
 	}
 	if (!line[0])
 	{
-		free(line);
-		return (NULL);
+		return (line);
 	}
 	add_history(line);
 	return (line);
@@ -88,7 +87,6 @@ t_command	*create_commands(char *line, t_dict *env)
 	}
 	(void)env;
 	nbr_of_commands = countcommands(line);
-	free(line);
 	commands = malloc(sizeof(t_command) * (nbr_of_commands + 1));
 	if (!commands)
 		return (NULL);

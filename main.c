@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 16:11:04 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:20:59 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,9 @@ int	main(int argc, char *argv[], char *envp[])
 			printf("exit\n");
 			break ;
 		}
+
 		commands = create_commands(line, &prompt_info.newenv); //Alert: frees line
+		free(line);
 		if (commands)
 		{
 			token()->current_token = 0;
