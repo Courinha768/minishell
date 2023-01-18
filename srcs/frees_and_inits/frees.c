@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:59:00 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/16 16:55:07 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:45:33 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	free_commands(t_command *commands)
 	int	j;
 
 	i = -1;
-	while (commands[++i].program)
+	while (commands[++i].args || commands[i].program)
 	{
 		j = -1;
 		free(commands[i].program);

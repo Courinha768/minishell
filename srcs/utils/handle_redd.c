@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:40:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 22:35:11 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:46:06 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,14 @@ void	handle_redd(t_command *command, char **tokens, int *current_token)
 	}
 	else if (tokens[*current_token] && tokens[*current_token][0] == '<')
 	{
-		command->fdin = open(tokens[*current_token + 1], O_RDONLY
-				| O_CREAT | O_APPEND, 0644);
+		if (!access(tokens[*current_token + 1], F_OK))
+			command->fdin = open(tokens[*current_token + 1], O_RDONLY , 0644);
+		else
+		{
+			free(command->program);
+			command->program = NULL;
+			printf("minishell: no such file or directory: %s\n", tokens[*current_token + 1]);
+		}
 		*current_token += 2;
 	}
 }
