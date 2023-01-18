@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 16:56:15 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:52:56 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	main(int argc, char *argv[], char *envp[])
 			printf("exit\n");
 			break ;
 		}
+		if (!line[0])
+			continue ;
 		//esport removes PATH from ENV
 		commands = create_commands(line, &prompt_info.newenv); //Alert: frees line
 		free(line);

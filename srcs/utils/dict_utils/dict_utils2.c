@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:15:38 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 20:43:41 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:43:27 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ void	dict_free(t_dict *dict)
 	i = 0;
 	while (i < dict->count)
 	{
-		if (dict->env[i] != NULL)
-			free(dict->env[i]);
+		// if (dict->env[i] != NULL)
+		free(dict->env[i]);
 		i++;
 	}
 	free(dict->env);

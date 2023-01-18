@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/18 20:43:30 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:26:01 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ int	dict_append(t_dict *dict, char *keyval)
 {
 	if (keyval == NULL)
 		return (0);
-	if (dict->count >= dict->cap)
+	if (dict->count >= dict->cap - 1)
 		dict_grow(dict);
 	dict->env[dict->count] = keyval;
 	dict->count++;
+	dict->env[dict->count] = NULL;
 	return (1);
 }
 

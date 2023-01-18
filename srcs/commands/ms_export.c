@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/18 21:49:36 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/18 22:09:03 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,23 @@ void	dictorderalpha(t_dict *dict)
 	size_t	j;
 	size_t	i;
 	char	**min;
-	size_t	whr;
+	// size_t	whr;
 
 	j = 0;
 	while (j < dict->count)
 	{
 		min = &dict->env[j];
-		whr = strichr(*min, '=');
+		// whr = strichr(*min, '=');
 		i = j + 1;
 		while (i < dict->count)
 		{
-			whr = ft_min(whr, strichr(dict->env[i], '='));
+			// whr = ft_min(whr, strichr(dict->env[i], '='));
 			//TODO: use our strncmp
-			if (strncmp(*min, dict->env[i], whr) > 0)
+			// if (strncmp(*min, dict->env[i], whr) > 0)
+			if (antstrcmp(*min, dict->env[i]) > 0)
 			{
 				ft_strswap(min, &(dict->env[i]));
-				whr = strichr(*min, '=');
+				// whr = strichr(*min, '=');
 			}
 			i++;
 		}
@@ -115,10 +116,11 @@ void	ms_export(t_command *command, t_promptinfo *prompt)
 		return (
 			exe_fuc(command, prompt, export_print)
 		);
+			// export_print(command, prompt)
 	i = 1;
 	while (i < len)
 	{
-		dict_add(&prompt->newenv, command->args[i]);
+		dict_add(&prompt->newenv, ft_strdup(command->args[i]));
 		// pos = dict_pos(&prompt->newenv, command->args[i]);
 		// if (pos == 0)
 		// 	dict_add(&prompt->newenv, ft_strdup(command->args[i]));
