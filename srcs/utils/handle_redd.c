@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:40:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 14:53:21 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:19:05 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	handle_redd(t_command *command, char **tokens, int *current_token)
 	static int	fdin;
 	int			p[2];
 
+	p[0] = 0;
+	p[1] = 0;
 	if (fdin)
 	{
 		command->fdin = fdin;
@@ -39,7 +41,6 @@ void	handle_redd(t_command *command, char **tokens, int *current_token)
 		if (pipe(p) < 0)
 			return ;
 		command->fdout = p[1];
-		p[1] = 0;
 		fdin = p[0];
 	}
 	else if (tokens[*current_token] && tokens[*current_token][0] == '<')
