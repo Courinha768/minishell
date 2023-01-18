@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 23:53:48 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:34:48 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ t_command		nullcommand(void);
 
 char			**ms_split(char *s);
 
+size_t	strichr(const char *s, int c);
 /* =============================DICT UTILS=================================== */
 
 size_t			ft_min(size_t a, size_t b);
@@ -116,6 +117,7 @@ size_t			dict_pos(t_dict *dict, char *key);
 char			*dict_get(t_dict *dict, char *key);
 t_dict			dict_new(size_t amount);
 int				dict_add(t_dict *dict, char *keyval);
+int				dict_append(t_dict *dict, char *keyval);
 char			*dict_pop(t_dict *dict, char *key);
 void			dict_shallowfree(t_dict *dict);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 19:31:25 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 20:43:30 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,22 @@ static void	dict_grow(t_dict *dict)
 }
 
 /**
- * Adds key-value pair to dict
- * Does not presume '=' is inside keyval
- * Receives keyval ALREADY malloc'ed
+ * Inserts ALREADY malloc'ed keyval at index
 */
-int	dict_add(t_dict *dict, char *keyval)
+int	dict_append(t_dict *dict, char *keyval)
 {
-	size_t	i;
-	//Alert: 2 mallocs. 1 is freed
-	//TODO: not do 2 mallocs!
 	if (keyval == NULL)
 		return (0);
-	if (dict->count == dict->cap)
+	if (dict->count >= dict->cap)
 		dict_grow(dict);
-	i = 0;
-	while (i < dict->count) // + 1 TODO: verify!
-	{
-		if (dict->env[i] == NULL)
-		{
-			dict_insert(dict, i, keyval);
-			return (1);
-		}
-		i++;
-	}
 	dict->env[dict->count] = keyval;
 	dict->count++;
 	return (1);
 }
 
 /**
- * Works exactly like dict_pop but uses index
+ * Rmvs entry at given index
+ * Pushes all next entries back to replace
 */
 char	*dict_rmv(t_dict *dict, size_t index)
 {
@@ -80,9 +66,15 @@ char	*dict_rmv(t_dict *dict, size_t index)
 	if (!dict)
 		return (NULL);
 	popped = dict->env[index];
-	dict->env[index] = NULL; // very important!
-	if (index == dict->count - 1)
-		dict->count--; // also very important!
+
+	while (index < dict->count - 1)
+	{
+		dict->env[index] = dict->env[index + 1];
+		index++;
+	}
+	dict->env[index] = NULL;
+	
+	dict->count--; // Very important!
 	return (popped);
 }
 
