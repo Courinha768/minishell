@@ -32,6 +32,8 @@ int	s_t_size_counter(char *s, int i)
 	counter = 0;
 	in_quotes = -1;
 	in_squotes = -1;
+	if (i > 0)
+		i--;
 	while (s[i] && (s[++i] != ' ' || in_quotes > 0 || in_squotes > 0))
 	{
 		if (s[i] == '\"')

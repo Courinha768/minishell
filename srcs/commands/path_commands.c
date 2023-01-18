@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 20:19:22 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:41:57 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,14 @@ static char	*find_path(t_command *command, t_dict *env)
 
 	i = -1;
 	path = define_path(env);
+	if (command->program[0] == '/')
+	{
+		i = -1;
+		while (path[++i])
+			free(path[i]);
+		free(path);
+		return (ft_strdup(command->program));
+	}
 	while (path[++i])
 	{
 		command_path = ft_strjoin3(path[i], "/", command->program);
@@ -70,7 +78,7 @@ static char	*find_path(t_command *command, t_dict *env)
 	if (command_path)
 		return (command_path);
 	else
-		return (command->program);
+		return (ft_strdup(command->program));
 }
 
 int	path_command(t_command *command, t_dict *env)
