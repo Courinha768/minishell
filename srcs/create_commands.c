@@ -1,32 +1,5 @@
 #include "../include/include.h"
 
-//t_command	turn_tokens_commands(t_tokens *tokens)
-//{
-
-//}
-
-//t_command	*create_commands(char *line, t_dict *env)
-//{
-//	t_tokens 	*tokens;
-//	//t_command	commands;
-//	char		**tokens_c;
-
-//	if (!line || !line[0])
-//		return (NULL);
-//	(void)env;
-//	tokens_c = ms_split(ft_strdup(line));
-//	if (!line_valid(tokens_c))
-//	{
-//		printf("minishell: syntax error\n");
-//		return (NULL);
-//	}
-//	tokens = ms_organize_tokens(&tokens_c);
-//	free_split_tokens(tokens_c);
-//	ms_implement_flags(&tokens);
-//	//commands = turn_tokens_commands(tokens);
-//	return (NULL);
-//}
-
 
 t_tokens	*create_tokens(char **split)
 {
