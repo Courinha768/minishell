@@ -52,7 +52,7 @@ void		add_multiple_tokens(char ***tokens, char **new_tokens, int i);
 int			last_token(char **tokens);
 int			tokens_len(char **tokens);
 
-int			is_stopers(char c);
+int			is_stopers(char *s, int i);
 int			need_2_split(char *str);
 char		**split_tokens(char *token_2_split);
 
