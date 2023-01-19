@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:15:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 22:17:01 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:58:28 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,26 @@ void	check_for_redirection(t_tokens **tokens)
 	int	i;
 	int	j;
 	int	a;
+	int b;
 
 	i = -1;
+	b = FALSE;
 	while ((*tokens)[++i].tokens && (*tokens)[i].tokens[0])
 	{
-		j = -1;
-		while ((*tokens)[i].tokens[++j])
+		j = tokens_len((*tokens)[i].tokens);
+		while (--j > -1)
 		{
 			a = is_redirection((*tokens)[i].tokens[j]);
 			if (a)
 			{
-				change_redd_flags(&((*tokens)[i]), a);
-				add_redd_file(&((*tokens)[i]), (*tokens)[i].tokens[j + 1]);
+				if (!b)
+				{
+					change_redd_flags(&((*tokens)[i]), a);
+					add_redd_file(&((*tokens)[i]), (*tokens)[i].tokens[j + 1]);
+				}
 				free(remove_token(&((*tokens)[i].tokens), j + 1));
 				free(remove_token(&((*tokens)[i].tokens), j));
+				b = TRUE;
 			}
 		}
 	}
