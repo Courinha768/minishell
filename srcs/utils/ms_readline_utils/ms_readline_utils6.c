@@ -81,10 +81,10 @@ void	create_pipes_and_redirections(t_tokens *token, t_command *command)
 {
 	static int	fdin;
 	int			p[2];
-	int			i;
+//	int			i;
 	int			red_type;
 
-	i = -1;
+//	i = -1;
 	p[0] = 0;
 	p[1] = 0;
 	if (fdin)

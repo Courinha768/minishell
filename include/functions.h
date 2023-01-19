@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 17:02:05 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:56:43 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void			ms_export(t_command *command, t_promptinfo *prompt);
 void			ms_pwd(t_command *command, t_promptinfo *prompt);
 void			ms_unset(t_command *command, t_promptinfo *prompt);
 
-int				path_command(t_command *command, t_dict *env);
+void				path_command(t_command *command, t_dict *env);
 
 t_dict			shenv_init(char **envp);
 void			d_envprint(char *keyval);
@@ -106,6 +106,9 @@ t_command		nullcommand(void);
 char			**ms_split(char *s);
 
 size_t	strichr(const char *s, int c);
+
+void	closefds(t_command *command);
+
 /* =============================DICT UTILS=================================== */
 
 size_t			ft_min(size_t a, size_t b);

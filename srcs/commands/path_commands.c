@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 20:16:36 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:56:58 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static char	*find_path(t_command *command, t_dict *env)
 		return (ft_strndup(command->program, 2, END));
 }
 
-int	path_command(t_command *command, t_dict *env)
+void	path_command(t_command *command, t_dict *env)
 {
 	char	*path;
 	int		pid;
@@ -96,44 +96,24 @@ int	path_command(t_command *command, t_dict *env)
 
 	path = find_path(command, env);
 	if (access(path, F_OK | X_OK) == -1)
-	{
-		if (command->fdout != 1)
-			close(command->fdout);
-		if (command->fdin != 0)
-			close(command->fdin);
-		free(path);
-
 		perror(path);
-		command->pid = '?'; //TODO: !
-		return (1);
-	}
-	pid = fork();
-	if (!pid)
+	else
 	{
-		dup2(command->fdout, 1);
-		if (command->fdout != 1)
-			close(command->fdout);
-		dup2(command->fdin, 0);
-		if (command->fdin != 0)
-			close(command->fdin);
-		execve(path, command->args, env->env);
-		free(path);
-		// free_promptinfo(prompt);
-		exit(50);
+		pid = fork();
+		if (!pid)
+		{
+			dup2(command->fdout, 1);
+			dup2(command->fdin, 0);
+			closefds(command);
+			execve(path, command->args, env->env);
+			free(path); //TODO: Either we free everything or nothing
+			exit(50);
+		}
+		command->pid = pid;
+		wait(&stat_val); //Alert: presumes the right child
+		if (WIFEXITED(stat_val))		
+			errno = WEXITSTATUS(stat_val);
 	}
-	if (command->fdout != 1)
-		close(command->fdout);
-	if (command->fdin != 0)
-		close(command->fdin);
+	closefds(command);
 	free(path);
-	command->pid = pid;
-
-	while (pid != wait(&stat_val));
-	if (WIFEXITED(stat_val))
-		errno = WEXITSTATUS(stat_val);
-	// printf("Status of PID: %d => %d\n", pid, WIFEXITED(stat_val));
-	// printf("Status of PID: %d => %d\n", pid, WEXITSTATUS(stat_val));
-
-	
-	return (1);
 }

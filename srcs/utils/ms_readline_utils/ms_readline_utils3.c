@@ -31,7 +31,7 @@ static int	find_stoper(char *str)
 
 char	**split_tokens(char *token_2_split)
 {
-	int		i;
+//	int		i;
 	int		pipe_char;
 	char	c[2];
 	char	**splited_tokens;
@@ -40,7 +40,7 @@ char	**split_tokens(char *token_2_split)
 	splited_tokens = malloc(sizeof(char *) * 4);
 	if (!splited_tokens)
 		return (NULL);
-	i = -1;
+//	i = -1;
 	pipe_char = find_stoper(token_2_split);
 	c[0] = token_2_split[pipe_char];
 	c[1] = 0;
