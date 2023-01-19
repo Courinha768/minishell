@@ -1,16 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_readline.c                                     :+:      :+:    :+:   */
+/*   ms_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 17:16:28 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 21:40:42 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
+
+t_command	nullcommand(void)
+{
+	t_command	null_command;
+
+	null_command.program = NULL;
+	null_command.args = NULL;
+	null_command.pid = -1;
+	null_command.fdin = 0;
+	null_command.fdout = 1;
+	return (null_command);
+}
 
 t_command	*create_commands(char *line, t_dict *env)
 {
