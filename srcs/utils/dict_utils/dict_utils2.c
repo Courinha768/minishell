@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:15:38 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 21:43:27 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:30:48 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /**
  * Does not presume '=' is inside keyval
  * Adds key-value pair to dict if new
- * Overwrites if new val is given
+ * Overwrites (with free) if new val is given
  * Receives keyval ALREADY malloc'ed
 */
 int	dict_add(t_dict *dict, char *keyval)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 19:29:19 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:58:29 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,16 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 		ms_export(command, prompt);
 	else if (!ft_strcmp(command->program, "unset"))
 		ms_unset(command, prompt);
-	else if (path_command(command, env))
-		return ;
+	// else if (path_command(command, env))
+		// return ;
+	// else
+	// 	printf("%s: command not found\n", command->program);
 	else
-		printf("%s: command not found\n", command->program);
+		path_command(command, env);
+	//TODO: don't free line and have it accessible here. Mb in the prompt
+	// if (errno)
+	// 	perror(command->args[1]);
+	//TODO: move perror logic to each function
 }
 
 void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)

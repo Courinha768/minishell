@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/18 16:34:06 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:29:27 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,35 @@ static char	*cd_strjoin(char *s1, char *s2)
 		while (s2[counter2])
 			join[counter1++] = s2[counter2++];
 	join[counter1] = '\0';
-	free(s2);
+	// free(s2);
 	return (join);
+}
+
+/**
+ * Newdir will NOT be freed
+*/
+void	actualcd(t_promptinfo *prompt, char *newdir)
+{
+	if (chdir(newdir) == -1)
+		return (perror(newdir));
+	free(prompt->pwd);
+	prompt->pwd = getcwd(NULL, 0);
+	
+	dict_add(&prompt->newenv, ft_strjoin("PWD=", prompt->pwd)); //Alert: hope this doesn't make a mistake!
 }
 
 void	ms_cd(t_command *command, t_promptinfo *prompt)
 {
+	char	*newdir;
+
 	if (!command->args[1])
-	{
-		free(prompt->pwd);
-		prompt->pwd = ft_strdup(dict_get(&prompt->newenv, "HOME"));
-		chdir(prompt->pwd);
-		return ;
-	}
+		actualcd(prompt, dict_get(&prompt->newenv, dict_get(&prompt->newenv, "HOME")));
 	else if (command->args[1][0] == '~')
 	{
-		command->args[1] = cd_strjoin(dict_get(&prompt->newenv, "HOME"),
-			command->args[1]);
+		newdir = cd_strjoin(dict_get(&prompt->newenv, "HOME"), command->args[1]);
+		actualcd(prompt, newdir);
+		free(newdir);
 	}
-	if (chdir(command->args[1]) == -1)
-	{
-		printf("cd: no such file or directory %s\n", command->args[1]);
-		return ;
-	}
-	free(prompt->pwd);
-	prompt->pwd = getcwd(NULL, 0);
+	else
+		actualcd(prompt, command->args[1]);
 }
