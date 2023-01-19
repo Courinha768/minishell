@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:03:04 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 17:34:05 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:30:58 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,32 @@ int	find_redirection(t_tokens token)
 	return (FALSE);
 }
 
+void	create_red_d(t_tokens token, t_command *command)
+{
+	int		p[2];
+	char	*line;
+
+	pipe(p);
+	command->fdin = p[0];
+	line = ft_strdup("nada");
+	while (1)
+	{
+		free(line);
+		line = readline(">");
+		if (!ft_strcmp(line, token.redd.file))
+			break ;
+		ft_putstr_fd(line, p[1]);
+		ft_putstr_fd("\n", p[1]);
+	}
+	free(line);
+	close(p[1]);
+}
+
 void	create_redirection(t_tokens token, int red_type, t_command *command)
 {
 	if (red_type == RED_I)
 	{
-		if (!access(token.redd.file, F_OK))
+		if (!access(token.redd.file, F_OK | R_OK))
 			command->fdin = open(token.redd.file, O_RDONLY , 0644);
 		//else
 			//ERROR MSG
@@ -41,7 +62,7 @@ void	create_redirection(t_tokens token, int red_type, t_command *command)
 	}
 	else if (red_type == RED_D)
 	{
-		//still not sure
+		create_red_d(token, command);
 	}
 	else if (red_type == RED_A)
 	{
