@@ -6,11 +6,36 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 23:30:27 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:16:28 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
+
+t_command	*create_commands(char *line, t_dict *env)
+{
+	char		**split;
+	t_tokens	*tokens;
+	t_command	*commands;
+	int			i;
+
+	(void)env;
+	split = ms_split2(ft_strdup(line));
+	tokens = create_tokens(split);
+	check_for_redirection(&tokens);
+	i = 0;
+	while (tokens[i].tokens && tokens[i].tokens[0])
+		i++;
+	commands = malloc(sizeof(t_command) * (i + 1));
+	if (!commands)
+		return (NULL);
+	i = -1;
+	while (tokens[++i].tokens && tokens[i].tokens[0])
+		commands[i] = create_command(&(tokens[i]));
+	commands[i] = nullcommand();
+	free(tokens);
+	return (commands);
+}
 
 char	*ms_readline(t_promptinfo *prompt_info)
 {

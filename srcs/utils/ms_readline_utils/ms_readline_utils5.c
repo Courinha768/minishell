@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_readline_utils5.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 17:03:04 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/19 17:15:45 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../include/include.h"
 
 int	find_redirection(t_tokens token)
@@ -46,5 +58,33 @@ void	free_tokens(t_tokens *token)
 	while (token->tokens[++i])
 		free(token->tokens[i]);
 	free(token->tokens);
-	free(token->redd.file);
+	if (token->redd.red_i || token->redd.red_o
+			|| token->redd.red_d || token->redd.red_a)
+		free(token->redd.file);
+}
+
+t_command	create_command(t_tokens	*token)
+{
+	t_command	command;
+
+	command.fdin = 0;
+	command.fdout = 1;
+	command.args = ft_strstrdup(token->tokens);
+	command.pid = -1;
+	command.program = ft_strdup(token->tokens[0]);
+	create_pipes_and_redirections(token, &command);
+	free_tokens(token);
+	return (command);
+}
+
+t_command	null_command(void)
+{
+	t_command command;
+
+	command.args = NULL;
+	command.program = NULL;
+	command.fdin = 0;
+	command.fdout = 1;
+	command.pid = 0;
+	return (command);
 }

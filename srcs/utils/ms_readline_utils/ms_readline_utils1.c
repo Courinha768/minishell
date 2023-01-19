@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_readline_utils1.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 17:02:55 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/19 17:11:51 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../include/include.h"
 
 void	reset_all_flags(t_tokens *token)
@@ -8,7 +20,7 @@ void	reset_all_flags(t_tokens *token)
 	token->redd.red_o = FALSE;
 	token->redd.red_d = FALSE;
 	token->redd.red_a = FALSE;
-	token->redd.file = ft_strdup("nada");
+	//token->redd.file = ft_strdup("nada");
 }
 
 void	change_pipe_flags(t_tokens *token, int flag_to_change)

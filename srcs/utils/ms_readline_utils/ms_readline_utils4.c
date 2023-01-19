@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_readline_utils4.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 17:03:02 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/19 17:12:07 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../../include/include.h"
 
 int	nbr_of_struct_tokens(char **split)
@@ -57,7 +69,7 @@ t_tokens	null_token_struct(void)
 
 	reset_all_flags(&token);
 	token.tokens = NULL;
-	free(token.redd.file);
+	//free(token.redd.file);
 	token.redd.file = 0;
 	return (token);
 }

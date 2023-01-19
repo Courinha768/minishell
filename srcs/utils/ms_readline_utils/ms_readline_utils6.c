@@ -1,5 +1,16 @@
-#include "../include/include.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_readline_utils6.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/19 17:15:56 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/19 17:16:01 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../../../include/include.h"
 
 t_tokens	*create_tokens(char **split)
 {
@@ -108,60 +119,3 @@ char	**ft_strstrdup(char **tokens)
 	copy[i] = NULL;
 	return (copy);
 }
-
-t_command	create_command(t_tokens	*token)
-{
-	t_command	command;
-
-	command.fdin = 0;
-	command.fdout = 1;
-	command.args = ft_strstrdup(token->tokens);
-	command.pid = -1;
-	command.program = ft_strdup(token->tokens[0]);
-	create_pipes_and_redirections(token, &command);
-	free_tokens(token);
-	return (command);
-}
-
-t_command	null_command(void)
-{
-	t_command command;
-
-	command.args = NULL;
-	command.program = NULL;
-	command.fdin = 0;
-	command.fdout = 1;
-	command.pid = 0;
-	return (command);
-}
-
-t_command	*create_commands(char *line, t_dict *env)
-{
-	char		**split;
-	t_tokens	*tokens;
-	t_command	*commands;
-	int			i;
-
-	(void)env;
-	split = ms_split2(ft_strdup(line));
-	tokens = create_tokens(split);
-	check_for_redirection(&tokens);
-	i = 0;
-	while (tokens[i].tokens && tokens[i].tokens[0])
-		i++;
-	commands = malloc(sizeof(t_command) * (i + 1));
-	if (!commands)
-		return (NULL);
-	i = -1;
-	while (tokens[++i].tokens && tokens[i].tokens[0])
-		commands[i] = create_command(&(tokens[i]));
-	commands[i] = nullcommand();
-	free(tokens);
-	return (commands);
-}
-
-//int	main(void) {
-//	t_command *command;
-
-//	command = create_commands("hello world | out", NULL);
-//}
