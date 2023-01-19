@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   include.h                                          :+:      :+:    :+:   */
+/*   new_readline.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 13:05:43 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 01:45:14 by aappleto         ###   ########.fr       */
+/*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
+/*   Updated: 2023/01/18 23:30:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INCLUDE_H
-# define INCLUDE_H
+#include "../include/include.h"
 
-# include "../libft/libft.h"
-# include "./structs.h"
-# include "./functions.h"
-# include "./colours.h"
-# include "./ms_readline.h"
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <signal.h>
-# include <fcntl.h>
-# include <sys/stat.h>
-# include <sys/types.h>
-# include <sys/wait.h>
+char	*ms_readline(t_promptinfo *prompt_info)
+{
+	char	*prompt;
+	char	*command_line;
 
-#endif
+	prompt = create_prompt(prompt_info);
+	command_line = readline(prompt);
+	free(prompt);
+	if (!command_line || !command_line[0])
+		return (command_line);
+	add_history(command_line);
+	return (command_line);
+}

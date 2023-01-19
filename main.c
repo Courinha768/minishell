@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 21:52:56 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:02:11 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[], char *envp[])
 	{
 		//line = create_prompt(&prompt_info);
 		//melhorar o readline
-		line = read_line(&prompt_info); //Alert: frees prompt
+		line = ms_readline(&prompt_info); //Alert: frees prompt
 		if (!line)
 		{
 			printf("exit\n");
@@ -42,7 +42,6 @@ int	main(int argc, char *argv[], char *envp[])
 		free(line);
 		if (commands)
 		{
-			token()->current_token = 0;
 			read_commands(commands, &prompt_info, &prompt_info.newenv);
 		}
 	}
