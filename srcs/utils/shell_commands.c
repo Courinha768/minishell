@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 20:55:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 17:45:46 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:14:20 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void	sig_print(int signal)
 	rl_redisplay();
 }
 
-void sig_hnd(int sig){ (void)sig; printf("(SIG)"); }
-
 /**
  * Process received signals
 */
 void	shell_signal(void)
 {
-	signal(SIGINT, sig_print);
+	//Alert: Do NOT change the order these are in!!!
+	//TODO: disactivate this when not in interactive mode
 	signal(SIGQUIT, SIG_IGN);
+	// signal(SIGINT, sig_print);
 }

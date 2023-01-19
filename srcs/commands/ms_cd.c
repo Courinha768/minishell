@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/18 16:34:06 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:56:22 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,23 @@ static char	*cd_strjoin(char *s1, char *s2)
 	return (join);
 }
 
+int	actualcd(char *newdir)
+{
+	int	ret;
+	
+	ret = chdir(newdir);
+	if (errno)
+		perror(newdir);
+	return (ret);
+}
+
 void	ms_cd(t_command *command, t_promptinfo *prompt)
 {
 	if (!command->args[1])
 	{
 		free(prompt->pwd);
 		prompt->pwd = ft_strdup(dict_get(&prompt->newenv, "HOME"));
-		chdir(prompt->pwd);
+		actualcd(prompt->pwd);
 		return ;
 	}
 	else if (command->args[1][0] == '~')
@@ -50,9 +60,9 @@ void	ms_cd(t_command *command, t_promptinfo *prompt)
 		command->args[1] = cd_strjoin(dict_get(&prompt->newenv, "HOME"),
 			command->args[1]);
 	}
-	if (chdir(command->args[1]) == -1)
+	if (actualcd(command->args[1]) == -1)
 	{
-		printf("cd: no such file or directory %s\n", command->args[1]);
+		// printf("cd: no such file or directory %s\n", command->args[1]);
 		return ;
 	}
 	free(prompt->pwd);
