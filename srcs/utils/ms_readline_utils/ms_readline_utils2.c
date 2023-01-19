@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:57 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 20:12:07 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:21:42 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*remove_token(char ***tokens, int i)
 	{
 		if ((*tokens)[i])
 		{
-			if (!(*tokens)[i] || !(*tokens)[i][0])
+			if ((*tokens)[i][0])
 				(*tokens)[i - 1] = ft_strdup((*tokens)[i]);
 			free((*tokens)[i]);
 			(*tokens)[i] = NULL;
