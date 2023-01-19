@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/19 16:56:22 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:12:22 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,29 @@ static char	*cd_strjoin(char *s1, char *s2)
 		while (s2[counter2])
 			join[counter1++] = s2[counter2++];
 	join[counter1] = '\0';
-	free(s2);
+	// free(s2);
 	return (join);
 }
 
-int	actualcd(char *newdir)
+/**
+ * Newdir is ALREADY ft_strdup'ed
+*/
+void	actualcd(t_promptinfo *prompt, char *newdir)
 {
-	int	ret;
+	if (chdir(newdir) == -1)
+		return (perror(newdir));
+	free(prompt->pwd);
+	prompt->pwd = newdir;
 	
-	ret = chdir(newdir);
-	if (errno)
-		perror(newdir);
-	return (ret);
+	dict_add(&prompt->newenv, ft_strjoin("PWD=", newdir)); //Alert: hope this doesn't make a mistake!
 }
 
 void	ms_cd(t_command *command, t_promptinfo *prompt)
 {
 	if (!command->args[1])
-	{
-		free(prompt->pwd);
-		prompt->pwd = ft_strdup(dict_get(&prompt->newenv, "HOME"));
-		actualcd(prompt->pwd);
-		return ;
-	}
+		actualcd(prompt, dict_get(&prompt->newenv, ft_strdup("HOME")));
 	else if (command->args[1][0] == '~')
-	{
-		command->args[1] = cd_strjoin(dict_get(&prompt->newenv, "HOME"),
-			command->args[1]);
-	}
-	if (actualcd(command->args[1]) == -1)
-	{
-		// printf("cd: no such file or directory %s\n", command->args[1]);
-		return ;
-	}
-	free(prompt->pwd);
-	prompt->pwd = getcwd(NULL, 0);
+		actualcd(prompt, cd_strjoin(dict_get(&prompt->newenv, "HOME"), command->args[1]));
+	else
+		actualcd(prompt, ft_strdup(command->args[1]));
 }
