@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:59 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 21:34:11 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:17:21 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_stopers(char *s, int i)
 	{
 		if (s[j] == '\"' && inside_squotes < 0)
 			inside_quotes *= -1;
-		else if (s[i] == '\'' && inside_quotes < 0)
+		else if (s[j] == '\'' && inside_quotes < 0)
 			inside_squotes *= -1;
 	}
 	if (inside_quotes < 0 && inside_squotes < 0)
@@ -48,7 +48,6 @@ static int	find_stoper(char *str)
 
 char	**split_tokens(char *token_2_split)
 {
-	int		i;
 	int		pipe_char;
 	char	c[3];
 	char	**splited_tokens;
@@ -57,7 +56,6 @@ char	**split_tokens(char *token_2_split)
 	splited_tokens = malloc(sizeof(char *) * 4);
 	if (!splited_tokens)
 		return (NULL);
-	i = -1;
 	pipe_char = find_stoper(token_2_split);
 	c[0] = token_2_split[pipe_char];
 	if (is_stopers(token_2_split, pipe_char + 1))

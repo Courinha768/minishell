@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:15:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 18:30:47 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 22:17:01 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ void	create_pipes_and_redirections(t_tokens *token, t_command *command)
 {
 	static int	fdin;
 	int			p[2];
-	int			i;
 	int			red_type;
 
-	i = -1;
 	p[0] = 0;
 	p[1] = 0;
 	if (fdin)
