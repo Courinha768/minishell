@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 19:18:57 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:44:03 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	*find_path(t_command *command, t_dict *env)
 	if (command_path)
 		return (command_path);
 	else
-		return (ft_strdup(command->program));
+		return (ft_strndup(command->program, 2, END));
 }
 
 int	path_command(t_command *command, t_dict *env)

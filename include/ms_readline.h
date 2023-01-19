@@ -57,8 +57,16 @@ t_tokens	create_token_struct(char **split);
 t_tokens	null_token_struct(void);
 int			nbr_of_struct_tokens(char **split);
 
-void	free_tokens(t_tokens *token);
-void	create_redirection(t_tokens token, int red_type, t_command *command);
-int	find_redirection(t_tokens token);
+void		free_tokens(t_tokens *token);
+void		create_redirection(t_tokens token, int red_type, t_command *command);
+int			find_redirection(t_tokens token);
+t_command	create_command(t_tokens	*token);
+t_command	null_command(void);
+
+t_tokens	*create_tokens(char **split);
+char		**ms_split2(char *line);
+void		check_for_redirection(t_tokens **tokens);
+void		create_pipes_and_redirections(t_tokens *token, t_command *command);
+char		**ft_strstrdup(char **tokens);
 
 #endif
