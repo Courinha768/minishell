@@ -6,16 +6,20 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/17 23:53:48 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:56:51 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
 
+
+char	*ms_readline(t_promptinfo *prompt_info);
+t_command	*create_commands(char *line, t_dict *env);
+
 char			*create_prompt(t_promptinfo *prompt_struct);
 char			*read_line(t_promptinfo *promptinfo);
-t_command		*create_commands(char *line, t_dict *env);
+//t_command		*create_commands(char *line, t_dict *env);
 
 /* ========================================================================== */
 /*                                COMMANDS                                    */
@@ -70,14 +74,14 @@ void			rl_free_utils(char *cl, char *prompt, char **tokens);
 void			exe_fuc(t_command *command, t_promptinfo *prompt,
 					t_function fun);
 
+char	*ft_strndup(const char *s1, int start, int end);
+
 size_t			strcmpwhr(const char *s1, const char *s2);
 int				ft_charinside(char c, const char *s);
 int				mtrxdo(char **mtrx, void *data,
 					int (*func)(char, void *, size_t, size_t));
 size_t			ft_mtrxlen(void **m);
 int				ft_strcmp(const char *s1, const char *s2);
-
-t_token			*token(void);
 
 void			strip_quotes(t_command *commands, t_dict *env);
 

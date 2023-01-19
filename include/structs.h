@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 19:39:49 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 02:28:15 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,6 @@ typedef struct s_promptinfo {
 	char	*pwd;
 	t_dict	newenv;
 }	t_promptinfo;
-
-typedef struct s_token {
-	int		current_token;
-	char	token[1024][1024];
-}	t_token;
 
 typedef struct s_info {
 	int		finished;

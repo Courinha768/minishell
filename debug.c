@@ -6,20 +6,11 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:58:28 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/12 22:38:58 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 02:42:38 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
-
-void	print_tokens(void)
-{
-	int	i;
-
-	i = -1;
-	while (token()->token[++i][0])
-		printf("%s\n", token()->token[i]);
-}
 
 void	print_commands(t_command *commands)
 {
