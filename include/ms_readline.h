@@ -2,7 +2,9 @@
 # define MS_READLINE_H
 
 # define RED_IN "<"
+# define CRED_IN '<'
 # define RED_OUT ">"
+# define CRED_OUT '>'
 # define RED_APP ">>"
 # define RED_IDK "<<"
 # define PIPE '|'
@@ -40,7 +42,7 @@ typedef	struct	s_tokens {
 
 void		change_pipe_flags(t_tokens *token, int flag_to_change);
 void		change_redd_flags(t_tokens *token, int flag_to_change);
-void		add_redd_file(t_tokens *token, char *file);
+void		add_redd_file(	t_tokens *token, char *file);
 void		reset_all_flags(t_tokens *token);
 int			is_redirection(char *token);
 
@@ -50,6 +52,7 @@ void		add_multiple_tokens(char ***tokens, char **new_tokens, int i);
 int			last_token(char **tokens);
 int			tokens_len(char **tokens);
 
+int			is_stopers(char c);
 int			need_2_split(char *str);
 char		**split_tokens(char *token_2_split);
 

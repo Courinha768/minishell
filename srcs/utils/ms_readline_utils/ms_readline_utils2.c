@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:57 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 17:02:58 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 20:12:07 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ char	*remove_token(char ***tokens, int i)
 	removed = ft_strdup((*tokens)[i]);
 	free((*tokens)[i]);
 	(*tokens)[i] = NULL;
-	//i--;
 	while ((*tokens)[++i])
 	{
 		if ((*tokens)[i])
 		{
-			(*tokens)[i - 1] = ft_strdup((*tokens)[i]);
+			if (!(*tokens)[i] || !(*tokens)[i][0])
+				(*tokens)[i - 1] = ft_strdup((*tokens)[i]);
 			free((*tokens)[i]);
 			(*tokens)[i] = NULL;
 		}
@@ -47,10 +47,13 @@ void	add_token(char ***tokens, char *new_token, int i)
 	while (++j < i)
 		new_tokens[j] = ft_strdup((*tokens)[j]);
 	new_tokens[j] = ft_strdup(new_token);
-	while ((*tokens)[j - 1])
+	while ((*tokens)[++j - 1])
 		new_tokens[j] = ft_strdup((*tokens)[j - 1]);
 	new_tokens[j] = NULL;
 	free(new_token);
+	j = -1;
+	while ((*tokens)[++j])
+		free((*tokens)[j]);
 	free(*tokens);
 	*tokens = new_tokens;
 }

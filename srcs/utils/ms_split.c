@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:49 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 17:02:51 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:36:39 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ char	**ms_split(char *s)
 			split[j][k++] = s[i++];
 		}
 		split[j][k] = 0;
+		while (s[i] && s[i + 1] && s[i + 1] == ' ')
+			i++;
 		j++;
 	}
 	split[j] = 0;

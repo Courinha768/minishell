@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:15:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 17:16:01 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/19 18:30:47 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ char	**ms_split2(char *line)
 			add_multiple_tokens(&split, split_tokens(token_2_split), i);
 		}
 	}
+	i = -1;
 	return (split);
 }
 
