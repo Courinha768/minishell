@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 06:08:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 06:30:53 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int	main(int argc, char **argv, char **envp)
 // on exit, check if there is only on argument (it doesnt leave)
 // FIXME:
 // ctrl+C is printing 2 prompts when doing something like cat with no args
-// ctrl+D is correct but its making error msgs weird
+// ctrl+D is correct in this situation but its making error msgs weird
 // NORMINETTE

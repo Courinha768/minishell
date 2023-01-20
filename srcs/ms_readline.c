@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 05:34:13 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 06:44:15 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,24 @@ void	replace_1(char **token, t_dict *env)
 	int		dollar_sign;
 	char	key[1024];
 	int		i;
+	char	*temp;
 
 	dollar_sign = ms_strnstr(*token, "$", -1);
 	i = 0;
-	while (ft_isalnum((*token)[++dollar_sign]))
-		key[i++] = (*token)[dollar_sign];
+	if ((*token)[1] == '?' && !(*token)[1])
+		key[0] = '?';
+	else
+		while (ft_isalnum((*token)[++dollar_sign]))
+			key[i++] = (*token)[dollar_sign];
 	key[i] = 0;
-	replace_key(token, key, dict_get(env, key));
+	if (!ft_strcmp(key, "?"))
+	{
+		temp = ft_itoa(info()->error);
+		replace_key(token, key, temp);
+		free(temp);
+	}
+	else
+		replace_key(token, key, dict_get(env, key));
 }
 
 void	place_evars(t_command **commands, t_dict *env)
