@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:49 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 14:35:25 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:15:56 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	splitinin(char *s, char **split, int *i, int j)
 	static int	in_quotes0 = -1;
 	static int	in_quotes1 = -1;
 	int			k;
-	
+
 	k = 0;
 	while (s[*i] && (s[*i] != ' ' || in_quotes0 > 0 || in_quotes1 > 0))
 	{
@@ -73,7 +73,7 @@ int	splitinin(char *s, char **split, int *i, int j)
 		split[j][k++] = s[(*i)++];
 	}
 	split[j][k] = 0;
-	return k;
+	return (k);
 }
 
 int	splitinside(char *s, char **split)
@@ -81,7 +81,7 @@ int	splitinside(char *s, char **split)
 	int	i;
 	int	j;
 	int	in_quotes[2];
-	
+
 	in_quotes[0] = -1;
 	in_quotes[1] = -1;
 	i = -1;

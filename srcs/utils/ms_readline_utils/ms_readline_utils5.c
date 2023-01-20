@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:03:04 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 17:07:50 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:20:11 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,7 @@ void	create_redirection(t_tokens token, int red_type, t_command *command)
 		{
 			perror(token.redd.file);
 			info()->errorkeep = 1;
-			// free(command->program);
-			// command->program = NULL;
+			command->fdin = -42;
 		}
 	}
 	else if (red_type == RED_O)

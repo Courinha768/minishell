@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 17:03:41 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:16:23 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,6 @@ t_command	*create_commands(char *line, t_dict *env)
 	place_evars(&commands, env);
 	remove_quotes(&commands);
 	return (commands);
-}
-
-void	nada(int sig)
-{
-	(void)sig;
-	write(2, "\n", 1);
 }
 
 char	*ms_readline(t_promptinfo *prompt_info)
