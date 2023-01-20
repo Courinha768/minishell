@@ -20,7 +20,7 @@ void	ms_echo(t_command *command, t_promptinfo *prompt)
 	(void)prompt;
 	printlnb = 1;
 	i = 1;
-	if (command->args[1] && ! strcmp(command->args[1], "-n"))
+	if (command->args[1] && ! ft_strcmp(command->args[1], "-n"))
 	{
 		printlnb = 0;
 		i++;
