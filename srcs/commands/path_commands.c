@@ -60,7 +60,7 @@ static char	*find_path(t_command *command, t_dict *env)
 	if (command_path)
 		return (command_path);
 	else
-		return (ft_strndup(command->program, 2, END));
+		return (ft_strdup(command->program));
 }
 
 void	path_command(t_command *command, t_promptinfo *prompt)
