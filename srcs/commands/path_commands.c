@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 17:46:05 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:08:43 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	path_command(t_command *command, t_promptinfo *prompt)
 	{
 		info()->errorkeep = 127;
 		ft_putstr_fd(command->program, 2);
-		ft_putstr_fd(": command not found\n", 2);	
+		ft_putstr_fd(": command not found\n", 2);
 	}
 	else
 	{

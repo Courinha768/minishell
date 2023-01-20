@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_readline.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 13:31:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/20 13:39:48 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:08:04 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ void		create_pipes_and_redirections(t_tokens *token, t_command *command);
 char		**ft_strstrdup(char **tokens);
 
 void		remove_quotes(t_command **commands);
+
+int			is_all_space(char *str);
 
 t_command	nullcommand(void);
 

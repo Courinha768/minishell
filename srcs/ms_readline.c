@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 17:16:23 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:07:37 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ t_command	*create_commands(char *line, t_dict *env)
 	t_command	*commands;
 	int			i;
 
-	(void)env;
 	split = ms_split2(ft_strdup(line));
 	if (check_line(split))
 		return (free_char_list(&split));
@@ -98,6 +97,8 @@ char	*ms_readline(t_promptinfo *prompt_info)
 	signal(SIGINT, nada);
 	signal(SIGQUIT, nada);
 	free(prompt);
+	if (!is_all_space(command_line))
+		return (ft_strdup(""));
 	if (!command_line || !command_line[0])
 		return (command_line);
 	add_history(command_line);

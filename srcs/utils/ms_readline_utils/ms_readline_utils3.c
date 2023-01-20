@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:59 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 05:12:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:07:57 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,16 @@ int	need_2_split(char *str)
 			return (TRUE);
 	}
 	return (FALSE);
+}
+
+int	is_all_space(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (1);
+	while ((str[i] == ' ' || str[i] == '\t'))
+		i++;
+	return (str[i] != 0);
 }
