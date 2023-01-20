@@ -6,13 +6,12 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 11:39:41 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:51:32 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FUNCTIONS_H
 # define FUNCTIONS_H
-
 
 char			*ms_readline(t_promptinfo *prompt_info);
 t_command		*create_commands(char *line, t_dict *env);
@@ -108,9 +107,11 @@ t_command		nullcommand(void);
 
 char			**ms_split(char *s);
 
-size_t	strichr(const char *s, int c);
+size_t			strichr(const char *s, int c);
 
-void	closefds(t_command *command);
+void			closefds(t_command *command);
+char			*find_path(t_command *command, t_dict *env);
+
 
 /* =============================DICT UTILS=================================== */
 
