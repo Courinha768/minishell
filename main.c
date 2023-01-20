@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 04:26:54 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:05:08 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,12 @@ int	main(int argc, char **argv, char **envp)
 }
 
 // TODO:
-// add $? on exit
+// add error nbr on exit
 // add echo &?
-// ctrl+C is printing 2 prompts when doing something like >grep "something"
+// on exit, check if the arguments are nbrs (it leaves anyways)
+// on exit, check if there is only on argument (it doesnt leave)
+// FIXME:
+// ctrl+C is printing 2 prompts when doing something like cat with no args
 // ctrl+D is correct but its making error msgs weird
+// echo "" prints one of them
+// NORMINETTE

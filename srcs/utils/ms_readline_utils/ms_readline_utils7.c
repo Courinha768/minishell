@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 00:08:59 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 00:09:16 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:08:22 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ void	remove_quotes_sub(char **str)
 		if ((*str)[i] == '\"' && inside_squotes < 0)
 		{
 			remove_char(str, i);
+			i--;
 			inside_quotes *= -1;
 		}
 		else if ((*str)[i] == '\'' && inside_quotes < 0)
 		{
 			remove_char(str, i);
+			i--;
 			inside_squotes *= -1;
 		}
 	}
