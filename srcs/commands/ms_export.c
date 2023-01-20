@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/20 05:38:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:42:14 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	ms_export(t_command *command, t_promptinfo *prompt)
 {
 	size_t	len;
 	size_t	i;
-	// size_t	pos;
+
 	len = ft_mtrxlen((void **)command->args);
 	if (len <= 1)
 		return (exe_fuc(command, prompt, export_print));
@@ -107,19 +107,6 @@ void	ms_export(t_command *command, t_promptinfo *prompt)
 	while (i < len)
 	{
 		dict_add(&prompt->newenv, ft_strdup(command->args[i]));
-		// pos = dict_pos(&prompt->newenv, command->args[i]);
-		// if (pos == 0)
-		// 	dict_add(&prompt->newenv, ft_strdup(command->args[i]));
-		// else
-		// {
-		// 	// In-situ replace
-		// 	if (strichr(command->args[i], '=') > 0)
-		// 	{
-		// 		free(prompt->newenv.env[pos - 1]);
-		// 		dict_insert(&prompt->newenv, pos -1,
-		// 			ft_strdup(command->args[i]));
-		// 	}
-		// }
 		i++;
 	}
 }

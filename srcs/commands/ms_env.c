@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:25:14 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/17 19:14:43 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:40:37 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,13 @@ t_dict	shenv_init(char **envp)
 		i++;
 	}
 	tmp = ft_itoa(ft_atoi(dict_get(&newenv, "SHLVL")) + 1);
-	dict_add(&newenv, ft_strjoin("SHLVL=",tmp));
+	dict_add(&newenv, ft_strjoin("SHLVL=", tmp));
 	free(tmp);
 	return (newenv);
 }
 
 void	d_envprint(char *keyval)
 {
-	//TODO: print the keyval only if val exists
 	if (keyval)
 	{
 		if (ft_strchr(keyval, '=') != NULL)

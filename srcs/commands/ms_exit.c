@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:30:57 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 11:26:58 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 13:41:13 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	ms_exit(t_command *command, t_promptinfo *prompt)
 	else
 	{
 		info()->errorkeep = 2;
-		printf("minishell: exit: %s: numeric argument required\n", command->args[1]);
-	}
-		
+		printf("minishell: exit: %s: numeric argument required\n",
+			command->args[1]);
+	}	
 	info()->finished = 1;
 }

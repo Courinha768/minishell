@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 20:55:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 12:10:57 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:16:39 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,17 @@ void	clear_shell(void)
 	write(1, "\e[1;1H\e[2J", 11);
 }
 
+void	nada(int sig)
+{
+	(void)sig;
+	write(2, "\n", 1);
+}
+
 void	sig_print(int signal)
 {
 	(void)signal;
 	rl_replace_line("", 0);
-	printf("\n");
+	write(2, "\n", 1);
 	rl_on_new_line();
 	rl_redisplay();
 }
@@ -32,16 +38,14 @@ void	sig_print(int signal)
 //TODO: disactivate this when not in interactive mode
 void	shell_signal(void)
 {
-	struct sigaction sigsig;
-	
+	struct sigaction	sigsig;
+
 	sigsig.sa_flags = 0;
 	sigemptyset(&sigsig.sa_mask);
 	sigaddset(&sigsig.sa_mask, SIGQUIT);
 	sigaddset(&sigsig.sa_mask, SIGINT);
-
 	sigsig.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &sigsig, NULL);
-
 	sigsig.sa_handler = sig_print;
 	sigaction(SIGINT, &sigsig, NULL);
 }

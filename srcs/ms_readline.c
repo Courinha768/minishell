@@ -6,63 +6,11 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 10:49:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:16:23 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
-
-void	replace_1(char **token, t_dict *env)
-{
-	int		dollar_sign;
-	char	key[1024];
-	int		i;
-	char	*temp;
-
-	dollar_sign = ms_strnstr(*token, "$", -1);
-	i = 0;
-	if ((*token)[dollar_sign + 1] == '?')
-		key[i++] = '?';
-	else
-		while (ft_isalnum((*token)[++dollar_sign]))
-			key[i++] = (*token)[dollar_sign];
-	key[i] = 0;
-	if (!ft_strcmp(key, "?\0"))
-	{
-		temp = ft_itoa(info()->errorkeep);
-		replace_key(token, key, temp);
-		free(temp);
-	}
-	else
-		replace_key(token, key, dict_get(env, key));
-}
-
-void	place_evars(t_command **commands, t_dict *env)
-{
-	int	i;
-	int	j;
-	int	a;
-
-	i = -1;
-	while ((*commands)[++i].program)
-	{
-		j = -1;
-		while ((*commands)[i].args[++j])
-		{
-			a = has_stopers((*commands)[i].args[j]);
-			if (a == 1)
-				replace_1(&((*commands)[i].args[j]), env);
-			else if (a == 2)
-				replace_key(&((*commands)[i].args[j]), "~",
-					dict_get(env, "HOME"));
-			if (a)
-				j--;
-			a = 0;
-		}
-	}
-	free((*commands)[0].program);
-	(*commands)[0].program = ft_strdup((*commands)[0].args[0]);
-}
 
 int	is_special(char *str)
 {
@@ -73,7 +21,6 @@ int	is_special(char *str)
 	else if (!ft_strcmp(str, "|"))
 		return (TRUE);
 	return (FALSE);
-	
 }
 
 int	check_line(char **split)
@@ -85,7 +32,8 @@ int	check_line(char **split)
 	{
 		if (i > 0 && is_special(split[i]) && is_special(split[i - 1]))
 		{
-			printf("minishell: syntax error near unexpected token `%s'\n", split[i]);
+			printf("minishell: syntax error nearunexpected token `%s'\n",
+				split[i]);
 			info()->errorkeep = 2;
 			return (TRUE);
 		}
@@ -145,7 +93,10 @@ char	*ms_readline(t_promptinfo *prompt_info)
 	char	*command_line;
 
 	prompt = create_prompt(prompt_info);
+	shell_signal();
 	command_line = readline(prompt);
+	signal(SIGINT, nada);
+	signal(SIGQUIT, nada);
 	free(prompt);
 	if (!command_line || !command_line[0])
 		return (command_line);

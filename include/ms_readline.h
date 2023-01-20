@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ms_readline.h                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/20 13:31:07 by amaria-d          #+#    #+#             */
+/*   Updated: 2023/01/20 13:39:48 by amaria-d         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MS_READLINE_H
 # define MS_READLINE_H
 
@@ -21,7 +33,7 @@
 
 # define END 1024
 
-typedef struct	s_reddirec {
+typedef struct s_reddirec {
 	int		red_i;
 	int		red_o;
 	int		red_d;
@@ -29,12 +41,12 @@ typedef struct	s_reddirec {
 	char	*file;
 }	t_reddirec;
 
-typedef struct	s_pipeflags {
+typedef struct s_pipeflags {
 	int	pipe_behind;
 	int	pipe_ahead;
 }	t_pipeflags;
 
-typedef	struct	s_tokens {
+typedef struct s_tokens {
 	char		**tokens;
 	t_pipeflags	pipe;
 	t_reddirec	redd;
@@ -61,7 +73,9 @@ t_tokens	null_token_struct(void);
 int			nbr_of_struct_tokens(char **split);
 
 void		free_tokens(t_tokens *token);
-void		create_redirection(t_tokens token, int red_type, t_command *command);
+void		create_redirection(t_tokens token,
+				int red_type, t_command *command);
+
 int			find_redirection(t_tokens token);
 t_command	create_command(t_tokens	*token);
 t_command	null_command(void);
@@ -81,5 +95,7 @@ int			has_stopers(char *s);
 int			evar_stopers2(char *s, int i);
 int			evar_stopers(char *s, int i);
 int			ms_strnstr(const char *haystack, const char *needle, size_t len);
+
+void		place_evars(t_command **commands, t_dict *env);
 
 #endif

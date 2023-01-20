@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 11:39:20 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:13:02 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	exe_fuc(t_command *command, t_promptinfo *prompt, t_function fun)
 
 static void	command_fork(t_command *command, t_promptinfo *prompt)
 {
-
+	if (command->fdin == -42)
+		return ;
 	if (!ft_strcmp(command->program, "change"))
 		change(*command, prompt);
 	else if (!ft_strcmp(command->program, "echo"))
@@ -78,10 +79,9 @@ void	read_commands(t_command *commands, t_promptinfo *prompt)
 		if (commands[i].pid != -1)
 		{
 			wait(&stat_val);
-			if (WIFEXITED(stat_val))		
+			if (WIFEXITED(stat_val))
 				info()->errorkeep = WEXITSTATUS(stat_val);
 		}
 	}
-	//print_commands(commands);
 	free_commands(commands);
 }
