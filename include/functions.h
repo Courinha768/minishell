@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 01:55:03 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:39:41 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 # define FUNCTIONS_H
 
 
-char	*ms_readline(t_promptinfo *prompt_info);
-t_command	*create_commands(char *line, t_dict *env);
+char			*ms_readline(t_promptinfo *prompt_info);
+t_command		*create_commands(char *line, t_dict *env);
 
 char			*create_prompt(t_promptinfo *prompt_struct);
 char			*read_line(t_promptinfo *promptinfo);
@@ -25,8 +25,7 @@ char			*read_line(t_promptinfo *promptinfo);
 /*                                COMMANDS                                    */
 /* ========================================================================== */
 
-void			read_commands(t_command *commands, t_promptinfo *prompt,
-					t_dict *env);
+void			read_commands(t_command *commands, t_promptinfo *prompt);
 
 void			ms_cd(t_command *command, t_promptinfo *prompt);
 void			ms_clear(t_command *command, t_promptinfo *prompt);
@@ -37,7 +36,7 @@ void			ms_export(t_command *command, t_promptinfo *prompt);
 void			ms_pwd(t_command *command, t_promptinfo *prompt);
 void			ms_unset(t_command *command, t_promptinfo *prompt);
 
-void				path_command(t_command *command, t_dict *env);
+void			path_command(t_command *command, t_promptinfo *prompt);
 
 t_dict			shenv_init(char **envp);
 void			d_envprint(char *keyval);
@@ -74,7 +73,7 @@ void			rl_free_utils(char *cl, char *prompt, char **tokens);
 void			exe_fuc(t_command *command, t_promptinfo *prompt,
 					t_function fun);
 
-char	*ft_strndup(const char *s1, int start, int end);
+char			*ft_strndup(const char *s1, int start, int end);
 
 size_t			strcmpwhr(const char *s1, const char *s2);
 int				ft_charinside(char c, const char *s);
