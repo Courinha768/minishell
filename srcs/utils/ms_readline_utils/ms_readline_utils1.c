@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:55 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 18:58:49 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:11:39 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	reset_all_flags(t_tokens *token)
 	token->redd.red_o = FALSE;
 	token->redd.red_d = FALSE;
 	token->redd.red_a = FALSE;
-	//token->redd.file = ft_strdup("nada");
 }
 
 void	change_pipe_flags(t_tokens *token, int flag_to_change)
@@ -60,4 +59,3 @@ int	is_redirection(char *token)
 		return (RED_A);
 	return (FALSE);
 }
-

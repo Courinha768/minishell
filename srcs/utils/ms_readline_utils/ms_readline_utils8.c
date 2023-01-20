@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 02:30:25 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 04:02:49 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:26:14 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,13 @@ static int	inside_quotes(int c)
 	static int	inside_quotes;
 	static int	inside_squotes;
 
-	if (c < 0 || !inside_quotes)
+	if (c < 0)
+	{
+		inside_quotes = -1;
+		inside_squotes = -1;
+		return (TRUE);
+	}
+	if (!inside_quotes)
 	{
 		inside_quotes = -1;
 		inside_squotes = -1;
@@ -47,17 +53,9 @@ int	ms_strnstr(const char *haystack, const char *needle, size_t len)
 		j = 0;
 		a = inside_quotes(haystack[i]);
 		if (!a)
-		{
 			while (haystack[i + j] == needle[j] && i + j < (int)len)
-			{
-				if (!needle[j + 1])
-				{
-					inside_quotes(-1);
+				if (!needle[1 + j++] && inside_quotes(-1))
 					return (i);
-				}
-				j++;
-			}
-		}
 		i++;
 	}
 	inside_quotes(-1);
@@ -94,8 +92,8 @@ int	evar_stopers2(char *s, int i)
 	int	inside_squotes;
 
 	j = -1;
-	if (s[i] != '~' || (s[i - 1] && s[i - 1] != ' ') ||
-		(s[i + 1] && s[i + 1] != ' ' && s[i + 1] != '/'))
+	if (s[i] != '~' || (s[i - 1] && s[i - 1] != ' ')
+		|| (s[i + 1] && s[i + 1] != ' ' && s[i + 1] != '/'))
 		return (FALSE);
 	inside_quotes = -1;
 	inside_squotes = -1;
@@ -108,21 +106,6 @@ int	evar_stopers2(char *s, int i)
 	}
 	if (inside_quotes < 0 && inside_squotes < 0)
 		return (TRUE);
-	return (FALSE);
-}
-
-int	has_stopers(char *s)
-{
-	int	i;
-
-	i = -1;
-	while (s[++i])
-	{
-		if (evar_stopers(s, i))
-			return (1);
-		if (evar_stopers2(s, i))
-			return (2);
-	}
 	return (FALSE);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_readline_utils3.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:59 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 23:04:29 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:12:37 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ int	is_stopers(char *s, int i)
 
 static int	find_stoper(char *str)
 {
-	int i;
-	
+	int	i;
+
 	i = -1;
 	while (str[++i])
 		if (is_stopers(str, i))
-			break;
+			break ;
 	return (i);
 }
 
@@ -51,7 +51,6 @@ char	**split_tokens(char *token_2_split)
 	int		pipe_char;
 	char	c[3];
 	char	**splited_tokens;
-
 
 	splited_tokens = malloc(sizeof(char *) * 4);
 	if (!splited_tokens)

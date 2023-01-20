@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 05:05:08 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:11:00 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,4 @@ int	main(int argc, char **argv, char **envp)
 // FIXME:
 // ctrl+C is printing 2 prompts when doing something like cat with no args
 // ctrl+D is correct but its making error msgs weird
-// echo "" prints one of them
 // NORMINETTE

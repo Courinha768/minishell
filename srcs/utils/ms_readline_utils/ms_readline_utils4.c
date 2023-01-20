@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:03:02 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 19:11:27 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:18:00 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,21 @@ t_tokens	null_token_struct(void)
 
 	reset_all_flags(&token);
 	token.tokens = NULL;
-	//free(token.redd.file);
 	token.redd.file = 0;
 	return (token);
+}
+
+int	has_stopers(char *s)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+	{
+		if (evar_stopers(s, i))
+			return (1);
+		if (evar_stopers2(s, i))
+			return (2);
+	}
+	return (FALSE);
 }

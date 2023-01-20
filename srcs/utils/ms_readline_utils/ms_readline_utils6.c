@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_readline_utils6.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:15:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 23:04:44 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:31:34 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ms_split2(char *line)
 	while (split[++i])
 	{
 		if (need_2_split(split[i]))
-		{
+		{c
 			token_2_split = remove_token(&split, i);
 			add_multiple_tokens(&split, split_tokens(token_2_split), i);
 		}
@@ -57,27 +57,26 @@ void	check_for_redirection(t_tokens **tokens)
 {
 	int	i;
 	int	j;
-	int	a;
-	int b;
+	int	a[2];
 
 	i = -1;
-	b = FALSE;
+	a[1] = FALSE;
 	while ((*tokens)[++i].tokens && (*tokens)[i].tokens[0])
 	{
 		j = tokens_len((*tokens)[i].tokens);
 		while (--j > -1)
 		{
-			a = is_redirection((*tokens)[i].tokens[j]);
-			if (a)
+			a[0] = is_redirection((*tokens)[i].tokens[j]);
+			if (a[0])
 			{
-				if (!b)
+				if (!a[1])
 				{
-					change_redd_flags(&((*tokens)[i]), a);
+					change_redd_flags(&((*tokens)[i]), a[0]);
 					add_redd_file(&((*tokens)[i]), (*tokens)[i].tokens[j + 1]);
 				}
 				free(remove_token(&((*tokens)[i].tokens), j + 1));
 				free(remove_token(&((*tokens)[i].tokens), j));
-				b = TRUE;
+				a[1] = TRUE;
 			}
 		}
 	}

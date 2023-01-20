@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:03:04 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 00:43:09 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:16:19 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	create_redirection(t_tokens token, int red_type, t_command *command)
 	if (red_type == RED_I)
 	{
 		if (!access(token.redd.file, F_OK | R_OK))
-			command->fdin = open(token.redd.file, O_RDONLY , 0644);
+			command->fdin = open(token.redd.file, O_RDONLY, 0644);
 		//else
 			//ERROR MSG
 	}
@@ -67,7 +67,7 @@ void	create_redirection(t_tokens token, int red_type, t_command *command)
 	else if (red_type == RED_A)
 	{
 		command->fdout = open(token.redd.file, O_WRONLY
-					| O_CREAT | O_APPEND, 0644);
+				| O_CREAT | O_APPEND, 0644);
 	}
 }
 
@@ -80,7 +80,7 @@ void	free_tokens(t_tokens *token)
 		free(token->tokens[i]);
 	free(token->tokens);
 	if (token->redd.red_i || token->redd.red_o
-			|| token->redd.red_d || token->redd.red_a)
+		|| token->redd.red_d || token->redd.red_a)
 		free(token->redd.file);
 }
 
@@ -95,17 +95,5 @@ t_command	create_command(t_tokens	*token)
 	command.program = ft_strdup(token->tokens[0]);
 	create_pipes_and_redirections(token, &command);
 	free_tokens(token);
-	return (command);
-}
-
-t_command	null_command(void)
-{
-	t_command command;
-
-	command.args = NULL;
-	command.program = NULL;
-	command.fdin = 0;
-	command.fdout = 1;
-	command.pid = 0;
 	return (command);
 }

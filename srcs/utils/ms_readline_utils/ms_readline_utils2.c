@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:57 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 20:21:42 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:12:12 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void	add_multiple_tokens(char ***tokens, char **new_tokens, int i)
 
 int	last_token(char **tokens)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (tokens[i])
 		i++;
@@ -83,8 +83,8 @@ int	last_token(char **tokens)
 
 int	tokens_len(char **tokens)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (tokens[i])
 		i++;
