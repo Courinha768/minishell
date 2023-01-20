@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_commands.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 20:55:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 05:44:54 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 12:10:57 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ void	sig_print(int signal)
 //TODO: disactivate this when not in interactive mode
 void	shell_signal(void)
 {
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, sig_print);
+	struct sigaction sigsig;
+	
+	sigemptyset(&sigsig.sa_mask);
+	sigaddset(&sigsig.sa_mask, SIGQUIT);
+	sigaddset(&sigsig.sa_mask, SIGINT);
+
+	sigsig.sa_handler = SIG_IGN;
+	sigaction(SIGQUIT, &sigsig, NULL);
+
+	sigsig.sa_handler = sig_print;
+	sigaction(SIGINT, &sigsig, NULL);
 }
