@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 13:52:36 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:39:32 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	check_is_dir(char *path)
 
 static void	chldforkclose(t_command *command, t_promptinfo *prompt, char *path)
 {
+	signal(SIGINT, SIG_DFL);
 	dup2(command->fdout, 1);
 	dup2(command->fdin, 0);
 	closefds(command);

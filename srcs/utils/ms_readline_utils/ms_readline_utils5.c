@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_readline_utils5.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:03:04 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 05:16:19 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:07:50 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,13 @@ void	create_redirection(t_tokens token, int red_type, t_command *command)
 	{
 		if (!access(token.redd.file, F_OK | R_OK))
 			command->fdin = open(token.redd.file, O_RDONLY, 0644);
-		//else
-			//ERROR MSG
+		else
+		{
+			perror(token.redd.file);
+			info()->errorkeep = 1;
+			// free(command->program);
+			// command->program = NULL;
+		}
 	}
 	else if (red_type == RED_O)
 	{

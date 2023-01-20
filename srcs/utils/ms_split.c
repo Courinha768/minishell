@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:02:49 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 14:06:42 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 14:35:25 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,41 +57,58 @@ int	s_t_size_counter(char *s, int i)
 	return (counter + 1);
 }
 
-char	**ms_split(char *s)
+int	splitinin(char *s, char **split, int *i, int j)
 {
-	char	**split;
-	int		i;
-	int		j;
-	int		k;
-	int		in_quotes[2];
+	static int	in_quotes0 = -1;
+	static int	in_quotes1 = -1;
+	int			k;
+	
+	k = 0;
+	while (s[*i] && (s[*i] != ' ' || in_quotes0 > 0 || in_quotes1 > 0))
+	{
+		if (s[*i] == '\"' && in_quotes1 < 0)
+			in_quotes0 *= -1;
+		else if (s[*i] == '\'' && in_quotes0 < 0)
+			in_quotes1 *= -1;
+		split[j][k++] = s[(*i)++];
+	}
+	split[j][k] = 0;
+	return k;
+}
 
+int	splitinside(char *s, char **split)
+{
+	int	i;
+	int	j;
+	int	in_quotes[2];
+	
 	in_quotes[0] = -1;
 	in_quotes[1] = -1;
-	split = (char **)malloc(sizeof(char *) * (s_token_counter(s) + 1));
-	if (!split)
-		return (NULL);
 	i = -1;
 	j = 0;
 	while ((i == -1 || s[i]) && s[++i])
 	{
 		split[j] = (char *)malloc(sizeof(char) * (s_t_size_counter(s, i) + 1));
 		if (!split)
-			return (NULL);
-		k = 0;
-		while (s[i] && (s[i] != ' ' || in_quotes[0] > 0 || in_quotes[1] > 0))
-		{
-			if (s[i] == '\"')
-				in_quotes[0] *= -1;
-			else if (s[i] == '\'')
-				in_quotes[1] *= -1;
-			split[j][k++] = s[i++];
-		}
-		split[j][k] = 0;
+			return (0);
+		split[j][splitinin(s, split, &i, j)] = 0;
 		while (s[i] && s[i + 1] && s[i + 1] == ' ')
 			i++;
 		j++;
 	}
 	split[j] = 0;
+	return (1);
+}
+
+char	**ms_split(char *s)
+{
+	char	**split;
+
+	split = (char **)malloc(sizeof(char *) * (s_token_counter(s) + 1));
+	if (!split)
+		return (NULL);
+	if (! splitinside(s, split))
+		return (NULL);
 	free(s);
 	return (split);
 }
