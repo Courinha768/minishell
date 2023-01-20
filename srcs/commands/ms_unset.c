@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:40:45 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/20 05:38:23 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:08:51 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ms_unset(t_command *command, t_promptinfo *prompt)
 		{
 			errno = EINVAL;
 			perror(command->args[i]);
+			info()->errorkeep = errno;
 			continue ;
 		}
 		pos = dict_pos(&prompt->newenv, command->args[i]);

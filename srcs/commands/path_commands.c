@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 06:06:26 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:09:22 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ void	path_command(t_command *command, t_dict *env)
 {
 	char	*path;
 	int		pid;
-	//int		stat_val;
 	path = find_path(command, env);
 	if (access(path, F_OK | X_OK) == -1)
+	{
+		info()->errorkeep = errno;
 		perror(path);
+	}
 	else
 	{
 		pid = fork();
@@ -94,6 +96,7 @@ void	path_command(t_command *command, t_dict *env)
 		//if (WIFEXITED(stat_val))		
 		//	errno = WEXITSTATUS(stat_val);
 	}
+	// command->pid = -2;
 	closefds(command);
 	free(path);
 }
