@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 16:39:32 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:44:10 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	path_command(t_command *command, t_promptinfo *prompt)
 	char		*path;
 	int			pid;
 
-	if (access(command->program, F_OK | X_OK) == -1)
+	if (access(command->program, F_OK | X_OK) == -1 && command->program[0])
 		path = find_path(command, &prompt->newenv);
 	else
 		path = ft_strdup(command->program);
@@ -50,8 +50,9 @@ void	path_command(t_command *command, t_promptinfo *prompt)
 		printf("%s: Is a directory\n", path);
 	if (access(path, F_OK | X_OK) == -1)
 	{
-		info()->errorkeep = errno;
-		perror(path);
+		info()->errorkeep = 127;
+		ft_putstr_fd(command->program, 2);
+		ft_putstr_fd(": command not found\n", 2);	
 	}
 	else
 	{
