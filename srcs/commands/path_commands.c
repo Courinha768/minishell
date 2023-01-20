@@ -79,7 +79,10 @@ void	path_command(t_command *command, t_promptinfo *prompt)
 	char		*path;
 	int			pid;
 
-	path = find_path(command, &prompt->newenv);
+	if (access(command->program, F_OK | X_OK) == -1)
+		path = find_path(command, &prompt->newenv);
+	else
+		path = ft_strdup(command->program);
 	if (check_is_dir(path))
 		printf("%s: Is a directory\n", path);
 	if (access(path, F_OK | X_OK) == -1)
