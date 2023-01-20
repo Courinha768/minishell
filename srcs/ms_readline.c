@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 18:07:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:13:23 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ char	*ms_readline(t_promptinfo *prompt_info)
 	signal(SIGQUIT, nada);
 	free(prompt);
 	if (!is_all_space(command_line))
+	{
+		free(command_line);
 		return (ft_strdup(""));
+	}
 	if (!command_line || !command_line[0])
 		return (command_line);
 	add_history(command_line);

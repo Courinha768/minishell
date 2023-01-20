@@ -76,6 +76,7 @@ fc:
 	@make -s fclean
 
 va:	re
-	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
+	valgrind --leak-check=full --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
+	#valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
 
 .PHONY		:	all clean fclean re
