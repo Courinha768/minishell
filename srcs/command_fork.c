@@ -81,6 +81,6 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 				info()->errorkeep = WEXITSTATUS(stat_val);		
 		}
 	}
-	print_commands(commands);
+	//print_commands(commands);
 	free_commands(commands);
 }

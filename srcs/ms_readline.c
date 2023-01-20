@@ -21,15 +21,15 @@ void	replace_1(char **token, t_dict *env)
 
 	dollar_sign = ms_strnstr(*token, "$", -1);
 	i = 0;
-	if ((*token)[1] == '?' && !(*token)[1])
-		key[0] = '?';
+	if ((*token)[dollar_sign + 1] == '?')
+		key[i++] = '?';
 	else
 		while (ft_isalnum((*token)[++dollar_sign]))
 			key[i++] = (*token)[dollar_sign];
 	key[i] = 0;
-	if (!ft_strcmp(key, "?"))
+	if (!ft_strcmp(key, "?\0"))
 	{
-		temp = ft_itoa(info()->error);
+		temp = ft_itoa(info()->errorkeep);
 		replace_key(token, key, temp);
 		free(temp);
 	}
@@ -62,6 +62,52 @@ void	place_evars(t_command **commands, t_dict *env)
 	}
 }
 
+int	is_special(char *str)
+{
+	if (!ft_strcmp(str, "<") || !ft_strcmp(str, "<<"))
+		return (TRUE);
+	else if (!ft_strcmp(str, ">") || !ft_strcmp(str, ">>"))
+		return (TRUE);
+	else if (!ft_strcmp(str, "|"))
+		return (TRUE);
+	return (FALSE);
+	
+}
+
+int	check_line(char **split)
+{
+	int	i;
+
+	i = -1;
+	while (split[++i])
+	{
+		if (i > 0 && is_special(split[i]) && is_special(split[i - 1]))
+		{
+			printf("minishell: syntax error near unexpected token `%s'\n", split[i]);
+			info()->errorkeep = 2;
+			return (TRUE);
+		}
+		if (is_special(split[i]) && !split[i + 1])
+		{
+			printf("minishell: syntax error near unexpected token `newline'\n");
+			info()->errorkeep = 2;
+			return (TRUE);
+		}
+	}
+	return (FALSE);
+}
+
+t_command	*free_char_list(char ***list)
+{
+	int	i;
+
+	i = -1;
+	while ((*list)[++i])
+		free((*list)[i]);
+	free(*list);
+	return (NULL);
+}
+
 t_command	*create_commands(char *line, t_dict *env)
 {
 	char		**split;
@@ -71,6 +117,8 @@ t_command	*create_commands(char *line, t_dict *env)
 
 	(void)env;
 	split = ms_split2(ft_strdup(line));
+	if (check_line(split))
+		return (free_char_list(&split));
 	tokens = create_tokens(split);
 	check_for_redirection(&tokens);
 	i = 0;

@@ -124,6 +124,8 @@ void	replace_key(char **str, char *old_key, char *new_key)
 	temp1[i++] = 0;
 	while (ft_isalnum((*str)[i]))
 		i++;
+	if ((*str)[i - 1] == '$' && (*str)[i] == '?')
+		i++;
 	j = 0;
 	while ((*str)[++i - 1])
 		temp2[j++] = (*str)[i - 1];

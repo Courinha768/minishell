@@ -38,15 +38,13 @@ int	main(int argc, char **argv, char **envp)
 			read_commands(commands, &prompt_info, &prompt_info.newenv);
 	}
 	free_promptinfo(&prompt_info);
-	exit(info()->error);
+	exit(info()->errorkeep);
 }
 
 // TODO:
 // add error nbr on exit
-// add echo &?
 // on exit, check if the arguments are nbrs (it leaves anyways)
 // on exit, check if there is only on argument (it doesnt leave)
 // FIXME:
 // ctrl+C is printing 2 prompts when doing something like cat with no args
-// ctrl+D is correct in this situation but its making error msgs weird
 // NORMINETTE
