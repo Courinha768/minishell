@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/20 03:20:30 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:37:22 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	actualcd(t_promptinfo *prompt, char *newdir)
 {
 	if (chdir(newdir) == -1)
 		return (perror(newdir));
-	dict_add(&prompt->newenv, ft_strjoin("OLDPWD=", prompt->pwd)); 
+	dict_add(&prompt->newenv, ft_strjoin("OLDPWD=", prompt->pwd));
 	free(prompt->pwd);
 	prompt->pwd = getcwd(NULL, 0);
-	dict_add(&prompt->newenv, ft_strjoin("PWD=", prompt->pwd)); //Alert: hope this doesn't make a mistake!
+	dict_add(&prompt->newenv, ft_strjoin("PWD=", prompt->pwd));
 }
 
 void	ms_cd(t_command *command, t_promptinfo *prompt)

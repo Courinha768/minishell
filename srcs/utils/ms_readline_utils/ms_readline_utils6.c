@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:15:56 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 05:31:34 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:36:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	**ms_split2(char *line)
 	while (split[++i])
 	{
 		if (need_2_split(split[i]))
-		{c
+		{
 			token_2_split = remove_token(&split, i);
 			add_multiple_tokens(&split, split_tokens(token_2_split), i);
 		}

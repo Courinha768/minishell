@@ -6,13 +6,13 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 02:31:22 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:34:13 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-void replace_1(char **token, t_dict *env)
+void	replace_1(char **token, t_dict *env)
 {
 	int		dollar_sign;
 	char	key[1024];
@@ -42,7 +42,8 @@ void	place_evars(t_command **commands, t_dict *env)
 			if (a == 1)
 				replace_1(&((*commands)[i].args[j]), env);
 			else if (a == 2)
-				replace_key(&((*commands)[i].args[j]), "~", dict_get(env, "HOME"));
+				replace_key(&((*commands)[i].args[j]), "~",
+					dict_get(env, "HOME"));
 			if (a)
 				j--;
 			a = 0;

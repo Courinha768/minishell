@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 18:59:00 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/18 14:45:33 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:39:57 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,4 @@ void	free_promptinfo(t_promptinfo *prompt_info)
 	free(prompt_info->pwd);
 	free(prompt_info->user);
 	dict_free(&prompt_info->newenv);
-	// dict_free(prompt_info->newenv);
-	// dict_shallowfree(prompt_info->shexport);
 }

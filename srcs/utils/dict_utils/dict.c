@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 14:48:48 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/18 21:26:01 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:43:09 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 t_dict	dict_new(size_t amount)
 {
 	t_dict	new;
-	//Alert: 2 mallocs!
-	// new = malloc(sizeof(t_dict) * 1);
+
 	if (amount == 0)
 		amount = 500;
 	new.env = malloc(amount * sizeof(char *));
@@ -67,15 +66,13 @@ char	*dict_rmv(t_dict *dict, size_t index)
 	if (!dict)
 		return (NULL);
 	popped = dict->env[index];
-
 	while (index < dict->count - 1)
 	{
 		dict->env[index] = dict->env[index + 1];
 		index++;
 	}
 	dict->env[index] = NULL;
-	
-	dict->count--; // Very important!
+	dict->count--;
 	return (popped);
 }
 

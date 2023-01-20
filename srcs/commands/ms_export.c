@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 09:16:24 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/18 22:09:03 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:38:37 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,24 +35,16 @@ void	dictorderalpha(t_dict *dict)
 	size_t	j;
 	size_t	i;
 	char	**min;
-	// size_t	whr;
 
 	j = 0;
 	while (j < dict->count)
 	{
 		min = &dict->env[j];
-		// whr = strichr(*min, '=');
 		i = j + 1;
 		while (i < dict->count)
 		{
-			// whr = ft_min(whr, strichr(dict->env[i], '='));
-			//TODO: use our strncmp
-			// if (strncmp(*min, dict->env[i], whr) > 0)
 			if (antstrcmp(*min, dict->env[i]) > 0)
-			{
 				ft_strswap(min, &(dict->env[i]));
-				// whr = strichr(*min, '=');
-			}
 			i++;
 		}
 		j++;
@@ -90,8 +82,6 @@ void	export_print(t_command *command, t_promptinfo *prompt)
 	t_dict	shexport;
 
 	(void)command;
-	//TODO: do we really need to receive command?
-	//TODO: must we receive prompt and not dict?
 	dict = &prompt->newenv;
 	shexport.env = malloc(sizeof(char *) * dict->count);
 	ft_memcpy(shexport.env, dict->env, dict->count * sizeof(char *));
@@ -110,13 +100,9 @@ void	ms_export(t_command *command, t_promptinfo *prompt)
 	size_t	len;
 	size_t	i;
 	// size_t	pos;
-
 	len = ft_mtrxlen((void **)command->args);
 	if (len <= 1)
-		return (
-			exe_fuc(command, prompt, export_print)
-		);
-			// export_print(command, prompt)
+		return (exe_fuc(command, prompt, export_print));
 	i = 1;
 	while (i < len)
 	{

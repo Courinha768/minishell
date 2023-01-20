@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dict_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 19:15:38 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 18:30:48 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:44:15 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,15 @@ int	dict_add(t_dict *dict, char *keyval)
 
 	if (keyval == NULL)
 		return (0);
-	pos = dict_pos(dict, keyval); // can all of keyval be used as key of pos?
+	pos = dict_pos(dict, keyval);
 	if (pos == 0)
 		return (dict_append(dict, keyval));
-	// In-Situ replace
 	if (strichr(keyval, '='))
 	{
 		free(dict->env[pos - 1]);
 		dict->env[pos - 1] = keyval;
 		return (1);
 	}
-	// Did not add
 	return (0);
 }
 
@@ -69,7 +67,6 @@ void	dict_free(t_dict *dict)
 	i = 0;
 	while (i < dict->count)
 	{
-		// if (dict->env[i] != NULL)
 		free(dict->env[i]);
 		i++;
 	}

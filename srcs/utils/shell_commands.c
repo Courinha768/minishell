@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/07 20:55:20 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 00:31:00 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:44:54 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,9 @@ void	sig_print(int signal)
 /**
  * Process received signals
 */
+//TODO: disactivate this when not in interactive mode
 void	shell_signal(void)
 {
-	//Alert: Do NOT change the order these are in!!!
-	//TODO: disactivate this when not in interactive mode
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_print);
 }

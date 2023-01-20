@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 19:40:45 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/19 16:15:51 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 05:38:23 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 void	ms_unset(t_command *command, t_promptinfo *prompt)
 {
-	//TODO: unset a=s => `a=s': not a valid identifier
-		// errno => 1
 	size_t	i;
 	size_t	pos;
-
+	//TODO: unset a=s => `a=s': not a valid identifier
+		// errno => 1
 	i = 0;
 	while (++i < ft_mtrxlen((void **)command->args))
 	{
@@ -33,6 +32,5 @@ void	ms_unset(t_command *command, t_promptinfo *prompt)
 		{
 			free(dict_pop(&prompt->newenv, command->args[i]));
 		}
-		// i++;
 	}
 }

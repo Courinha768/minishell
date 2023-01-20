@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 04:26:40 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 06:06:26 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	path_command(t_command *command, t_dict *env)
 	char	*path;
 	int		pid;
 	//int		stat_val;
-
 	path = find_path(command, env);
 	if (access(path, F_OK | X_OK) == -1)
 		perror(path);
@@ -82,11 +81,14 @@ void	path_command(t_command *command, t_dict *env)
 			closefds(command);
 			execve(path, command->args, env->env);
 			free(path); //TODO: Either we free everything or nothing
+			dict_free(env);
+			free_commands(command);
 			exit(50);
 		}
 		command->pid = pid;
 		/*
-		nao podemos fazer isto por causa da coisa da evaluation de cat | cat "something"
+		nao podemos fazer isto por causa da coisa da 
+		evaluation de cat | cat "something"
 		*/
 		//wait(&stat_val); //Alert: presumes the right child
 		//if (WIFEXITED(stat_val))		

@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 04:23:16 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 06:06:17 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 	i = -1;
 	while (commands[++i].program)
 		waitpid(commands[i].pid, NULL, 0);
-	//print_commands(commands);
 	free_commands(commands);
 }
