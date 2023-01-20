@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:16:07 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/19 02:28:15 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 00:14:55 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_promptinfo {
 typedef struct s_info {
 	int		finished;
 	char	*line;
+	int		errorkeep;
 }	t_info;
 
 typedef void	(*t_function)(t_command *command_arg, t_promptinfo *prompt_arg);

@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 22:56:58 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 00:13:49 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,13 @@ void	path_command(t_command *command, t_dict *env)
 {
 	char	*path;
 	int		pid;
-	int		stat_val;
 
 	path = find_path(command, env);
 	if (access(path, F_OK | X_OK) == -1)
+	{
+		info()->errorkeep = errno;
 		perror(path);
+	}
 	else
 	{
 		pid = fork();
@@ -107,13 +109,11 @@ void	path_command(t_command *command, t_dict *env)
 			closefds(command);
 			execve(path, command->args, env->env);
 			free(path); //TODO: Either we free everything or nothing
-			exit(50);
+			exit(errno);
 		}
 		command->pid = pid;
-		wait(&stat_val); //Alert: presumes the right child
-		if (WIFEXITED(stat_val))		
-			errno = WEXITSTATUS(stat_val);
 	}
+	// command->pid = -2;
 	closefds(command);
 	free(path);
 }
