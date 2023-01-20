@@ -6,66 +6,47 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 22:28:49 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:31:22 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/include.h"
 
-t_command	nullcommand(void)
+void replace_1(char **token, t_dict *env)
 {
-	t_command	null_command;
+	int		dollar_sign;
+	char	key[1024];
+	int		i;
 
-	null_command.program = NULL;
-	null_command.args = NULL;
-	null_command.pid = -1;
-	null_command.fdin = 0;
-	null_command.fdout = 1;
-	return (null_command);
+	dollar_sign = ms_strnstr(*token, "$", -1);
+	i = 0;
+	while (ft_isalnum((*token)[++dollar_sign]))
+		key[i++] = (*token)[dollar_sign];
+	key[i] = 0;
+	replace_key(token, key, dict_get(env, key));
 }
 
-void	remove_char(char **str, int i)
-{
-	while ((*str)[++i])
-		(*str)[i - 1] = (*str)[i];
-	(*str)[i - 1] = 0;
-}
-
-void	remove_quotes_sub(char **str)
-{
-	int	i;
-	int	inside_quotes;
-	int	inside_squotes;
-
-	i = -1;
-	inside_quotes = -1;
-	inside_squotes = -1;
-	while ((*str)[++i])
-	{
-		if ((*str)[i] == '\"' && inside_squotes < 0)
-		{
-			remove_char(str, i);
-			inside_quotes *= -1;
-		}
-		else if ((*str)[i] == '\'' && inside_quotes < 0)
-		{
-			remove_char(str, i);
-			inside_squotes *= -1;
-		}
-	}
-}
-
-void	remove_quotes(t_command **commands)
+void	place_evars(t_command **commands, t_dict *env)
 {
 	int	i;
 	int	j;
+	int	a;
 
 	i = -1;
 	while ((*commands)[++i].program)
 	{
 		j = -1;
 		while ((*commands)[i].args[++j])
-			remove_quotes_sub(&((*commands)[i].args[j]));
+		{
+			a = has_stopers((*commands)[i].args[j]);
+			if (a == 1)
+				replace_1(&((*commands)[i].args[j]), env);
+			else if (a == 2)
+				replace_key(&((*commands)[i].args[j]), "~", dict_get(env, "HOME"));
+			if (a)
+				j--;
+			a = 0;
+		}
 	}
 }
 
@@ -91,6 +72,7 @@ t_command	*create_commands(char *line, t_dict *env)
 		commands[i] = create_command(&(tokens[i]));
 	commands[i] = nullcommand();
 	free(tokens);
+	place_evars(&commands, env);
 	remove_quotes(&commands);
 	return (commands);
 }

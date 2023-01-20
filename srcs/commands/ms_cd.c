@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 10:26:28 by amaria-d          #+#    #+#             */
-/*   Updated: 2023/01/19 18:29:27 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:59:07 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	ms_cd(t_command *command, t_promptinfo *prompt)
 {
 	char	*newdir;
 
+	// ver bem o comportamento de -
 	if (!command->args[1])
 		actualcd(prompt, dict_get(&prompt->newenv, dict_get(&prompt->newenv, "HOME")));
 	else if (command->args[1][0] == '~')

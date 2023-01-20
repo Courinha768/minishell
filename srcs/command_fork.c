@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_fork.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 23:00:03 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:32:24 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 	i = -1;
 	while (commands[++i].program)
 		waitpid(commands[i].pid, NULL, 0);
-	print_commands(commands);
+	//print_commands(commands);
 	free_commands(commands);
 }

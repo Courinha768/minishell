@@ -5,7 +5,7 @@ OBJS		=	$(SRCS:.c=.o)
 INCLUDES	=	./include
 
 CC			=	cc
-CFLAGS		=	-Wall -Werror -Wextra -g3 -fsanitize=address
+CFLAGS		=	-Wall -Werror -Wextra -g3 #-fsanitize=address
 
 .c.o		:
 	$(CC) $(CFLAGS) -I$(INCLUDES) -c $< -o $(<:.c=.o)
@@ -32,5 +32,8 @@ r:
 
 fc:
 	@make -s fclean
+
+va:	re
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --track-fds=yes --log-file=valgrind-out.txt ./minishell
 
 .PHONY		:	all clean fclean re

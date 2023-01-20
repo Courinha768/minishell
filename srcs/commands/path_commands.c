@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_commands.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 22:56:58 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:54:56 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	**define_path(t_dict *env)
 	return (path);
 }
 
-static char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
+char	*ft_strjoin3(char const *s1, char const *s2, char const *s3)
 {
 	char	*join;
 	int		size;

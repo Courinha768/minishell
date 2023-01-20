@@ -72,4 +72,14 @@ void		check_for_redirection(t_tokens **tokens);
 void		create_pipes_and_redirections(t_tokens *token, t_command *command);
 char		**ft_strstrdup(char **tokens);
 
+void		remove_quotes(t_command **commands);
+
+t_command	nullcommand(void);
+
+void		replace_key(char **str, char *old_key, char *new_key);
+int			has_stopers(char *s);
+int			evar_stopers2(char *s, int i);
+int			evar_stopers(char *s, int i);
+int			ms_strnstr(const char *haystack, const char *needle, size_t len);
+
 #endif

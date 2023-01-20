@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:05:26 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/19 22:56:43 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:55:03 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,14 @@ int				ft_strcmp(const char *s1, const char *s2);
 
 void			strip_quotes(t_command *commands, t_dict *env);
 
+void			sig_print(int signal);
+
 t_info			*info(void);
 
 void			clear_shell(void);
 void			shell_signal(void);
+
+char			*ft_strjoin3(char const *s1, char const *s2, char const *s3);
 
 int				is_valid(char c);
 int				is_valid2(char c);
