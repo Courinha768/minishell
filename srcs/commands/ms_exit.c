@@ -3,39 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ms_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:30:57 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 06:32:37 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:26:58 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/include.h"
 
+int	ft_strisdigit(char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (! ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 void	ms_exit(t_command *command, t_promptinfo *prompt)
 {
-	int	i;
-
-	//TODO:  add arguments
 	(void)command;
 	(void)prompt;
-	i = -1;
-	// mesmo que exitam 2 args que o 1 nao for numeros sai de qualquer maneira
-	if (command->args[1])
+	printf("exit\n");
+	if (ft_mtrxlen((void **)command->args) <= 1)
 	{
-		while (command->args[1][++i])
+		info()->finished = 1;
+		return ;
+	}
+	else if (command->args[1] && ft_strisdigit(command->args[1]))
+	{
+		info()->errorkeep = ft_atoi(command->args[1]);
+		if (command->args[2])
 		{
-			if (!ft_isdigit(command->args[1][i]))
-			{
-				printf("minishell: exit: %s: numeric argument required",
-					command->args[1]);
-			}
+			info()->errorkeep = 1;
+			return ((void)printf("minishell: exit: too many arguments\n"));
 		}
 	}
-	if (command->args[1] && command->args[2])
+	else
 	{
-		; // incorrect and shouldnt exit
+		info()->errorkeep = 2;
+		printf("minishell: exit: %s: numeric argument required\n", command->args[1]);
 	}
+		
 	info()->finished = 1;
-	printf("exit\n");
 }

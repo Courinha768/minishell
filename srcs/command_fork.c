@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:10:54 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 10:08:48 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:39:20 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	exe_fuc(t_command *command, t_promptinfo *prompt, t_function fun)
 	command->pid = pid;
 }
 
-static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
+static void	command_fork(t_command *command, t_promptinfo *prompt)
 {
 	if (!ft_strcmp(command->program, "change"))
 		change(*command, prompt);
@@ -60,17 +60,17 @@ static void	command_fork(t_command *command, t_promptinfo *prompt, t_dict *env)
 	else if (!ft_strcmp(command->program, "unset"))
 		ms_unset(command, prompt);
 	else
-		path_command(command, env);
+		path_command(command, prompt);
 }
 
-void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
+void	read_commands(t_command *commands, t_promptinfo *prompt)
 {
 	int	i;
 	int	stat_val;
 
 	i = -1;
 	while (commands[++i].program)
-		command_fork(&commands[i], prompt, env);
+		command_fork(&commands[i], prompt);
 	i = -1;
 	while (commands[++i].program)
 	{
@@ -78,7 +78,7 @@ void	read_commands(t_command *commands, t_promptinfo *prompt, t_dict *env)
 		{
 			wait(&stat_val);
 			if (WIFEXITED(stat_val))		
-				info()->errorkeep = WEXITSTATUS(stat_val);		
+				info()->errorkeep = WEXITSTATUS(stat_val);
 		}
 	}
 	print_commands(commands);

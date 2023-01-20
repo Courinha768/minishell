@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:08:09 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 06:30:53 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:40:49 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,12 @@ int	main(int argc, char **argv, char **envp)
 		commands = create_commands(line, &prompt_info.newenv);
 		free(line);
 		if (commands)
-			read_commands(commands, &prompt_info, &prompt_info.newenv);
+			read_commands(commands, &prompt_info);
 	}
 	free_promptinfo(&prompt_info);
-	exit(info()->error);
+	exit(info()->errorkeep);
 }
 
-// TODO:
-// add error nbr on exit
-// add echo &?
-// on exit, check if the arguments are nbrs (it leaves anyways)
-// on exit, check if there is only on argument (it doesnt leave)
 // FIXME:
 // ctrl+C is printing 2 prompts when doing something like cat with no args
 // ctrl+D is correct in this situation but its making error msgs weird

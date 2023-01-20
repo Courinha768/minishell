@@ -6,7 +6,7 @@
 /*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 22:26:41 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 10:09:22 by amaria-d         ###   ########.fr       */
+/*   Updated: 2023/01/20 11:38:07 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ static char	*find_path(t_command *command, t_dict *env)
 		return (ft_strndup(command->program, 2, END));
 }
 
-void	path_command(t_command *command, t_dict *env)
+void	path_command(t_command *command, t_promptinfo *prompt)
 {
 	char	*path;
 	int		pid;
-	path = find_path(command, env);
+	path = find_path(command, &prompt->newenv);
 	if (access(path, F_OK | X_OK) == -1)
 	{
 		info()->errorkeep = errno;
@@ -81,20 +81,13 @@ void	path_command(t_command *command, t_dict *env)
 			dup2(command->fdout, 1);
 			dup2(command->fdin, 0);
 			closefds(command);
-			execve(path, command->args, env->env);
-			free(path); //TODO: Either we free everything or nothing
-			dict_free(env);
+			execve(path, command->args, prompt->newenv.env);
+			free(path);
+			free_promptinfo(prompt);
 			free_commands(command);
 			exit(50);
 		}
 		command->pid = pid;
-		/*
-		nao podemos fazer isto por causa da coisa da 
-		evaluation de cat | cat "something"
-		*/
-		//wait(&stat_val); //Alert: presumes the right child
-		//if (WIFEXITED(stat_val))		
-		//	errno = WEXITSTATUS(stat_val);
 	}
 	// command->pid = -2;
 	closefds(command);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ms_readline.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amaria-d <amaria-d@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 20:05:52 by aappleto          #+#    #+#             */
-/*   Updated: 2023/01/20 06:44:15 by aappleto         ###   ########.fr       */
+/*   Updated: 2023/01/20 10:49:42 by amaria-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	replace_1(char **token, t_dict *env)
 	key[i] = 0;
 	if (!ft_strcmp(key, "?"))
 	{
-		temp = ft_itoa(info()->error);
+		temp = ft_itoa(info()->errorkeep);
 		replace_key(token, key, temp);
 		free(temp);
 	}
