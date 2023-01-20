@@ -12,11 +12,11 @@
 
 #include "./include/include.h"
 
-int	main(int argc, char **argv, char **envp)
+int main(int argc, char **argv, char **envp)
 {
-	t_promptinfo	prompt_info;
-	t_command		*commands;
-	char			*line;
+	t_promptinfo prompt_info;
+	t_command *commands;
+	char *line;
 
 	(void)argc;
 	(void)argv;
@@ -26,11 +26,11 @@ int	main(int argc, char **argv, char **envp)
 	{
 		line = ms_readline(&prompt_info);
 		if (!line && printf("exit\n"))
-			break ;
+			break;
 		if (!line[0])
 		{
 			free(line);
-			continue ;
+			continue;
 		}
 		commands = create_commands(line, &prompt_info.newenv);
 		free(line);

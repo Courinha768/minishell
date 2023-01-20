@@ -63,11 +63,25 @@ static char	*find_path(t_command *command, t_dict *env)
 		return (ft_strdup(command->program));
 }
 
+int	check_is_dir(char *path)
+{
+	struct stat f;
+
+	if (stat(path, &f) == -1)
+		return (FALSE);
+	if (S_ISDIR(f.st_mode))
+		return (TRUE);
+	return (FALSE);
+}
+
 void	path_command(t_command *command, t_promptinfo *prompt)
 {
-	char	*path;
-	int		pid;
+	char		*path;
+	int			pid;
+
 	path = find_path(command, &prompt->newenv);
+	if (check_is_dir(path))
+		printf("%s: Is a directory\n", path);
 	if (access(path, F_OK | X_OK) == -1)
 	{
 		info()->errorkeep = errno;
@@ -82,10 +96,11 @@ void	path_command(t_command *command, t_promptinfo *prompt)
 			dup2(command->fdin, 0);
 			closefds(command);
 			execve(path, command->args, prompt->newenv.env);
+			info()->errorkeep = errno;
 			free(path);
 			free_promptinfo(prompt);
 			free_commands(command);
-			exit(50);
+			exit(info()->errorkeep);
 		}
 		command->pid = pid;
 	}

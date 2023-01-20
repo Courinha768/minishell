@@ -41,6 +41,7 @@ void	exe_fuc(t_command *command, t_promptinfo *prompt, t_function fun)
 
 static void	command_fork(t_command *command, t_promptinfo *prompt)
 {
+
 	if (!ft_strcmp(command->program, "change"))
 		change(*command, prompt);
 	else if (!ft_strcmp(command->program, "echo"))

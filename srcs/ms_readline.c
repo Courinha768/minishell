@@ -60,6 +60,8 @@ void	place_evars(t_command **commands, t_dict *env)
 			a = 0;
 		}
 	}
+	free((*commands)[0].program);
+	(*commands)[0].program = ft_strdup((*commands)[0].args[0]);
 }
 
 int	is_special(char *str)

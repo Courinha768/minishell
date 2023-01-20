@@ -22,6 +22,7 @@ t_dict	shenv_init(char **envp)
 	int		mtrxlen;
 	t_dict	newenv;
 	int		i;
+	char	*tmp;
 
 	mtrxlen = (int)ft_mtrxlen((void **)envp);
 	newenv = dict_new(mtrxlen);
@@ -31,6 +32,9 @@ t_dict	shenv_init(char **envp)
 		dict_add(&newenv, ft_strdup(envp[i]));
 		i++;
 	}
+	tmp = ft_itoa(ft_atoi(dict_get(&newenv, "SHLVL")) + 1);
+	dict_add(&newenv, ft_strjoin("SHLVL=",tmp));
+	free(tmp);
 	return (newenv);
 }
 

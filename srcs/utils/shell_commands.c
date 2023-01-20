@@ -34,6 +34,7 @@ void	shell_signal(void)
 {
 	struct sigaction sigsig;
 	
+	sigsig.sa_flags = 0;
 	sigemptyset(&sigsig.sa_mask);
 	sigaddset(&sigsig.sa_mask, SIGQUIT);
 	sigaddset(&sigsig.sa_mask, SIGINT);
